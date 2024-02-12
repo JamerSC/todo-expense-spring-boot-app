@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/todoexpense")
 public class RestController {
 
+    @GetMapping("/showLoginSignup")
+    public String showLoginSignup() {
+        return "login-signup";
+    }
     @GetMapping("/showIndex")
     public String showIndex() {
     // public String showIndex(Model theModel) {
