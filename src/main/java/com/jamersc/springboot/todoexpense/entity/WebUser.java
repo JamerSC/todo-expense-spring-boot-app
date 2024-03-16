@@ -1,4 +1,4 @@
-package com.jamersc.springboot.todoexpense.rest.entity;
+package com.jamersc.springboot.todoexpense.entity;
 
 import java.util.Date;
 

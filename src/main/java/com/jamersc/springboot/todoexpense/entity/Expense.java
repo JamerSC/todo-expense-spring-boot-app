@@ -1,23 +1,40 @@
-package com.jamersc.springboot.todoexpense.rest.entity;
+package com.jamersc.springboot.todoexpense.entity;
+
+import jakarta.persistence.*;
 
 import java.util.Date;
 
+@Entity
+@Table(name="user_expenses")
 public class Expense {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int expenseId;
-    private String description;
+
+    @Column(name="expense_name")
+    private String expenseName;
+
+    @Column(name="amount")
     private Double amount;
+
+
+    // @Column(name="user_id")
     private User user;
+
+    // @Column(name="created_date")
     private Date createdDate;
+
+    // @Column(name="modified_date")
     private Date modifiedDate;
 
     public Expense() {
 
     }
 
-    public Expense(int expenseId, String description, Double amount, User user, Date createdDate, Date modifiedDate) {
+    public Expense(int expenseId, String expenseName, Double amount, User user, Date createdDate, Date modifiedDate) {
         this.expenseId = expenseId;
-        this.description = description;
+        this.expenseName = expenseName;
         this.amount = amount;
         this.user = user;
         this.createdDate = createdDate;
@@ -32,12 +49,12 @@ public class Expense {
         this.expenseId = expenseId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getExpenseName() {
+        return expenseName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setExpenseName(String description) {
+        this.expenseName = expenseName;
     }
 
     public Double getAmount() {
@@ -76,7 +93,7 @@ public class Expense {
     public String toString() {
         return "Expense{" +
                 "expenseId=" + expenseId +
-                ", description='" + description + '\'' +
+                ", description='" + expenseName + '\'' +
                 ", amount=" + amount +
                 ", user=" + user +
                 ", createdDate=" + createdDate +

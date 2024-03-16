@@ -1,10 +1,22 @@
-package com.jamersc.springboot.todoexpense.rest.entity;
+package com.jamersc.springboot.todoexpense.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+
+    @Column(name="username")
     private String username;
+
+    @Column(name="password")
     private String password;
+
+    @Column(name="email")
     private String email;
 
     public User() {

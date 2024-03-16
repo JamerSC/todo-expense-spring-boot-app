@@ -1,4 +1,4 @@
-package com.jamersc.springboot.todoexpense.rest.controller;
+package com.jamersc.springboot.todoexpense.controller;
 
 
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,6 @@ public class RestController {
 
         return "index";
     }
-
     @GetMapping("/showTodo")
     public String showTodo() {
         return "todo";
