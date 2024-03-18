@@ -5,47 +5,55 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="user_expenses")
+@Table(name = "user_expenses")
 public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int expenseId;
+    @Column(name = "expense_id")
+    private Long expenseId;
 
-    @Column(name="expense_name")
+    @Column(name = "expense_name", nullable = false)
     private String expenseName;
 
-    @Column(name="amount")
+    @Column(name = "amount", nullable = false)
     private Double amount;
 
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
-    // @Column(name="user_id")
-    private User user;
-
-    // @Column(name="created_date")
+    @Column(name = "created_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    // @Column(name="modified_date")
+    @ManyToOne
+    @JoinColumn(name = "modified_by", nullable = false)
+    private User modifiedBy;
+
+    @Column(name = "modified_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
 
-    public Expense() {
+    // Getters and setters, constructors, and other methods
 
+    public Expense() {
     }
 
-    public Expense(int expenseId, String expenseName, Double amount, User user, Date createdDate, Date modifiedDate) {
-        this.expenseId = expenseId;
+    public Expense(String expenseName, Double amount, User createdBy, User modifiedBy) {
         this.expenseName = expenseName;
         this.amount = amount;
-        this.user = user;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        this.createdBy = createdBy;
+        this.modifiedBy = modifiedBy;
+        this.createdDate = new Date();
+        this.modifiedDate = new Date();
     }
 
-    public int getExpenseId() {
+    public Long getExpenseId() {
         return expenseId;
     }
 
-    public void setExpenseId(int expenseId) {
+    public void setExpenseId(Long expenseId) {
         this.expenseId = expenseId;
     }
 
@@ -53,7 +61,7 @@ public class Expense {
         return expenseName;
     }
 
-    public void setExpenseName(String description) {
+    public void setExpenseName(String expenseName) {
         this.expenseName = expenseName;
     }
 
@@ -65,12 +73,12 @@ public class Expense {
         this.amount = amount;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Date getCreatedDate() {
@@ -81,6 +89,14 @@ public class Expense {
         this.createdDate = createdDate;
     }
 
+    public User getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(User modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
     public Date getModifiedDate() {
         return modifiedDate;
     }
@@ -89,15 +105,14 @@ public class Expense {
         this.modifiedDate = modifiedDate;
     }
 
-    @Override
-    public String toString() {
-        return "Expense{" +
-                "expenseId=" + expenseId +
-                ", description='" + expenseName + '\'' +
-                ", amount=" + amount +
-                ", user=" + user +
-                ", createdDate=" + createdDate +
-                ", modifiedDate=" + modifiedDate +
-                '}';
+    // Add JPA annotations for createdDate and modifiedDate
+    @PrePersist
+    protected void onCreate() {
+        createdDate = new Date();
+        modifiedDate = new Date();
     }
-}
+
+    @PreUpdate
+    protected void onUpdate() {
+        modifiedDate = new Date();
+    }}
