@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+
 @Repository //support component scanning, translate JDBC exc
 public class TodoexpenseDAOImpl implements TodoexpenseDAO{
 
@@ -22,6 +24,19 @@ public class TodoexpenseDAOImpl implements TodoexpenseDAO{
     @Override
     @Transactional
     public void save(User theUser) {
+
+        // Set createdByUserId and modifiedByUserId with the generated userId
+        //theUser.setCreatedBy(theUser.getUserID());
+        //theUser.setModifiedBy(theUser.getUserID());
+
+        // Set createdDate and modifiedDate
+        theUser.setCreatedDate(new Date());
+        theUser.setModifiedDate(new Date());
+
         entityManager.persist(theUser);
+
+        // Set createdByUserId and modifiedByUserId with the generated userId
+        theUser.setCreatedBy(theUser.getUserID());
+        theUser.setModifiedBy(theUser.getUserID());
     }
 }

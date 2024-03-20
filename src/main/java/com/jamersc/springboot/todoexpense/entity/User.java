@@ -11,7 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long userId;
+    private Long userID;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -22,17 +22,15 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "created_by", nullable = false)
-    private User createdBy;
+    @Column(name = "created_by")
+    private Long createdBy;
 
     @Column(name = "created_date", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @ManyToOne
-    @JoinColumn(name = "modified_by", nullable = true)
-    private User modifiedBy;
+    @Column(name = "modified_by")
+    private Long modifiedBy;
 
     @Column(name = "modified_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -42,14 +40,15 @@ public class User {
 
     }
 
-    public User(String username, String password, String email, User createdBy, User modifiedBy) {
+    public User(String username, String password, String email, Long createdBy, Long modifiedBy) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.createdBy = createdBy;
         this.modifiedBy = modifiedBy;
-        this.createdDate = new Date();
-        this.modifiedDate = new Date();
+        // move to todo expense dao implements
+        // this.createdDate = new Date();
+        // this.modifiedDate = new Date();
     }
 
     public User(String username, String password, String email) {
@@ -58,12 +57,12 @@ public class User {
         this.email = email;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getUserID() {
+        return userID;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     public String getUsername() {
@@ -90,11 +89,11 @@ public class User {
         this.email = email;
     }
 
-    public User getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -106,11 +105,11 @@ public class User {
         this.createdDate = createdDate;
     }
 
-    public User getModifiedBy() {
+    public Long getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(User modifiedBy) {
+    public void setModifiedBy(Long modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
@@ -137,7 +136,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "userId=" + userID +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

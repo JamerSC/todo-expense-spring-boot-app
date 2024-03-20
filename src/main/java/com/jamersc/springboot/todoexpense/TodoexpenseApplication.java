@@ -31,13 +31,19 @@ public class TodoexpenseApplication {
 
 		// create the user object
 		System.out.println("Creating a new object user ...");
-		User tempUser = new User("johndoe", "john123", "johndoe@mail.com");
+		//User tempUser = new User("johndoe", "john123", "johndoe@mail.com");
+		//User tempUser = new User("marypublic", "mary123", "marypublic@mail.com");
+		//User tempUser = new User("samsmith", "smith123", "samsmith@mail.com");
+		User tempUser = new User("puffdaddy", "puff123", "puffdaddy@mail.com");
 
 		// save the user object
 		System.out.println("Saving the user");
 		todoexpenseDAO.save(tempUser);
 
 		// display the id of saved student
-		System.out.println("Saved user. generated id: " + tempUser.getUserId());
+		System.out.println("Saved user. generated id: " + tempUser.getUserID());
+		System.out.println("Username: " + tempUser.getUsername());
+		System.out.println("Created by: " + tempUser.getCreatedBy());
+		System.out.println("Created date: " + tempUser.getCreatedDate());
 	}
 }
