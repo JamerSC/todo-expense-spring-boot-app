@@ -8,6 +8,8 @@
 
 CREATE TABLE user (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
+	first_name VARCHAR(255) NOT NULL,
+	last_name VARCHAR(255) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -17,7 +19,9 @@ CREATE TABLE user (
     modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-SELECT * FROM todo_expense_db.user;
+#ALTER TABLE todo_expense_db.user AUTO_INCREMENT=3000;
+#TRUNCATE todo_expense_db.user;
+#SELECT * FROM todo_expense_db.user;
 #TodoList table to store todo lists with a foreign key relationship to User
 
 CREATE TABLE user_todos (
@@ -51,6 +55,6 @@ CREATE TABLE user_expenses (
 
 #SELECT * FROM user_expenses;
 
-drop table user;
-drop table user_todos;
-drop table user_expenses;
+#drop table user;
+#drop table user_todos;
+#drop table user_expenses;
