@@ -15,4 +15,8 @@ public interface TodoexpenseDAO {
     List<User> findByLastName(String theLastName);
 
     void update(User theUser);
+
+    void delete(Integer id);
+
+    int deleteAll();
 }

@@ -69,4 +69,21 @@ public class TodoexpenseDAOImpl implements TodoexpenseDAO{
     public void update(User theUser) {
         entityManager.merge(theUser);
     }
+
+    @Override
+    public void delete(Integer id) {
+
+        User theUser = entityManager.find(User.class, id);
+        entityManager.remove(theUser);
+
+    }
+
+    @Override
+    public int deleteAll() {
+
+        int numRowsDeleted;
+        numRowsDeleted = entityManager.createQuery("DELETE FROM User").executeUpdate();
+
+        return numRowsDeleted;
+    }
 }

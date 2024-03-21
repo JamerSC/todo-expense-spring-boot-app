@@ -35,9 +35,35 @@ public class TodoexpenseApplication {
 
 			//queryForUsersForLastName(todoexpenseDAO);
 
-			updateUser(todoexpenseDAO);
+			//updateUser(todoexpenseDAO);
+			
+			// deleteUser(todoexpenseDAO);
+
+			//deleteAllUsers(todoexpenseDAO);
 
 		};
+	}
+
+	private void deleteAllUsers(TodoexpenseDAO todoexpenseDAO) {
+
+		System.out.println("Deleting all users");
+
+		int numRowsDeleted = todoexpenseDAO.deleteAll();
+
+		System.out.println("Deleted row count : " + numRowsDeleted );
+
+	}
+
+	private void deleteUser(TodoexpenseDAO todoexpenseDAO) {
+
+		// delete the user
+		int userId = 4;
+
+		// display the i
+		System.out.println("Deleting the user id: " + userId);
+
+		todoexpenseDAO.delete(userId);
+		System.out.println("Deleted user id: " + userId);
 	}
 
 	private void updateUser(TodoexpenseDAO todoexpenseDAO) {
