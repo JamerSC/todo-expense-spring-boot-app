@@ -64,4 +64,9 @@ public class TodoexpenseDAOImpl implements TodoexpenseDAO{
         // return query results
         return theQuery.getResultList();
     }
+
+    @Override
+    public void update(User theUser) {
+        entityManager.merge(theUser);
+    }
 }

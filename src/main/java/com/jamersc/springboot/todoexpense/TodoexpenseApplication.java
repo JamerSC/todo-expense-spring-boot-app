@@ -33,9 +33,35 @@ public class TodoexpenseApplication {
 
 			//queryForUsers(todoexpenseDAO);
 
-			queryForUsersForLastName(todoexpenseDAO);
+			//queryForUsersForLastName(todoexpenseDAO);
+
+			updateUser(todoexpenseDAO);
 
 		};
+	}
+
+	private void updateUser(TodoexpenseDAO todoexpenseDAO) {
+
+		// retrieve the users primary key
+		int id = 1;
+		System.out.println("Retrieving user id: " + id);
+		User myUser = todoexpenseDAO.findById(id);
+
+		//Print the User that will be updated
+		System.out.println("User info: " + myUser);
+		System.out.println("Updating user ...");
+
+		// change the last name of user id 1
+		System.out.println("Changing lastname from " + myUser.getLastName());
+		myUser.setLastName("Doe");
+
+		todoexpenseDAO.update(myUser);
+		System.out.println("to " + myUser.getLastName());
+		System.out.println();
+		System.out.println();
+		System.out.println("Updated user: " + myUser);
+
+
 	}
 
 	private void queryForUsersForLastName(TodoexpenseDAO todoexpenseDAO) {
