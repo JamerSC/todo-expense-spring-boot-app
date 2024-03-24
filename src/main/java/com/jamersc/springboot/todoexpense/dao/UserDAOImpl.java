@@ -7,23 +7,23 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository //support component scanning, translate JDBC exc
 @Transactional // annotation for create, update, delete
-public class TodoexpenseDAOImpl implements TodoexpenseDAO{
+public class UserDAOImpl implements UserDAO {
 
     // define field for entity manager
     private EntityManager entityManager;
 
     // inject entity manager using contructor injection
     @Autowired
-    public TodoexpenseDAOImpl(EntityManager entityManager) {
+    public UserDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     // implement save method
+    /*
     @Override
     public void save(User theUser) {
 
@@ -37,53 +37,53 @@ public class TodoexpenseDAOImpl implements TodoexpenseDAO{
         theUser.setCreatedBy(theUser.getUserId());
         theUser.setModifiedBy(theUser.getUserId());
     }
+    */
 
     @Override
-    public User findById(Integer id) {
-        return entityManager.find(User.class, id);
+    public User findById(Integer theId) {
+
+        // find User id
+        User theUser = entityManager.find(User.class, theId);
+
+        // return from the db
+        return theUser;
+
+        // Inline variable
+        // return entityManager.find(User.class, theId);
     }
 
     @Override
     public List<User> findAll() {
 
-        //TypedQuery<User> theQuery = entityManager.createQuery("FROM User", User.class);
+        // create query for select all user
         TypedQuery<User> theQuery = entityManager.createQuery("FROM User ORDER BY lastName ASC", User.class);
+        //TypedQuery<User> theQuery = entityManager.createQuery("FROM User", User.class);
 
+        // return the select user from db
         return theQuery.getResultList();
     }
 
     @Override
-    public List<User> findByLastName(String theLastName) {
+    public User save(User theUser) {
 
-        // create query
-        TypedQuery<User> theQuery = entityManager.createQuery(
-                                    "FROM User WHERE lastName=:theData", User.class);
-        // set query parameter
-        theQuery.setParameter("theData", theLastName);
+        // Save or Update the User
+        User dbUser = entityManager.merge(theUser);
 
-        // return query results
-        return theQuery.getResultList();
+        // return the db user
+        return dbUser;
+
+        // return entityManager.merge(dbUser);
     }
 
     @Override
-    public void update(User theUser) {
-        entityManager.merge(theUser);
-    }
+    public void deleteById(Integer theId) {
 
-    @Override
-    public void delete(Integer id) {
+        // find the user id
+        User dbUser = entityManager.find(User.class, theId);
 
-        User theUser = entityManager.find(User.class, id);
-        entityManager.remove(theUser);
+        // delete the user reference user id
+        entityManager.remove(dbUser);
 
     }
 
-    @Override
-    public int deleteAll() {
-
-        int numRowsDeleted;
-        numRowsDeleted = entityManager.createQuery("DELETE FROM User").executeUpdate();
-
-        return numRowsDeleted;
-    }
 }
