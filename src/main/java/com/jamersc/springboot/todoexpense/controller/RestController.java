@@ -57,15 +57,25 @@ public class RestController {
 
     @PutMapping("/users")
     public User updateUser(@RequestBody User theUser) {
-        // update the user
-        User dbUser = userService.save(theUser);
 
-        dbUser.setModifiedBy(1);
+        // fetch the existing user from the db
+        User existingUser = userService.findById(theUser.getUserId());
 
-        dbUser = userService.save(dbUser);
+        // update the users field
+        existingUser.setFirstName(theUser.getFirstName());
+        existingUser.setLastName(theUser.getLastName());
+        existingUser.setUsername(theUser.getUsername());
+        existingUser.setPassword(theUser.getPassword());
+        existingUser.setEmail(theUser.getEmail());
 
-        // return the query
-        return dbUser;
+        //Preserve the created  date value
+        existingUser.setCreatedDate(existingUser.getCreatedDate());
+
+        // update the modified field
+        existingUser.setModifiedBy(1);
+
+        return userService.save(existingUser);
+
     }
 
     @DeleteMapping("/users/{userId}")
