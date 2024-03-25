@@ -51,8 +51,35 @@ public class RestController {
 
         dbUser = userService.save(dbUser);
 
+        // return the user info at postman
+        return dbUser;
+    }
+
+    @PutMapping("/users")
+    public User updateUser(@RequestBody User theUser) {
+        // update the user
+        User dbUser = userService.save(theUser);
+
+        dbUser.setModifiedBy(1);
+
+        dbUser = userService.save(dbUser);
+
         // return the query
         return dbUser;
+    }
+
+    @DeleteMapping("/users/{userId}")
+    public String deleteUser(@PathVariable int userId) {
+
+        User tempUser = userService.findById(userId);
+
+        if(tempUser == null) {
+            throw new RuntimeException("User id not found " + userId);
+        }
+
+        userService.deleteById(userId);
+
+        return "Deleted user id - " + userId;
     }
 
     // Show webpages
