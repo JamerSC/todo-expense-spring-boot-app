@@ -92,6 +92,7 @@ public class RestController {
         return "Deleted user id - " + userId;
     }
 
+    /*
     // Show webpages
     @GetMapping("/showLoginSignup")
     public String showLoginSignup() {
@@ -107,11 +108,13 @@ public class RestController {
     }
     @GetMapping("/showTodo")
     public String showTodo() {
-        return "todo";
+        return "todos";
     }
 
     @GetMapping("/showExpenses")
     public String showExpenses() {
         return "expenses";
     }
+
+     */
 }
