@@ -13,6 +13,10 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+    <!-- Welcome Text -->
+    <h1 th:text="${param.username}"></h1>
+    <br><br>
+
     <!-- Dashboard Navigation -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -42,6 +46,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- Example Code -->
 
