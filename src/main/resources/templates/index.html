@@ -16,6 +16,8 @@
     <!-- Welcome Text -->
     <h1 th:text="${param.username}"></h1>
     <br><br>
+    <h1 th:text="${message}"></h1>
+    <br>
 
     <!-- Dashboard Navigation -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -27,10 +29,10 @@
                         <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/todoexpense/showTodo}">Todo</a>
+                        <a class="nav-link" th:href="@{/todoExpense/showTodo}">Todo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/todoexpense/showExpenses}">Expenses</a>
+                        <a class="nav-link" th:href="@{/todoExpense/showExpenses}">Expenses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Settings</a>
