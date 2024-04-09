@@ -12,6 +12,7 @@
 </head>
 <body>
 
+<p th:text="'Time on the server is ' + ${theDate}" class="test"></p>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -22,16 +23,16 @@
                 </div>
                 <div class="card-body">
 
-                    <p th:text="'Time on the server is ' + ${theDate}" class="test"></p>
-
                     <form th:action="@{/processLoginForm}" th:object="${user}" method="POST">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter your username" th:field="*{username}" required>
+                            <input type="text" class="form-control" id="username" placeholder="Enter your username"
+                                   th:field="*{username}" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password" th:field="*{password}" required>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                                   th:field="*{password}" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Login</button>
@@ -41,7 +42,8 @@
                 <!-- button for creating an account with modal -->
                 <div class="card-footer text-center">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createAccountModal">Create New Account</button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createAccountModal">
+                        Create New Account</button>
                 </div>
             </div>
         </div>
@@ -58,14 +60,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/createAccount}" method="POST">
+                <form th:action="@{/processCreateAccount}" method="POST">
                     <div class="mb-3">
                         <label for="newUsername" class="form-label">New Username</label>
-                        <input type="text" class="form-control" id="newUsername" placeholder="Enter your new username" name="newUsername" required>
+                        <input type="text"
+                               class="form-control" id="newUsername" placeholder="Enter your new username"
+                               name="newUsername" required>
                     </div>
                     <div class="mb-3">
                         <label for="newPassword" class="form-label">New Password</label>
-                        <input type="password" class="form-control" id="newPassword" placeholder="Enter your new password" name="newPassword" required>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Enter your new password"
+                               name="newPassword" required>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Create Account</button>
