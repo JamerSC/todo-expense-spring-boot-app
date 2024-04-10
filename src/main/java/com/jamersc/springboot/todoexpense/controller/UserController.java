@@ -56,22 +56,11 @@ public class UserController {
         return "newUserPage"; // This is the HTML page where you want to display newUser.Username
     }
 
+    /* Index/Dashboard Page */
     @GetMapping("/showIndex")
     public String showIndex() {
         return "index";
     }
-
-    @GetMapping("showTodo")
-    public String showTodo() {
-        return "todo";
-    }
-
-    @GetMapping("/showExpenses")
-    public String showExpenses() {
-        return "expenses";
-    }
-
-
 
 
     // Http Servlet Process
