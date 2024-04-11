@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!-- Todo Navigation -->
+<!-- To do Navigation -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,16 +45,16 @@
 
 <!-- Create new task
 <button
-        type="button" class="btn btn-primary">Create Todo
+        type="button" class="btn btn-primary">Create To do
 </button>
  -->
 
-<!-- Todo Button trigger modal -->
+<!-- To do Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Create New Task
 </button>
 
-<!-- Todo Modal Form -->
+<!-- To do Modal Form -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -65,61 +65,57 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter your task" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                        <label for="todo" class="form-label">Task</label>
+                        <input type="text" class="form-control" id="todo" name="todo" placeholder="Enter your password" required>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Create Task</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- Todo list Table -->
+<!-- To do list Table -->
 <table class="table table-striped">
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Title</th>
+        <th scope="col">Task</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td>Laundry Day</td>
+        <td>Wash the clothes.</td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
+        <td>Meeting with clients</td>
+        <td>KFC Malolos - April 12, 2024 @ 5pm</td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+        <td>Movie Marathon</td>
+        <td>Watch the harry potter series</td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
