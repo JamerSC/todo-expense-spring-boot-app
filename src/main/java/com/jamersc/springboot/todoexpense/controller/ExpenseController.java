@@ -4,6 +4,7 @@ import com.jamersc.springboot.todoexpense.entity.Expense;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -22,7 +23,17 @@ public class ExpenseController {
     }
 
     @PostMapping("/recordExpenses")
-    public String recordExpenses() {
+    public String recordExpenses(@ModelAttribute("expenseName") String expenseName,
+                                 @ModelAttribute("amount") Double amount,
+                                 Model model) {
+
+        Expense expense = new Expense();
+
+        expense.setExpenseName(expenseName);
+        expense.setAmount(amount);
+
+        model.addAttribute("expense", expense);
+
         return "expenses";
     }
 }

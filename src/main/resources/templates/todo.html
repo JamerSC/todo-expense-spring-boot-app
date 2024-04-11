@@ -63,17 +63,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form th:action="@{/createTodo}" th:object="${todo}" method="POST">
                     <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter your task" required>
+                        <label for="todoName" class="form-label">Todo Title</label>
+                        <input type="text" class="form-control" id="todoName" name="todoName" placeholder="Enter your todo title" required>
                     </div>
                     <div class="mb-3">
-                        <label for="todo" class="form-label">Task</label>
-                        <input type="text" class="form-control" id="todo" name="todo" placeholder="Enter your password" required>
+                        <label for="todoDetails" class="form-label">Todo Details</label>
+                        <input type="text" class="form-control" id="todoDetails" name="todoDetails" placeholder="Enter the details" required>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Create Task</button>
+                        <button type="submit" class="btn btn-primary">Create Todo</button>
                     </div>
                 </form>
             </div>
@@ -98,24 +98,24 @@
     <tbody>
     <tr>
         <th scope="row">1</th>
-        <td>Laundry Day</td>
-        <td>Wash the clothes.</td>
+        <td th:text="${todo.todoName}"></td>
+        <td th:text="${todo.todoDetails}"></td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">2</th>
-        <td>Meeting with clients</td>
-        <td>KFC Malolos - April 12, 2024 @ 5pm</td>
+        <td></td>
+        <td></td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">3</th>
-        <td>Movie Marathon</td>
-        <td>Watch the harry potter series</td>
+        <td></td>
+        <td></td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>

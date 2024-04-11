@@ -63,21 +63,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form th:action="@{/recordExpenses}" th:object="${expense}" method="POST">
                     <div class="mb-3">
-                        <label for="expenseDate" class="form-label">Date</label>
-                        <input type="date" class="form-control" id="expenseDate" name="expenseDate">
+                        <label for="expenseName" class="form-label">Expenses Description</label>
+                        <input type="text" class="form-control" id="expenseName" name="expenseName" placeholder="Enter expense description" required>
                     </div>
                     <div class="mb-3">
-                        <label for="expenses" class="form-label">Expenses Description</label>
-                        <input type="text" class="form-control" id="expenses" name="price" placeholder="Enter expense description" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price</label>
-                        <input type="text" class="form-control" id="price" name="price" placeholder="Enter the amount" required>
+                        <label for="amount" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter the amount" required>
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Record Expenses</button>
+                        <button type="submit" class="btn btn-primary">Save Record</button>
                     </div>
                 </form>
             </div>
@@ -92,7 +88,6 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Date</th>
         <th scope="col">Expenses</th>
         <th scope="col">Price</th>
         <th>Action</th>
@@ -101,27 +96,24 @@
     <tbody>
     <tr>
         <th scope="row">1</th>
-        <td>April 12, 2024</td>
-        <td>Grocery</td>
-        <td>Php 300.00</td>
+        <td th:text="${expense.expenseName}"></td>
+        <td th:text="${expense.amount}"></td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">2</th>
-        <td>April 2, 2024</td>
-        <td>Rent</td>
-        <td>Php 2030.00</td>
+        <td></td>
+        <td></td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">3</th>
-        <td>April 1, 2024</td>
-        <td>Food trip</td>
-        <td>Php 100.00</td>
+        <td></td>
+        <td></td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
