@@ -62,14 +62,41 @@
             <div class="modal-body">
                 <form th:action="@{/processCreateAccount}" method="POST">
                     <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text"
+                               class="form-control" id="firstName" placeholder="Enter your first name"
+                               name="firstName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text"
+                               class="form-control" id="lastName" placeholder="Enter your last name"
+                               name="lastName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" id="gender" name="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email"
+                               class="form-control" id="email" placeholder="Enter your email address"
+                               name="email" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="newUsername" class="form-label">New Username</label>
                         <input type="text"
-                               class="form-control" id="newUsername" placeholder="Enter your new username"
+                               class="form-control" id="newUsername" placeholder="Enter your username"
                                name="newUsername" required>
                     </div>
                     <div class="mb-3">
                         <label for="newPassword" class="form-label">New Password</label>
-                        <input type="password" class="form-control" id="newPassword" placeholder="Enter your new password"
+                        <input type="password" class="form-control" id="newPassword" placeholder="Enter your password"
                                name="newPassword" required>
                     </div>
                     <div class="d-grid">

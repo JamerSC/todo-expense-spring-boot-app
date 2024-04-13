@@ -19,6 +19,9 @@ public class User {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(name = "gender", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -81,6 +84,14 @@ public class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public void setLastName(String lastName) {
@@ -153,6 +164,7 @@ public class User {
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", gender=" + gender +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

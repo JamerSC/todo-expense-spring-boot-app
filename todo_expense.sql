@@ -10,6 +10,7 @@ CREATE TABLE user (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
+    gender ENUM('Male', 'Female', 'Other') DEFAULT 'Other',
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -18,6 +19,11 @@ CREATE TABLE user (
     modified_by INT NULL,
     modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+#Note: DEFAULT 'Other': Sets the default value for the gender column to 'Other'.
+#Note: AFTER lastName: Specifies the position of the new column relative to other columns in the table.
+#ALTER TABLE user
+#ADD COLUMN gender ENUM('Male', 'Female', 'Other') DEFAULT 'Other' AFTER last_name;
 
 #ALTER TABLE todo_expense_db.user AUTO_INCREMENT=3000;
 #TRUNCATE todo_expense_db.user;

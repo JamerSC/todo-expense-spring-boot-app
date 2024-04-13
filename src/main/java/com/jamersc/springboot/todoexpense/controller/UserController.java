@@ -1,5 +1,6 @@
 package com.jamersc.springboot.todoexpense.controller;
 
+import com.jamersc.springboot.todoexpense.entity.Gender;
 import com.jamersc.springboot.todoexpense.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -33,12 +34,20 @@ public class UserController {
     }
 
     @PostMapping("/processCreateAccount")
-    public String processCreateAccount(@ModelAttribute("newUsername") String newUsername,
+    public String processCreateAccount(@ModelAttribute("firstName") String firstName,
+                                       @ModelAttribute("lastName") String lastName,
+                                       @ModelAttribute("gender") Gender gender,
+                                       @ModelAttribute("email") String email,
+                                       @ModelAttribute("newUsername") String newUsername,
                                        @ModelAttribute("newPassword") String newPassword,
                                        Model model) {
 
         User newUser = new User();
 
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setGender(gender); /* Enum Gender*/
+        newUser.setEmail(email);
         newUser.setUsername(newUsername);
         newUser.setPassword(newPassword);
 

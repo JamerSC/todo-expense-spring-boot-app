@@ -5,8 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Account Created Successfully! Username: <span th:text="${newUser.username}"></span>!</h1>
+<h1>Account Created Successfully! Username</h1>
+<p>Details</p>
+<p>First name: <span th:text="${newUser.firstName}"></span></p>
+<p>Last name: <span th:text="${newUser.lastName}"></span></p>
+<p>Gender: <span th:text="${newUser.gender}"></span></p>
+<p>Email: <span th:text="${newUser.email}"></span></p>
+<p>Username: <span th:text="${newUser.username}"></span></p>
 <!-- Other content -->
+<br>br
 <a th:href="@{/showLogin}">Go to Login</a>
 </body>
 </html>
