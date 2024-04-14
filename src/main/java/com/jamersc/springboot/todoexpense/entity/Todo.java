@@ -1,6 +1,7 @@
 package com.jamersc.springboot.todoexpense.entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -20,10 +21,12 @@ public class Todo {
     private String todoDetails;
 
     @Column(name = "todo_start_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
     private Date todoStartDate;
 
     @Column(name = "todo_end_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
     private Date todoEndDate;
 

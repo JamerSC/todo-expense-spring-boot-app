@@ -73,28 +73,36 @@
                                th:field="*{todoName}">
                     </div>
                     <div class="mb-3">
-                        <label for="todoDetails" class="form-label">Todo Details</label>
-                        <input type="text"
+                        <label for="todoDetails" class="form-label">Details</label>
+                        <textarea
                                class="form-control"
                                id="todoDetails"
                                placeholder="Enter the details"
                                th:field="*{todoDetails}">
+                        </textarea>
                     </div>
                     <div class="mb-3">
                         <label for="startDate" class="form-label">Start Date</label>
-                        <input type="date" class="form-control" id="startDate" name="startDate" required>
+                        <input type="date"
+                               class="form-control"
+                               id="startDate"
+                               th:field="*{todoStartDate}">
                     </div>
                     <div class="mb-3">
                         <label for="endDate" class="form-label">End Date</label>
-                        <input type="date" class="form-control" id="endDate" name="endDate" required>
+                        <input type="date"
+                               class="form-control"
+                               id="endDate"
+                               th:field="*{todoEndDate}">
                     </div>
                     <div class="mb-3">
                         <label for="todoStatus" class="form-label">Status</label>
-                        <select class="form-select" id="todoStatus" name="todoStatus" required>
-                            <option value="Open">Open</option>
-                            <option value="Ongoing">Ongoing</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Completed">Completed</option>
+                        <select class="form-select" id="todoStatus" th:field="*{todoStatus}">
+                            <option value="">Select Status</option>
+                            <option th:value="Open">Open</option>
+                            <option th:value="Ongoing">Ongoing</option>
+                            <option th:value="Pending">Pending</option>
+                            <option th:value="Completed">Completed</option>
                         </select>
                     </div>
                     <div class="d-grid">
@@ -116,7 +124,10 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col">Title</th>
-        <th scope="col">Task</th>
+        <th scope="col">Details</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Status</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -125,6 +136,9 @@
         <th scope="row">1</th>
         <td th:text="${todo.todoName}"></td>
         <td th:text="${todo.todoDetails}"></td>
+        <td th:text="${formattedStartDate}"></td>
+        <td th:text="${formattedEndDate}"></td>
+        <td th:text="${todo.todoStatus}"></td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
@@ -133,12 +147,18 @@
         <th scope="row">2</th>
         <td>@</td>
         <td>@</td>
+        <td>@</td>
+        <td>@</td>
+        <td>@</td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">3</th>
+        <td>@</td>
+        <td>@</td>
+        <td>@</td>
         <td>@</td>
         <td>@</td>
         <td><button type="button" class="btn btn-success">Update</button>
