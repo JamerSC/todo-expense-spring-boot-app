@@ -65,12 +65,20 @@
             <div class="modal-body">
                 <form th:action="@{/createTodo}" th:object="${todo}" method="POST">
                     <div class="mb-3">
-                        <label for="todoName" class="form-label">Todo Title</label>
-                        <input type="text" class="form-control" id="todoName" name="todoName" placeholder="Enter your todo title" required>
+                        <label for="todoName" class="form-label">Title</label>
+                        <input type="text"
+                               class="form-control"
+                               id="todoName"
+                               placeholder="Enter your todo title"
+                               th:field="*{todoName}">
                     </div>
                     <div class="mb-3">
                         <label for="todoDetails" class="form-label">Todo Details</label>
-                        <input type="text" class="form-control" id="todoDetails" name="todoDetails" placeholder="Enter the details" required>
+                        <input type="text"
+                               class="form-control"
+                               id="todoDetails"
+                               placeholder="Enter the details"
+                               th:field="*{todoDetails}">
                     </div>
                     <div class="mb-3">
                         <label for="startDate" class="form-label">Start Date</label>
