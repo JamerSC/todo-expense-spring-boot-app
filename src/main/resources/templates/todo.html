@@ -72,6 +72,23 @@
                         <label for="todoDetails" class="form-label">Todo Details</label>
                         <input type="text" class="form-control" id="todoDetails" name="todoDetails" placeholder="Enter the details" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endDate" class="form-label">End Date</label>
+                        <input type="date" class="form-control" id="endDate" name="endDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="todoStatus" class="form-label">Status</label>
+                        <select class="form-select" id="todoStatus" name="todoStatus" required>
+                            <option value="Open">Open</option>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Create Todo</button>
                     </div>
@@ -106,16 +123,16 @@
     </tr>
     <tr>
         <th scope="row">2</th>
-        <td></td>
-        <td></td>
+        <td>@</td>
+        <td>@</td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>
     </tr>
     <tr>
         <th scope="row">3</th>
-        <td></td>
-        <td></td>
+        <td>@</td>
+        <td>@</td>
         <td><button type="button" class="btn btn-success">Update</button>
             <button type="button" class="btn btn-danger">Delete</button>
         </td>

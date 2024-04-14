@@ -34,7 +34,10 @@ CREATE TABLE user_todos (
     todo_id INT AUTO_INCREMENT,
     todo_name VARCHAR(100) NOT NULL,
     todo_details VARCHAR(255) NOT NULL,
-	created_by INT,
+	todo_start_date DATE,
+    todo_end_date DATE,
+    todo_status ENUM('Open', 'Ongoing', 'Pending', 'Completed') DEFAULT 'Open',
+    created_by INT,
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified_by INT,
     modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -42,13 +45,20 @@ CREATE TABLE user_todos (
     FOREIGN KEY (modified_by) REFERENCES user(user_id),
     PRIMARY KEY(todo_id)
 );
+#Note: DEFAULT 'Other': Sets the default value for the gender column to 'Open'.
+#Note: AFTER todo_details: Specifies the position of the new column relative to other columns in the table.
+#ALTER TABLE user_todos
+#ADD COLUMN todo_status ENUM('Open', 'Ongoing', 'Pending', 'Completed') DEFAULT 'Open' AFTER todo_details;
 
 #SELECT * FROM user_todos;
 
 #ExpenseTracker table to store expenses with a foreign key relationship to User
 CREATE TABLE user_expenses (
     expense_id INT AUTO_INCREMENT,
-    expense_name VARCHAR(255) NOT NULL,
+	expense_date DATE NOT NULL, -- Added expense date field
+    expense_description VARCHAR(255) NOT NULL,\
+	expense_remarks VARCHAR(255), -- Added remarks field
+    mode_of_payment ENUM ('Cash', 'Debit', 'Credit', 'Transfer', 'Mobile', 'Online', 'Prepaid') DEFAULT 'Cash',
     amount DECIMAL(10, 2) NOT NULL,
 	created_by INT,
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

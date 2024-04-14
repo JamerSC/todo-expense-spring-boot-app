@@ -13,8 +13,19 @@ public class Expense {
     @Column(name = "expense_id")
     private Long expenseId;
 
-    @Column(name = "expense_name", nullable = false)
-    private String expenseName;
+    @Column(name = "expense_date", nullable = false)
+    @Temporal(TemporalType.DATE) // Assuming expenseDate is a date without time
+    private Date expenseDate;
+
+    @Column(name = "expense_description", nullable = false)
+    private String expenseDescription;
+
+    @Column(name = "expense_remarks", length = 255) // Setting max length for remarks
+    private String expenseRemarks;
+
+    @Column(name = "mode_of_payment", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ModeOfPayment modeOfPayment;
 
     @Column(name = "amount", nullable = false)
     private Double amount;
@@ -40,8 +51,11 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(String expenseName, Double amount, User createdBy, User modifiedBy) {
-        this.expenseName = expenseName;
+    public Expense(Date expenseDate, String expenseDescription, String expenseRemarks, ModeOfPayment modeOfPayment,Double amount, User createdBy, User modifiedBy) {
+        this.expenseDate = expenseDate;
+        this.expenseDescription = expenseDescription;
+        this.expenseRemarks = expenseRemarks;
+        this.modeOfPayment = modeOfPayment;
         this.amount = amount;
         this.createdBy = createdBy;
         this.modifiedBy = modifiedBy;
@@ -57,12 +71,36 @@ public class Expense {
         this.expenseId = expenseId;
     }
 
-    public String getExpenseName() {
-        return expenseName;
+    public Date getExpenseDate() {
+        return expenseDate;
     }
 
-    public void setExpenseName(String expenseName) {
-        this.expenseName = expenseName;
+    public void setExpenseDate(Date expenseDate) {
+        this.expenseDate = expenseDate;
+    }
+
+    public String getExpenseDescription() {
+        return expenseDescription;
+    }
+
+    public void setExpenseDescription(String expenseDescription) {
+        this.expenseDescription = expenseDescription;
+    }
+
+    public String getExpenseRemarks() {
+        return expenseRemarks;
+    }
+
+    public void setExpenseRemarks(String expenseRemarks) {
+        this.expenseRemarks = expenseRemarks;
+    }
+
+    public ModeOfPayment getModeOfPayment() {
+        return modeOfPayment;
+    }
+
+    public void setModeOfPayment(ModeOfPayment modeOfPayment) {
+        this.modeOfPayment = modeOfPayment;
     }
 
     public Double getAmount() {
@@ -115,4 +153,22 @@ public class Expense {
     @PreUpdate
     protected void onUpdate() {
         modifiedDate = new Date();
-    }}
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "expenseId=" + expenseId +
+                ", expenseDate=" + expenseDate +
+                ", expenseDescription='" + expenseDescription + '\'' +
+                ", expenseRemarks='" + expenseRemarks + '\'' +
+                ", modeOfPayment=" + modeOfPayment +
+                ", amount=" + amount +
+                ", createdBy=" + createdBy +
+                ", createdDate=" + createdDate +
+                ", modifiedBy=" + modifiedBy +
+                ", modifiedDate=" + modifiedDate +
+                '}';
+    }
+
+}

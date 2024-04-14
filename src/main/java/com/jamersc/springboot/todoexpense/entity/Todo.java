@@ -19,6 +19,18 @@ public class Todo {
     @Column(name = "todo_details", nullable = false)
     private String todoDetails;
 
+    @Column(name = "todo_start_date", nullable = false)
+    @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
+    private Date todoStartDate;
+
+    @Column(name = "todo_end_date", nullable = false)
+    @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
+    private Date todoEndDate;
+
+    @Column(name = "todo_status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TodoStatus todoStatus;
+
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     private User createdBy;
@@ -40,9 +52,12 @@ public class Todo {
     public Todo() {
     }
 
-    public Todo(String todoName, String todoDetails, User createdBy, User modifiedBy) {
+    public Todo(String todoName, String todoDetails, Date todoStartDate, Date todoEndDate,TodoStatus todoStatus, User createdBy, User modifiedBy) {
         this.todoName = todoName;
         this.todoDetails = todoDetails;
+        this.todoStartDate = todoStartDate;
+        this.todoEndDate = todoEndDate;
+        this.todoStatus = todoStatus;
         this.createdBy = createdBy;
         this.modifiedBy = modifiedBy;
         this.createdDate = new Date();
@@ -71,6 +86,30 @@ public class Todo {
 
     public void setTodoDetails(String todoDetails) {
         this.todoDetails = todoDetails;
+    }
+
+    public TodoStatus getTodoStatus() {
+        return todoStatus;
+    }
+
+    public Date getTodoStartDate() {
+        return todoStartDate;
+    }
+
+    public void setTodoStartDate(Date todoStartDate) {
+        this.todoStartDate = todoStartDate;
+    }
+
+    public Date getTodoEndDate() {
+        return todoEndDate;
+    }
+
+    public void setTodoEndDate(Date todoEndDate) {
+        this.todoEndDate = todoEndDate;
+    }
+
+    public void setTodoStatus(TodoStatus todoStatus) {
+        this.todoStatus = todoStatus;
     }
 
     public User getCreatedBy() {
@@ -116,12 +155,16 @@ public class Todo {
     protected void onUpdate() {
         modifiedDate = new Date();
     }
+
     @Override
     public String toString() {
         return "Todo{" +
                 "todoId=" + todoId +
                 ", todoName='" + todoName + '\'' +
                 ", todoDetails='" + todoDetails + '\'' +
+                ", todoStartDate=" + todoStartDate +
+                ", todoEndDate=" + todoEndDate +
+                ", todoStatus=" + todoStatus +
                 ", createdBy=" + createdBy +
                 ", createdDate=" + createdDate +
                 ", modifiedBy=" + modifiedBy +

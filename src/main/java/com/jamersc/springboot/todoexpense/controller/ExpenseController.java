@@ -23,13 +23,13 @@ public class ExpenseController {
     }
 
     @PostMapping("/recordExpenses")
-    public String recordExpenses(@ModelAttribute("expenseName") String expenseName,
+    public String recordExpenses(@ModelAttribute("expenseDescription") String expenseDescription,
                                  @ModelAttribute("amount") Double amount,
                                  Model model) {
 
         Expense expense = new Expense();
 
-        expense.setExpenseName(expenseName);
+        expense.setExpenseDescription(expenseDescription);
         expense.setAmount(amount);
 
         model.addAttribute("expense", expense);
