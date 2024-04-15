@@ -1,17 +1,13 @@
 package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.entity.Todo;
-import com.jamersc.springboot.todoexpense.entity.TodoStatus;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class TodoController {
@@ -40,12 +36,12 @@ public class TodoController {
         System.out.println("Todo details: " + todo.getTodoDetails());
 
         // Format start date
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d MMM yyyy");
-        String formattedStartDate = todo.getTodoStartDate().toGMTString();
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy");
+        String formattedStartDate = dateFormatter.format(todo.getTodoStartDate());
         System.out.println("Todo start date: " + formattedStartDate);
 
         // Format end date
-        String formattedEndDate = todo.getTodoEndDate().toGMTString();
+        String formattedEndDate = dateFormatter.format(todo.getTodoEndDate());
         System.out.println("Todo end date: " + formattedEndDate);
 
         System.out.println("Todo status: " + todo.getTodoStatus());

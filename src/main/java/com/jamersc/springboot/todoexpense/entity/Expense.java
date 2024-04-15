@@ -1,6 +1,7 @@
 package com.jamersc.springboot.todoexpense.entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class Expense {
     private Long expenseId;
 
     @Column(name = "expense_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming expenseDate is a date without time
     private Date expenseDate;
 
