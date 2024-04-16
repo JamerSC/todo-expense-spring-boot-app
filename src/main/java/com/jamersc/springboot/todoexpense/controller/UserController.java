@@ -2,9 +2,11 @@ package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.entity.Gender;
 import com.jamersc.springboot.todoexpense.entity.User;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,11 +24,10 @@ public class UserController {
     @GetMapping("/showLogin")
     public String showLogin(Model model) {
         // display the date
-        model.addAttribute("theDate", java.time.LocalDateTime.now());
-        // create a user object
-        User user = new User();
-        // create a model
-        model.addAttribute("user", user);
+        // model.addAttribute("theDate", java.time.LocalDateTime.now());
+        // create a user object & model
+        model.addAttribute("user", new User());
+
         // create model for gender to display on select element
         model.addAttribute("genders", genders);
         // redirect to login page
@@ -34,11 +35,19 @@ public class UserController {
     }
 
     @PostMapping("/processLoginForm")
-    public String processLoginForm(@ModelAttribute("user") User theUser){
-        //log input data
-        System.out.println("theUser username: " + theUser.getUsername());
-       // return "redirect:/users/index";
-         return "index";
+    public String processLoginForm(@Valid @ModelAttribute("user") User theUser,
+                                   BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()) {
+            // return to login form
+            return "login";
+        }
+        else {
+            //log input data
+            // return "redirect:/users/index";
+            return "index";
+        }
+
     }
 
     @PostMapping("/processCreateAccount")

@@ -8,6 +8,10 @@
               font-family: "Lucida Console", "Courier New", monospace;
         }
 
+        .error {
+            color: red;
+        }
+
         /*
         body {
             font-family: 'Arial', sans-serif;

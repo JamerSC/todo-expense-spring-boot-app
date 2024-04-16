@@ -11,9 +11,9 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-
+<!--
 <p th:text="'Time on the server is ' + ${theDate}" class="test"></p>
-
+-->
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -31,6 +31,10 @@
                                    id="username"
                                    placeholder="Enter your username"
                                    th:field="*{username}">
+                            <p th:if="${#fields.hasErrors('username')}"
+                               th:errors="*{username}"
+                               class="error">
+                            </p>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -39,6 +43,10 @@
                                    id="password"
                                    placeholder="Enter your password"
                                    th:field="*{password}">
+                            <p th:if="${#fields.hasErrors('password')}"
+                               th:errors="*{password}"
+                               class="error">
+                            </p>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Login</button>

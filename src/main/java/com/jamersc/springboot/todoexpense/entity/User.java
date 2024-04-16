@@ -1,6 +1,10 @@
 package com.jamersc.springboot.todoexpense.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
@@ -13,22 +17,33 @@ public class User {
     @Column(name = "user_id")
     private int userId;
 
+    @NotBlank(message = "First name is required!")
+    @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @NotBlank(message = "Last name is required!")
+    @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @NotNull(message = "Gender is required!")
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @NotBlank(message = "Username is required!")
+    @Size(min = 4, max = 20, message = "Username must be between 4 and 20 characters")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @NotBlank(message = "Password is required!")
+    @Size(min = 6, message = "Password must be at least 6 characters")
     @Column(name = "password", nullable = false)
     private String password;
 
+    @NotBlank(message = "Email is required!")
+    @Email(message = "Invalid email format")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
@@ -48,6 +63,11 @@ public class User {
 
     public User() {
 
+    }
+
+    public User (String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public User(String firstName, String lastName, String username, String password, String email) {
