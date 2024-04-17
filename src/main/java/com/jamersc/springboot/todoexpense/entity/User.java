@@ -17,17 +17,17 @@ public class User {
     @Column(name = "user_id")
     private int userId;
 
-    @NotBlank(message = "First name is required!")
-    @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
+//    @NotBlank(message = "First name is required!")
+//    @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @NotBlank(message = "Last name is required!")
-    @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
+//    @NotBlank(message = "Last name is required!")
+//    @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @NotNull(message = "Gender is required!")
+//    @NotNull(message = "Gender is required!")
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -42,8 +42,8 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @NotBlank(message = "Email is required!")
-    @Email(message = "Invalid email format")
+//  @NotBlank(message = "Email is required!")
+//  @Email(message = "Invalid email format")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 

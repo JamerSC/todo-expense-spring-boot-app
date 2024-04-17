@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping("/processLoginForm")
-    public String processLoginForm(@Valid @ModelAttribute("user") User theUser,
+    public String processLoginForm(@Valid @ModelAttribute("user") User user,
                                    BindingResult bindingResult){
 
         if (bindingResult.hasErrors()) {
