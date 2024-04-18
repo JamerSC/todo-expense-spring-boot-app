@@ -4,10 +4,13 @@ import com.jamersc.springboot.todoexpense.entity.Gender;
 import com.jamersc.springboot.todoexpense.entity.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -16,6 +19,15 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    // init binder & resolve issues for validation
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+
+    }
 
     @Value("${gender}")
     private List<String> genders;
@@ -37,6 +49,9 @@ public class UserController {
     @PostMapping("/processLoginForm")
     public String processLoginForm(@Valid @ModelAttribute("user") User user,
                                    BindingResult bindingResult){
+
+        System.out.println("Username: |" + user.getUsername() + "|");
+        System.out.println("Password: |" + user.getPassword() + "|");
 
         if (bindingResult.hasErrors()) {
             // return to login form
