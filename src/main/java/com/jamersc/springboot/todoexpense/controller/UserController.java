@@ -2,6 +2,8 @@ package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.entity.Gender;
 import com.jamersc.springboot.todoexpense.entity.User;
+import com.jamersc.springboot.todoexpense.validation.AccountCreationValidation;
+import com.jamersc.springboot.todoexpense.validation.UserLoginValidation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -35,33 +37,52 @@ public class UserController {
     // Show form & Create a model
     @GetMapping("/showLogin")
     public String showLogin(Model model) {
-        // display the date
-        // model.addAttribute("theDate", java.time.LocalDateTime.now());
-        // create a user object & model
-        model.addAttribute("user", new User());
 
-        // create model for gender to display on select element
-        model.addAttribute("genders", genders);
+        // create a user object & model
+        model.addAttribute("user", new UserLoginValidation());
+
         // redirect to login page
         return "login";
     }
 
     @PostMapping("/processLoginForm")
-    public String processLoginForm(@Valid @ModelAttribute("user") User user,
-                                   BindingResult bindingResult){
+    public String processLoginForm(@Valid @ModelAttribute("user")
+                                       UserLoginValidation loginUser,
+                                       Model model,
+                                       BindingResult bindingResult){
 
-        System.out.println("Username: |" + user.getUsername() + "|");
-        System.out.println("Password: |" + user.getPassword() + "|");
+        System.out.println("Username: |" + loginUser.getLoginUsername() + "|");
+        System.out.println("Password: |" + loginUser.getLoginPassword() + "|");
 
         if (bindingResult.hasErrors()) {
             // return to login form
             return "login";
         }
         else {
+            User user = new User();
             //log input data
+            user.setUsername(loginUser.getLoginUsername());
+           // user.setPassword(loginUser.getLoginPassword());
+
+            model.addAttribute("user", user);
             // return "redirect:/users/index";
             return "index";
         }
+
+    }
+
+    // redirect to create account page
+    @GetMapping("/createAccount")
+    public  String createAccount(Model model) {
+//
+//        AccountCreationValidation user = new AccountCreationValidation();
+
+        model.addAttribute("user", new AccountCreationValidation());
+
+        // create model for gender to display on select element
+        // model.addAttribute("genders", genders);
+
+        return "create-account";
 
     }
 
@@ -87,13 +108,13 @@ public class UserController {
         // model for new user
         model.addAttribute("newUser", newUser);
         // return to newuser page
-        return "newUserPage";
+        return "new-user-page";
     }
 
     @GetMapping("/showNewUser")
     public String showNewUser(Model model) {
         // You can add other attributes if needed
-        return "newUserPage"; // This is the HTML page where you want to display newUser.Username
+        return "new-user-page"; // This is the HTML page where you want to display newUser.Username
     }
     /* Index/Dashboard Page */
     @GetMapping("/showIndex")
