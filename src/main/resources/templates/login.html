@@ -55,10 +55,10 @@
                 </div>
                 <!-- button for creating an account with modal -->
                 <div class="card-footer text-center">
-                    <!-- Button trigger modal
+                    <!--
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createAccountModal">
                         Create New Account</button>
-                    -->
+                     Button trigger modal -->
                     <a th:href="@{/createAccount}" class="btn btn-success">Create New Account</a>
                 </div>
             </div>
@@ -66,7 +66,7 @@
     </div>
 </div>
 
-
+<!-- Comment & Hide Create account form -->
 <!-- Create Account Modal
 <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -76,26 +76,26 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/processCreateAccount}" th:object="${user}" method="POST">
+                <form th:action="@{/processCreateAccount}" th:object="${user}"  method="POST">
                     <div class="mb-3">
-                        <label for="firstName" class="form-label">First Name</label>
+                        <label for="createFirstName" class="form-label">First Name</label>
                         <input type="text"
                                class="form-control"
-                               id="firstName"
+                               id="createFirstName"
                                placeholder="Enter your first name"
-                               th:field="*{firstName}">
+                               th:field="*{createFirstName}">
                     </div>
                     <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
+                        <label for="createLastName" class="form-label">Last Name</label>
                         <input type="text"
                                class="form-control"
-                               id="lastName"
+                               id="createLastName"
                                placeholder="Enter your last name"
-                               th:field="*{lastName}">
+                               th:field="*{createLastName}">
                     </div>
                     <div class="mb-3">
-                        <label for="gender" class="form-label">Gender</label>
-                        <select class="form-select" id="gender" th:field="*{gender}">
+                        <label for="createGender" class="form-label">Gender</label>
+                        <select class="form-select" id="createGender" th:field="*{createGender}">
                             <option value="">Select gender</option>
                             <option th:each="tempGender : ${genders}"
                                     th:value="${tempGender}"
@@ -104,28 +104,28 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
+                        <label for="createEmail" class="form-label">Email Address</label>
                         <input type="email"
                                class="form-control"
-                               id="email"
+                               id="createEmail"
                                placeholder="Enter your email address"
-                               th:field="*{email}">
+                               th:field="*{createEmail}">
                     </div>
                     <div class="mb-3">
-                        <label for="newUsername" class="form-label">Username</label>
+                        <label for="createUsername" class="form-label">Username</label>
                         <input type="text"
                                class="form-control"
-                               id="newUsername"
+                               id="createUsername"
                                placeholder="Enter your username"
-                               th:field="*{username}">
+                               th:field="*{createUsername}">
                     </div>
                     <div class="mb-3">
-                        <label for="newPassword" class="form-label">New Password</label>
+                        <label for="createPassword" class="form-label">New Password</label>
                         <input type="password"
                                class="form-control"
-                               id="newPassword"
+                               id="createPassword"
                                placeholder="Enter your password"
-                               th:field="*{password}">
+                               th:field="*{createPassword}">
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Create Account</button>
@@ -136,6 +136,7 @@
     </div>
 </div>
 -->
+
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

@@ -21,6 +21,9 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    @Value("${gender}")
+    private List<String> genders;
+
     // init binder & resolve issues for validation
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -30,9 +33,6 @@ public class UserController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 
     }
-
-    @Value("${gender}")
-    private List<String> genders;
 
     // Show form & Create a model
     @GetMapping("/showLogin")
@@ -47,9 +47,8 @@ public class UserController {
 
     @PostMapping("/processLoginForm")
     public String processLoginForm(@Valid @ModelAttribute("user")
-                                       UserLoginValidation loginUser,
-                                       Model model,
-                                       BindingResult bindingResult){
+                                   UserLoginValidation loginUser,
+                                   BindingResult bindingResult, Model model){
 
         System.out.println("Username: |" + loginUser.getLoginUsername() + "|");
         System.out.println("Password: |" + loginUser.getLoginPassword() + "|");
@@ -70,45 +69,56 @@ public class UserController {
         }
 
     }
-
     // redirect to create account page
     @GetMapping("/createAccount")
     public  String createAccount(Model model) {
 //
 //        AccountCreationValidation user = new AccountCreationValidation();
 
-        model.addAttribute("user", new AccountCreationValidation());
+        model.addAttribute("createUser", new AccountCreationValidation());
 
         // create model for gender to display on select element
-        // model.addAttribute("genders", genders);
+        model.addAttribute("genders", genders);
 
         return "create-account";
 
     }
 
     @PostMapping("/processCreateAccount")
-    public String processCreateAccount(@ModelAttribute("firstName") String firstName,
-                                       @ModelAttribute("lastName") String lastName,
-                                       @ModelAttribute("gender") Gender gender,
-                                       @ModelAttribute("email") String email,
-                                       @ModelAttribute("username") String username,
-                                       @ModelAttribute("password") String password,
-                                       Model model) {
+    public String processCreateAccount(@Valid @ModelAttribute("createUser")
+                                       AccountCreationValidation createUser,
+                                       BindingResult bindingResult, Model model) {
 
-        User newUser = new User();
+        if(bindingResult.hasErrors()) {
 
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setGender(gender); /* Enum Gender*/
-        newUser.setEmail(email);
-        newUser.setUsername(username);
-        newUser.setPassword(password);
-        // log
-        System.out.println("New username: " + newUser.getUsername());
-        // model for new user
-        model.addAttribute("newUser", newUser);
-        // return to newuser page
-        return "new-user-page";
+            // create model for gender to display on select element
+            model.addAttribute("genders", genders);
+
+            return "create-account";
+
+        }
+
+        else {
+            // create an object & set the model attribute
+            User newUser = new User();
+
+            newUser.setFirstName(createUser.getCreateFirstName());
+            newUser.setLastName(createUser.getCreateLastName());
+            newUser.setGender(createUser.getCreateGender()); /* Enum Gender*/
+            newUser.setEmail(createUser.getCreateEmail());
+            newUser.setUsername(createUser.getCreateUsername());
+            newUser.setPassword(createUser.getCreatePassword());
+
+            // console log
+            System.out.println("New User Details: " + newUser);
+
+            // model for new user
+            model.addAttribute("newUser", newUser);
+
+            // return to new user page
+            return "new-user-page";
+        }
+
     }
 
     @GetMapping("/showNewUser")
@@ -122,6 +132,16 @@ public class UserController {
         return "index";
     }
 
+    /*
+        public String processCreateAccount(@Valid @ModelAttribute("createFirstName") String createFirstName,
+                                       @ModelAttribute("createLastName") String createLastName,
+                                       @ModelAttribute("createGender") Gender createGender,
+                                       @ModelAttribute("createEmail") String createEmail,
+                                       @ModelAttribute("createUsername") String createUsername,
+                                       @ModelAttribute("createPassword") String createPassword,
+                                       BindingResult bindingResult,
+                                       Model model) {
+     */
 
     // Http Servlet Process
     /*
@@ -153,17 +173,5 @@ public class UserController {
         return "index";
     }
      */
-
-    /*
-
-    @GetMapping("/login")
-    public String showLogin(Model theModel) {
-
-        theModel.addAttribute("theDate", java.time.LocalDateTime.now());
-
-        return "login";
-    }
-
-    */
 
 }
