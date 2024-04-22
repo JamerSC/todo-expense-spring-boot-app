@@ -3,7 +3,7 @@ package com.jamersc.springboot.todoexpense.validation;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class UserLoginValidation {
+public class LoginUser {
 
     @NotNull(message = "Username is required!")
     @Size(min = 1, message = "Username is required!")
@@ -13,10 +13,10 @@ public class UserLoginValidation {
     @Size(min = 1, message = "Password is required!")
     private String loginPassword;
 
-    public UserLoginValidation() {
+    public LoginUser() {
     }
 
-    public UserLoginValidation(String loginUsername, String loginPassword) {
+    public LoginUser(String loginUsername, String loginPassword) {
         this.loginUsername = loginUsername;
         this.loginPassword = loginPassword;
     }

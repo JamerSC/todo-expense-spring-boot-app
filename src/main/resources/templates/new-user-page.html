@@ -6,14 +6,14 @@
 </head>
 <body>
 
-<h1>Account Created Successfully! Username</h1>
+<h1>Account Created Successfully!</h1>
 <br>
-<p>Details</p>
-<p>First name: <span th:text="${newUser.firstName}"></span></p>
-<p>Last name: <span th:text="${newUser.lastName}"></span></p>
-<p>Gender: <span th:text="${newUser.gender}"></span></p>
-<p>Email: <span th:text="${newUser.email}"></span></p>
-<p>Username: <span th:text="${newUser.username}"></span></p>
+<h2>Details</h2>
+<p>First name: <span th:text="${user.firstName}"></span></p>
+<p>Last name: <span th:text="${user.lastName}"></span></p>
+<p>Gender: <span th:text="${user.gender}"></span></p>
+<p>Email: <span th:text="${user.email}"></span></p>
+<p>Username: <span th:text="${user.username}"></span></p>
 <br>
 <h3><a th:href="@{/showLogin}">Go to Login</a></h3>
 

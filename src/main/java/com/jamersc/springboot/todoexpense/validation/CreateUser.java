@@ -4,11 +4,8 @@ import com.jamersc.springboot.todoexpense.entity.Gender;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.springframework.beans.factory.annotation.Value;
 
-import java.util.List;
-
-public class AccountCreationValidation {
+public class CreateUser {
 
     @NotNull(message = "Firstname is required!")
     @Size(min = 1, message = "Firstname is required!")
@@ -33,11 +30,11 @@ public class AccountCreationValidation {
     @Size(min = 1, message = "Password is required!")
     private String createPassword;
 
-    public AccountCreationValidation() {
+    public CreateUser() {
     }
 
-    public AccountCreationValidation(String createFirstName, String createLastName,
-                                     Gender createGender, String createEmail, String createUsername, String createPassword) {
+    public CreateUser(String createFirstName, String createLastName,
+                      Gender createGender, String createEmail, String createUsername, String createPassword) {
         this.createFirstName = createFirstName;
         this.createLastName = createLastName;
         this.createGender = createGender;

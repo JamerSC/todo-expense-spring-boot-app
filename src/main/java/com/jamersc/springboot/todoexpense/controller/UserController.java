@@ -1,9 +1,8 @@
 package com.jamersc.springboot.todoexpense.controller;
 
-import com.jamersc.springboot.todoexpense.entity.Gender;
 import com.jamersc.springboot.todoexpense.entity.User;
-import com.jamersc.springboot.todoexpense.validation.AccountCreationValidation;
-import com.jamersc.springboot.todoexpense.validation.UserLoginValidation;
+import com.jamersc.springboot.todoexpense.validation.CreateUser;
+import com.jamersc.springboot.todoexpense.validation.LoginUser;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -39,15 +38,14 @@ public class UserController {
     public String showLogin(Model model) {
 
         // create a user object & model
-        model.addAttribute("user", new UserLoginValidation());
+        model.addAttribute("user", new LoginUser());
 
         // redirect to login page
         return "login";
     }
 
     @PostMapping("/processLoginForm")
-    public String processLoginForm(@Valid @ModelAttribute("user")
-                                   UserLoginValidation loginUser,
+    public String processLoginForm(@Valid @ModelAttribute("user") LoginUser loginUser,
                                    BindingResult bindingResult, Model model){
 
         System.out.println("Username: |" + loginUser.getLoginUsername() + "|");
@@ -75,7 +73,7 @@ public class UserController {
 //
 //        AccountCreationValidation user = new AccountCreationValidation();
 
-        model.addAttribute("createUser", new AccountCreationValidation());
+        model.addAttribute("createUser", new CreateUser());
 
         // create model for gender to display on select element
         model.addAttribute("genders", genders);
@@ -86,7 +84,7 @@ public class UserController {
 
     @PostMapping("/processCreateAccount")
     public String processCreateAccount(@Valid @ModelAttribute("createUser")
-                                       AccountCreationValidation createUser,
+                                       CreateUser createUser,
                                        BindingResult bindingResult, Model model) {
 
         if(bindingResult.hasErrors()) {
@@ -100,20 +98,20 @@ public class UserController {
 
         else {
             // create an object & set the model attribute
-            User newUser = new User();
+            User user = new User();
 
-            newUser.setFirstName(createUser.getCreateFirstName());
-            newUser.setLastName(createUser.getCreateLastName());
-            newUser.setGender(createUser.getCreateGender()); /* Enum Gender*/
-            newUser.setEmail(createUser.getCreateEmail());
-            newUser.setUsername(createUser.getCreateUsername());
-            newUser.setPassword(createUser.getCreatePassword());
+            user.setFirstName(createUser.getCreateFirstName());
+            user.setLastName(createUser.getCreateLastName());
+            user.setGender(createUser.getCreateGender()); /* Enum Gender*/
+            user.setEmail(createUser.getCreateEmail());
+            user.setUsername(createUser.getCreateUsername());
+            user.setPassword(createUser.getCreatePassword());
 
             // console log
-            System.out.println("New User Details: " + newUser);
+            System.out.println("New User Details: " + user);
 
             // model for new user
-            model.addAttribute("newUser", newUser);
+            model.addAttribute("user", user);
 
             // return to new user page
             return "new-user-page";
