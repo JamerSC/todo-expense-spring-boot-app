@@ -36,21 +36,16 @@ public class ExpenseController {
     }
 
     @PostMapping("/recordExpenses")
-    public String recordExpenses(@ModelAttribute("expense") Expense expense,
-                                 Model model) {
+    public String recordExpenses(@ModelAttribute("expense")
+                                 Expense expense, Model model) {
 
-
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy");
-        String formattedExpenseDate = dateFormatter.format(expense.getExpenseDate());
-
-        System.out.println("Date of expense: " + formattedExpenseDate);
+        System.out.println("Date of expense: " + expense.getExpenseDate());
         System.out.println("Description:" + expense.getExpenseDescription());
         System.out.println("Remarks: " + expense.getExpenseRemarks());
         System.out.println("Mode of payment: " + expense.getModeOfPayment());
         System.out.println("Amount: " + expense.getAmount());
 
         model.addAttribute("expense", expense);
-        model.addAttribute("formattedExpenseDate", formattedExpenseDate);
 
         return "expenses";
     }

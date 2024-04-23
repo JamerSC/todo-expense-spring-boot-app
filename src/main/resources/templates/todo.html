@@ -67,8 +67,12 @@
             <th scope="row">1</th>
             <td th:text="${tempTodo.todoName}"></td>
             <td th:text="${tempTodo.todoDetails}"></td>
-            <td th:text="${formattedStartDate}"></td>
-            <td th:text="${formattedEndDate}"></td>
+            <!--
+            <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td>
+            -->
+            <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd MMMM yyyy')}"></td>
+            <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd MMMM yyyy')}"></td>
             <td th:text="${tempTodo.todoStatus}"></td>
             <td><button type="button" class="btn btn-success">Update</button>
                 <button type="button" class="btn btn-danger">Delete</button>

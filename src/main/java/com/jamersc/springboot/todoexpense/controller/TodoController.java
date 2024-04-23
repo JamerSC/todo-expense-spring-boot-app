@@ -46,23 +46,13 @@ public class TodoController {
         // Print values for debugging
         System.out.println("Todo title: " + todo.getTodoName());
         System.out.println("Todo details: " + todo.getTodoDetails());
-
-        // Format start date
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd MMM yyyy");
-        String formattedStartDate = dateFormatter.format(todo.getTodoStartDate());
-        System.out.println("Todo start date: " + formattedStartDate);
-
-        // Format end date
-        String formattedEndDate = dateFormatter.format(todo.getTodoEndDate());
-        System.out.println("Todo end date: " + formattedEndDate);
-
+        System.out.println("Todo details: " + todo.getTodoStartDate());
+        System.out.println("Todo details: " + todo.getTodoStartDate());
         System.out.println("Todo status: " + todo.getTodoStatus());
 
         // You can save the todo object or perform other operations here
         // Add the todo object to the model
         model.addAttribute("todo", todo);
-        model.addAttribute("formattedStartDate", formattedStartDate);
-        model.addAttribute("formattedEndDate", formattedEndDate);
 
         // Redirect to a suitable page
         return "todo";
