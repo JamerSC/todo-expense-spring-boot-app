@@ -19,14 +19,26 @@ public class TodoController {
     @GetMapping("/showTodo")
     public String showTodo(Model model) {
 
+        model.addAttribute("message", "Create a new todo!");
         // New to do object
-        Todo todo = new Todo();
+        //Todo todo = new Todo();
+
         // create a model
-        model.addAttribute("todo", todo);
+        //model.addAttribute("todo", todo);
+
         // model for status
         //model.addAttribute("todoStatuses", todoStatuses);
+
         // redirect to do page
         return "todo";
+    }
+
+    @GetMapping("/showTodoForm")
+    public String showTodoForm(Model model) {
+
+        model.addAttribute("todo", new Todo());
+
+        return "todo-form";
     }
 
     @PostMapping("/createTodo")
@@ -47,7 +59,6 @@ public class TodoController {
         System.out.println("Todo status: " + todo.getTodoStatus());
 
         // You can save the todo object or perform other operations here
-
         // Add the todo object to the model
         model.addAttribute("todo", todo);
         model.addAttribute("formattedStartDate", formattedStartDate);
