@@ -13,12 +13,9 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <p>Confirmation Login username: </p> <span th:text="${param.username}"></span>
-    <br>
-    <!--
-    <h1 th:text="${message}"></h1>
-    <br>
-    -->
+<!-- Check if the username parameter is present
+<p th:if="${user.username != null}">Confirmation Login username: <span th:text="${user.username}"></span></p>
+ -->
 
     <!-- Dashboard Navigation -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">

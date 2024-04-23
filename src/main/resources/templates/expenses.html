@@ -43,128 +43,37 @@
     </div>
 </nav>
 
-<!-- Create new expenses
-<button
-        type="button" class="btn btn-primary">Add Expense
-</button>
--->
+<!-- Create button link -->
+<a th:href="@{/showRecordExpenseForm}"
+   class="btn btn-primary">
+    Create Todo
+</a>
 
-<!-- Expense Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Record New Expense
-</button>
-
-<!-- Expense Modal Form -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/recordExpenses}" th:object="${expense}" method="POST">
-                    <div class="mb-3">
-                        <label for="expenseDate" class="form-label">Expense Date</label>
-                        <input type="date"
-                               class="form-control"
-                               id="expenseDate"
-                               th:field="*{expenseDate}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="expenseDescription" class="form-label">Description</label>
-                        <input type="text"
-                               class="form-control"
-                               id="expenseDescription"
-                               placeholder="Enter description"
-                               th:field="*{expenseDescription}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="remarks" class="form-label">Remarks</label>
-                        <textarea class="form-control"
-                                  id="remarks" rows="3"
-                                  placeholder="Enter remarks"
-                                  th:field="*{expenseRemarks}">
-                        </textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="paymentMode" class="form-label">Mode of Payment</label>
-                        <select class="form-select" id="paymentMode" th:field="*{modeOfPayment}">
-                            <option value="">Select payment</option>
-                            <option th:value="Cash">Cash</option>
-                            <option th:value="Debit">Debit Card</option>
-                            <option th:value="Credit">Credit Card</option>
-                            <option th:value="Transfer">Bank Transfer</option>
-                            <option th:value="Mobile">Mobile Payment</option>
-                            <option th:value="Online">Online Payment</option>
-                            <option th:value="Prepaid">Prepaid Card</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="amount" class="form-label">Price</label>
-                        <input type="text"
-                               class="form-control"
-                               id="amount"
-                               placeholder="Enter the amount"
-                               th:field="*{amount}">
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Save Record</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Expenses list Table -->
 <table class="table table-striped">
     <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Date</th>
-        <th scope="col">Item Description</th>
-        <th scope="col">Remarks</th>
-        <th scope="col">Mode of Payment</th>
-        <th scope="col">Amount</th>
-        <th>Action</th>
-    </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Item Description</th>
+            <th scope="col">Remarks</th>
+            <th scope="col">Mode of Payment</th>
+            <th scope="col">Amount</th>
+            <th>Action</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td th:text="${formattedExpenseDate}"></td>
-        <td th:text="${expense.expenseDescription}"></td>
-        <td th:text="${expense.expenseRemarks}"></td>
-        <td th:text="${expense.modeOfPayment}"></td>
-        <td th:text="${expense.amount}"></td>
-        <td><button type="button" class="btn btn-success">Update</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>@</td>
-        <td>@</td>
-        <td>@</td>
-        <td>@</td>
-        <td>@</td>
-        <td><button type="button" class="btn btn-success">Update</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>@</td>
-        <td>@</td>
-        <td>@</td>
-        <td>@</td>
-        <td><button type="button" class="btn btn-success">Update</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-        </td>
-    </tr>
+        <tr th:each="tempExpense : ${expense}">
+            <th scope="row">1</th>
+            <td th:text="${formattedExpenseDate}"></td>
+            <td th:text="${tempExpense.expenseDescription}"></td>
+            <td th:text="${tempExpense.expenseRemarks}"></td>
+            <td th:text="${tempExpense.modeOfPayment}"></td>
+            <td th:text="${tempExpense.amount}"></td>
+            <td><button type="button" class="btn btn-success">Update</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 

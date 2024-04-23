@@ -16,12 +16,23 @@ public class ExpenseController {
     @GetMapping("/showExpenses")
     public String showExpenses(Model model) {
 
+        model.addAttribute("message", "Record your expense.");
+
         // New expense
-        Expense expense = new Expense();
+        // Expense expense = new Expense();
+
         // expense model
-        model.addAttribute("expense", expense);
+        // model.addAttribute("expense", expense);
 
         return "expenses";
+    }
+
+    @GetMapping("/showRecordExpenseForm")
+    public String showRecordExpenseForm(Model model) {
+
+        model.addAttribute("expense", new Expense());
+
+        return "record-expense-form";
     }
 
     @PostMapping("/recordExpenses")
