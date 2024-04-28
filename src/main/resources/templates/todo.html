@@ -44,7 +44,7 @@
 </nav>
 
 <!-- Create button link -->
-<a th:href="@{/showTodoForm}"
+<a th:href="@{/createTodo}"
    class="btn btn-primary">
     Create Todo
 </a>
@@ -67,10 +67,8 @@
             <th scope="row">1</th>
             <td th:text="${tempTodo.todoName}"></td>
             <td th:text="${tempTodo.todoDetails}"></td>
-            <!--
-            <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
-            <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td>
-            -->
+            <!-- <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td> -->
             <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd MMMM yyyy')}"></td>
             <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd MMMM yyyy')}"></td>
             <td th:text="${tempTodo.todoStatus}"></td>
@@ -81,14 +79,11 @@
     </tbody>
 </table>
 
-<!-- Example Code -->
 
 <svg class="bd-placeholder-img bd-placeholder-img-lg img-fluid" width="100%" height="250" xmlns="http://www.w3.org/2000/svg"
      role="img" aria-label="Placeholder: Responsive image" preserveAspectRatio="xMidYMid slice" focusable="false">
     <title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Todo List Image</text>
 </svg>
-
-<!-- End Example Code -->
 
 </body>
 </html>

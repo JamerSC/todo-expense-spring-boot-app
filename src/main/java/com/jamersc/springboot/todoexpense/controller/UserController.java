@@ -110,30 +110,10 @@ public class UserController {
 
     }
 
-    /*
-    @GetMapping("/showNewUser")
-    public String showNewUser(Model model) {
-        // You can add other attributes if needed
-        return "new-user-page"; // This is the HTML page where you want to display newUser.Username
-    }
-    */
-
     /* Index/Dashboard Page */
     @GetMapping("/showIndex")
     public String showIndex() {
         return "index";
     }
-
-    /*
-        public String processCreateAccount(@Valid @ModelAttribute("createFirstName") String createFirstName,
-                                       @ModelAttribute("createLastName") String createLastName,
-                                       @ModelAttribute("createGender") Gender createGender,
-                                       @ModelAttribute("createEmail") String createEmail,
-                                       @ModelAttribute("createUsername") String createUsername,
-                                       @ModelAttribute("createPassword") String createPassword,
-                                       BindingResult bindingResult,
-                                       Model model) {
-     */
-
 
 }
