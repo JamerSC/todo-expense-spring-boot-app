@@ -38,19 +38,19 @@ public class UserController {
     public String showLogin(Model model) {
 
         // create a user object & model
-        model.addAttribute("user", new LoginUser());
+        model.addAttribute("user", new User());
 
         // redirect to login page
         return "login";
     }
 
     @PostMapping("/processLoginForm")
-    public String processLoginForm(@Valid @ModelAttribute("user") LoginUser loginUser,
-                                   BindingResult bindingResult, Model model){
+    public String processLoginForm(@ModelAttribute("user") User user, Model model){
 
-        System.out.println("Username: |" + loginUser.getLoginUsername() + "|");
-        System.out.println("Password: |" + loginUser.getLoginPassword() + "|");
+        System.out.println("Username: |" + user.getUsername() + "|");
+        System.out.println("Password: |" + user.getPassword() + "|");
 
+        /*
         if (bindingResult.hasErrors()) {
             // return to login form
             return "login";
@@ -65,7 +65,9 @@ public class UserController {
             // return "redirect:/users/index";
             return "index";
         }
+         */
 
+        return "index";
     }
     // redirect to create account page
     @GetMapping("/createAccount")
@@ -73,39 +75,18 @@ public class UserController {
 //
 //        AccountCreationValidation user = new AccountCreationValidation();
 
-        model.addAttribute("createUser", new CreateUser());
+        model.addAttribute("createUser", new User());
 
         // create model for gender to display on select element
         model.addAttribute("genders", genders);
 
-        return "create-account";
+        return "/forms/create-account";
 
     }
 
     @PostMapping("/processCreateAccount")
-    public String processCreateAccount(@Valid @ModelAttribute("createUser")
-                                       CreateUser createUser,
-                                       BindingResult bindingResult, Model model) {
+    public String processCreateAccount(@ModelAttribute("createUser") User user, Model model) {
 
-        if(bindingResult.hasErrors()) {
-
-            // create model for gender to display on select element
-            model.addAttribute("genders", genders);
-
-            return "create-account";
-
-        }
-
-        else {
-            // create an object & set the model attribute
-            User user = new User();
-
-            user.setFirstName(createUser.getCreateFirstName());
-            user.setLastName(createUser.getCreateLastName());
-            user.setGender(createUser.getCreateGender()); /* Enum Gender*/
-            user.setEmail(createUser.getCreateEmail());
-            user.setUsername(createUser.getCreateUsername());
-            user.setPassword(createUser.getCreatePassword());
 
             // console log
             System.out.println("New User Details: " + user);
@@ -115,7 +96,6 @@ public class UserController {
 
             // return to new user page
             return "new-user-page";
-        }
 
     }
 
