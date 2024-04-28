@@ -23,22 +23,30 @@
                 </div>
                 <div class="card-body">
 
-                    <form th:action="@{/processLoginForm}" th:object="${user}" method="POST">
+                    <form th:action="@{/login}" th:object="${loginUser}" method="POST">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="loginUsername" class="form-label">Username</label>
                             <input type="text"
                                    class="form-control"
-                                   id="username"
+                                   id="loginUsername"
                                    placeholder="Enter your username"
-                                   th:field="*{username}">
+                                   th:field="*{loginUsername}">
+                            <p th:if="${#fields.hasErrors('loginUsername')}"
+                               th:errors="*{loginUsername}"
+                               class="error">
+                            </p>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="loginPassword" class="form-label">Password</label>
                             <input type="password"
                                    class="form-control"
-                                   id="password"
+                                   id="loginPassword"
                                    placeholder="Enter your password"
-                                   th:field="*{password}">
+                                   th:field="*{loginPassword}">
+                            <p th:if="${#fields.hasErrors('loginPassword')}"
+                               th:errors="*{loginPassword}"
+                               class="error">
+                            </p>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Login</button>
@@ -47,13 +55,7 @@
                 </div>
                 <!-- button for creating an account with modal -->
                 <div class="card-footer text-center">
-                    <!--                     Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createAccountModal">
-                        Create New Account</button>
-                    <th:block th:replace="forms/create-account :: modal('createAccountModal')">modal</th:block>
-                    <!--
                     <a th:href="@{/createAccount}" class="btn btn-success">Create New Account</a>
-                    -->
                 </div>
             </div>
         </div>

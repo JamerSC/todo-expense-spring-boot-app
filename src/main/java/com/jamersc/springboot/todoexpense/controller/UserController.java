@@ -33,77 +33,91 @@ public class UserController {
 
     }
 
-    // Show form & Create a model
-    @GetMapping("/showLogin")
+    @GetMapping("/login")
     public String showLogin(Model model) {
 
-        // create a user object & model
-        model.addAttribute("user", new User());
+        model.addAttribute("loginUser", new LoginUser());
 
-        // redirect to login page
         return "login";
     }
 
-    @PostMapping("/processLoginForm")
-    public String processLoginForm(@ModelAttribute("user") User user, Model model){
+    @PostMapping("/login")
+    public String processLoginForm(@Valid @ModelAttribute("loginUser") LoginUser loginUser,
+                                   BindingResult result, Model model){
 
-        System.out.println("Username: |" + user.getUsername() + "|");
-        System.out.println("Password: |" + user.getPassword() + "|");
 
-        /*
-        if (bindingResult.hasErrors()) {
-            // return to login form
+        if (result.hasErrors()) {
+
             return "login";
+
         }
         else {
+
             User user = new User();
-            //log input data
+
             user.setUsername(loginUser.getLoginUsername());
-           // user.setPassword(loginUser.getLoginPassword());
+            user.setPassword(loginUser.getLoginPassword());
 
             model.addAttribute("user", user);
-            // return "redirect:/users/index";
+
+            System.out.println("Login Username: " + user.getUsername());
+
             return "index";
         }
-         */
 
-        return "index";
     }
     // redirect to create account page
     @GetMapping("/createAccount")
     public  String createAccount(Model model) {
-//
-//        AccountCreationValidation user = new AccountCreationValidation();
 
-        model.addAttribute("createUser", new User());
+        model.addAttribute("createUser", new CreateUser());
 
-        // create model for gender to display on select element
         model.addAttribute("genders", genders);
 
-        return "/forms/create-account";
+        return "create-account";
 
     }
 
-    @PostMapping("/processCreateAccount")
-    public String processCreateAccount(@ModelAttribute("createUser") User user, Model model) {
+    @PostMapping("/createAccount")
+    public String processCreateAccount(@Valid @ModelAttribute("createUser") CreateUser createUser,
+                                       BindingResult result, Model model) {
 
+            System.out.println("New User Details: " + createUser);
 
-            // console log
-            System.out.println("New User Details: " + user);
+            if (result.hasErrors()) {
 
-            // model for new user
-            model.addAttribute("user", user);
+                model.addAttribute("genders", genders);
 
-            // return to new user page
-            return "new-user-page";
+                return "create-account";
+
+            }
+            else {
+                User user = new User();
+
+                user.setFirstName(createUser.getCreateFirstName());
+                user.setLastName(createUser.getCreateLastName());
+                user.setGender(createUser.getCreateGender());
+                user.setEmail(createUser.getCreateEmail());
+                user.setUsername(createUser.getCreateUsername());
+                user.setPassword(createUser.getCreatePassword());
+
+                model.addAttribute("user", user);
+
+                System.out.println("Created Account: " + user);
+
+                return "new-user-page";
+            }
 
     }
 
+    /*
     @GetMapping("/showNewUser")
     public String showNewUser(Model model) {
         // You can add other attributes if needed
         return "new-user-page"; // This is the HTML page where you want to display newUser.Username
     }
+    */
+
     /* Index/Dashboard Page */
     @GetMapping("/showIndex")
     public String showIndex() {
@@ -121,35 +135,5 @@ public class UserController {
                                        Model model) {
      */
 
-    // Http Servlet Process
-    /*
-    @RequestMapping("/processLoginSecond")
-    public String processLoginSecond(HttpServletRequest request, Model model) {
-        // Create an object & get the parameter
-        String theUsername = request.getParameter("username");
-        // Convert the object into upper case
-        theUsername = theUsername.toUpperCase();
-        // create a message
-        String result = "Hey " + theUsername;
-        // add message to the model
-        model.addAttribute("message", result);
-        return "index";
-    }
-     */
-
-    // Request Param Annotation
-    /*
-    @PostMapping("/processLoginThird")
-    public String processLoginThird(
-            @RequestParam("username") String theUsername, Model model) {
-        // Convert the object into upper case
-        theUsername = theUsername.toUpperCase();
-        // create a message
-        String result = "Hey " + theUsername;
-        // add message to the model
-        model.addAttribute("message", result);
-        return "index";
-    }
-     */
 
 }
