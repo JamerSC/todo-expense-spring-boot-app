@@ -111,7 +111,7 @@ public class UserController {
     }
 
     /* Index/Dashboard Page */
-    @GetMapping("/showIndex")
+    @GetMapping("/index")
     public String showIndex() {
         return "index";
     }

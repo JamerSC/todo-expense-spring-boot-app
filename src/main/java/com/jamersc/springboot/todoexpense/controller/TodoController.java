@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 public class TodoController {
 
     /* To do page*/
-    @GetMapping("/showTodo")
+    @GetMapping("/todo")
     public String showTodo(Model model) {
 
         return "todo";

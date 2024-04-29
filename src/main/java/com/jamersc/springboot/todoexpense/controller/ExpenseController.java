@@ -1,8 +1,11 @@
 package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.entity.Expense;
+import com.jamersc.springboot.todoexpense.validation.RecordExpense;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,40 +16,44 @@ import java.text.SimpleDateFormat;
 public class ExpenseController {
 
     /* Expenses Page */
-    @GetMapping("/showExpenses")
+    @GetMapping("/expenses")
     public String showExpenses(Model model) {
-
-        model.addAttribute("message", "Record your expense.");
-
-        // New expense
-        // Expense expense = new Expense();
-
-        // expense model
-        // model.addAttribute("expense", expense);
 
         return "expenses";
     }
 
-    @GetMapping("/showRecordExpenseForm")
+    @GetMapping("/recordExpense")
     public String showRecordExpenseForm(Model model) {
 
-        model.addAttribute("expense", new Expense());
+        model.addAttribute("recordExpense", new RecordExpense());
 
         return "record-expense-form";
     }
 
-    @PostMapping("/recordExpenses")
-    public String recordExpenses(@ModelAttribute("expense")
-                                 Expense expense, Model model) {
+    @PostMapping("/recordExpense")
+    public String recordExpenses(@Valid @ModelAttribute("recordExpense") RecordExpense recordExpense,
+                                 BindingResult result, Model model) {
 
-        System.out.println("Date of expense: " + expense.getExpenseDate());
-        System.out.println("Description:" + expense.getExpenseDescription());
-        System.out.println("Remarks: " + expense.getExpenseRemarks());
-        System.out.println("Mode of payment: " + expense.getModeOfPayment());
-        System.out.println("Amount: " + expense.getAmount());
+        System.out.println("Recorded expense: " + recordExpense);
 
-        model.addAttribute("expense", expense);
+        if (result.hasErrors()) {
 
-        return "expenses";
+           return "record-expense-form";
+        }
+        else {
+
+            Expense expense = new Expense();
+
+            expense.setExpenseDate(recordExpense.getRecordExpenseDate());
+            expense.setExpenseDescription(recordExpense.getRecordExpenseDesc());
+            expense.setExpenseRemarks(recordExpense.getRecordExpenseRemarks());
+            expense.setModeOfPayment(recordExpense.getRecordModeOfPayment());
+            expense.setAmount(recordExpense.getRecordAmount());
+
+            model.addAttribute("expense", expense);
+
+            return "expenses";
+        }
+
     }
 }

@@ -18,36 +18,41 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <!-- Insert form-->
-            <form th:action="@{/recordExpenses}" th:object="${expense}" method="POST">
+            <form th:action="@{/recordExpense}" th:object="${recordExpense}" method="POST">
                 <div class="mb-3">
-                    <label for="expenseDate" class="form-label">Expense Date</label>
+                    <label for="recordExpenseDate" class="form-label">Expense Date</label>
                     <input type="date"
                            class="form-control"
-                           id="expenseDate"
-                           th:field="*{expenseDate}"
-                           required>
+                           id="recordExpenseDate"
+                           th:field="*{recordExpenseDate}">
+                    <p th:if="${#fields.hasErrors('recordExpenseDate')}"
+                       th:errors="*{recordExpenseDate}"
+                       class="error">
+                    </p>
                 </div>
                 <div class="mb-3">
-                    <label for="expenseDescription" class="form-label">Description</label>
+                    <label for="recordExpenseDesc" class="form-label">Description</label>
                     <input type="text"
                            class="form-control"
-                           id="expenseDescription"
+                           id="recordExpenseDesc"
                            placeholder="Enter description"
-                           th:field="*{expenseDescription}"
-                           required>
+                           th:field="*{recordExpenseDesc}">
+                    <p th:if="${#fields.hasErrors('recordExpenseDesc')}"
+                       th:errors="*{recordExpenseDesc}"
+                       class="error">
+                    </p>
                 </div>
                 <div class="mb-3">
-                    <label for="remarks" class="form-label">Remarks</label>
+                    <label for="recordExpenseRemarks" class="form-label">Remarks</label>
                     <textarea class="form-control"
-                              id="remarks" rows="3"
+                              id="recordExpenseRemarks" rows="3"
                               placeholder="Enter remarks"
-                              th:field="*{expenseRemarks}"
-                              required>
-                        </textarea>
+                              th:field="*{recordExpenseRemarks}">
+                    </textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="paymentMode" class="form-label">Mode of Payment</label>
-                    <select class="form-select" id="paymentMode" th:field="*{modeOfPayment}" required>
+                    <label for="recordModeOfPayment" class="form-label">Mode of Payment</label>
+                    <select class="form-select" id="recordModeOfPayment" th:field="*{recordModeOfPayment}">
                         <option value="">Select payment</option>
                         <option th:value="Cash">Cash</option>
                         <option th:value="Debit">Debit Card</option>
@@ -57,15 +62,22 @@
                         <option th:value="Online">Online Payment</option>
                         <option th:value="Prepaid">Prepaid Card</option>
                     </select>
+                    <p th:if="${#fields.hasErrors('recordModeOfPayment')}"
+                       th:errors="*{recordModeOfPayment}"
+                       class="error">
+                    </p>
                 </div>
                 <div class="mb-3">
-                    <label for="amount" class="form-label">Price</label>
+                    <label for="recordAmount" class="form-label">Price</label>
                     <input type="text"
                            class="form-control"
-                           id="amount"
+                           id="recordAmount"
                            placeholder="Enter the amount"
-                           th:field="*{amount}"
-                           required>
+                           th:field="*{recordAmount}">
+                    <p th:if="${#fields.hasErrors('recordAmount')}"
+                       th:errors="*{recordAmount}"
+                       class="error">
+                    </p>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Save Record</button>
