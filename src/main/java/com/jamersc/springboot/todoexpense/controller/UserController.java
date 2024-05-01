@@ -1,6 +1,7 @@
 package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.entity.User;
+import com.jamersc.springboot.todoexpense.service.UserService;
 import com.jamersc.springboot.todoexpense.validation.CreateUser;
 import com.jamersc.springboot.todoexpense.validation.LoginUser;
 import jakarta.validation.Valid;
@@ -10,15 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
+
+
+    private UserService userService;
+
+    public UserController(UserService theUserService) {
+        this.userService = theUserService;
+    }
 
     @Value("${gender}")
     private List<String> genders;
@@ -116,4 +122,18 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/users-management")
+    public String showUsersManagement(Model model) {
+
+        List<User> users = userService.findAll();
+
+        model.addAttribute("users", users);
+
+        // logs
+        for (User tempUsers : users) {
+            System.out.println(tempUsers);
+        }
+
+        return "users-management";
+    }
 }

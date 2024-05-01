@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Expenses</title>
+    <title>Users Management</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- static/css/style.css
-    <link rel="stylesheet" th:href="@{/css/style.css}"> -->
+    <!-- static/css/style.css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<!-- Expenses Navigation -->
+
+<!-- Dashboard Navigation -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,6 +34,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Logout</a>
                 </li>
+            </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -41,40 +43,35 @@
     </div>
 </nav>
 
-<!-- Create button link -->
-<a th:href="@{/recordExpense}"
-   class="btn btn-primary">
-    Record Expense
-</a>
-
-<!-- Expenses list Table -->
+<!-- To do list Table -->
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Item Description</th>
-            <th scope="col">Remarks</th>
-            <th scope="col">Mode of Payment</th>
-            <th scope="col">Amount</th>
-            <th>Action</th>
-        </tr>
+    <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Username</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Modified Date</th>
+        <th>Action</th>
+    </tr>
     </thead>
     <tbody>
-        <tr th:each="tempExpense : ${expense}">
-            <th scope="row">1</th>
-            <td th:text="${#dates.format(tempExpense.expenseDate, 'dd MMMM yyyy')}"></td>
-            <td th:text="${tempExpense.expenseDescription}"></td>
-            <td th:text="${tempExpense.expenseRemarks}"></td>
-            <td th:text="${tempExpense.modeOfPayment}"></td>
-            <td th:text="${#numbers.formatDecimal(tempExpense.amount, 1, 'COMMA', 2, 'POINT')}"></td>
-            <td><button type="button" class="btn btn-success">Update</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
+    <tr th:each="tempUsers : ${users}">
+        <th th:text="${tempUsers.userId}"></th>
+        <td th:text="${tempUsers.firstName}"></td>
+        <td th:text="${tempUsers.lastName}"></td>
+        <td th:text="${tempUsers.username}"></td>
+        <!-- <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
+        <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td> -->
+        <td th:text="${#dates.format(tempUsers.createdDate, 'dd MMMM yyyy')}"></td>
+        <td th:text="${#dates.format(tempUsers.modifiedDate, 'dd MMMM yyyy')}"></td>
+        <td><button type="button" class="btn btn-success">Update</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
     </tbody>
 </table>
-
 
 </body>
 </html>

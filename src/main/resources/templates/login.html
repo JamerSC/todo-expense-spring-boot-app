@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
 
-                    <form th:action="@{/login}" th:object="${loginUser}" method="POST">
+                    <form th:action="@{/users/login}" th:object="${loginUser}" method="POST">
                         <div class="mb-3">
                             <label for="loginUsername" class="form-label">Username</label>
                             <input type="text"
@@ -55,7 +55,7 @@
                 </div>
                 <!-- button for creating an account with modal -->
                 <div class="card-footer text-center">
-                    <a th:href="@{/createAccount}" class="btn btn-success">Create New Account</a>
+                    <a th:href="@{/users/createAccount}" class="btn btn-success">Create New Account</a>
                 </div>
             </div>
         </div>
