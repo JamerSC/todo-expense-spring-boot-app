@@ -68,7 +68,7 @@ public class UserController {
 
             System.out.println("Login Username: " + user.getUsername());
 
-            return "index";
+            return "dashboard";
         }
 
     }
@@ -117,9 +117,9 @@ public class UserController {
     }
 
     /* Index/Dashboard Page */
-    @GetMapping("/index")
+    @GetMapping("/dashboard")
     public String showIndex() {
-        return "index";
+        return "dashboard";
     }
 
     @GetMapping("/users-management")
