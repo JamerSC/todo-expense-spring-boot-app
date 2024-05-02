@@ -48,14 +48,13 @@
                                class="error">
                             </p>
                         </div>
-                        <div class="d-grid">
+                        <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
+                        <div class="d-grid mb-3">
+                            <a th:href="@{/users/createAccount}" class="btn btn-success">Create New Account</a>
+                        </div>
                     </form>
-                </div>
-                <!-- button for creating an account with modal -->
-                <div class="card-footer text-center">
-                    <a th:href="@{/users/createAccount}" class="btn btn-success">Create New Account</a>
                 </div>
             </div>
         </div>

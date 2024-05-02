@@ -2,7 +2,7 @@ package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.entity.User;
 import com.jamersc.springboot.todoexpense.service.UserService;
-import com.jamersc.springboot.todoexpense.validation.CreateUser;
+import com.jamersc.springboot.todoexpense.validation.CreateAccount;
 import com.jamersc.springboot.todoexpense.validation.LoginUser;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
@@ -76,36 +76,36 @@ public class UserController {
     @GetMapping("/createAccount")
     public  String createAccount(Model model) {
 
-        model.addAttribute("createUser", new CreateUser());
+        model.addAttribute("createUser", new CreateAccount());
 
         model.addAttribute("genders", genders);
 
-        return "create-account";
+        return "/forms/create-account-form";
 
     }
 
     @PostMapping("/createAccount")
-    public String processCreateAccount(@Valid @ModelAttribute("createUser") CreateUser createUser,
+    public String processCreateAccount(@Valid @ModelAttribute("createUser") CreateAccount createAccount,
                                        BindingResult result, Model model) {
 
-            System.out.println("New User Details: " + createUser);
+            System.out.println("New User Details: " + createAccount);
 
             if (result.hasErrors()) {
 
                 model.addAttribute("genders", genders);
 
-                return "create-account";
+                return "/forms/create-account-form";
 
             }
             else {
                 User user = new User();
 
-                user.setFirstName(createUser.getCreateFirstName());
-                user.setLastName(createUser.getCreateLastName());
-                user.setGender(createUser.getCreateGender());
-                user.setEmail(createUser.getCreateEmail());
-                user.setUsername(createUser.getCreateUsername());
-                user.setPassword(createUser.getCreatePassword());
+                user.setFirstName(createAccount.getCreateFirstName());
+                user.setLastName(createAccount.getCreateLastName());
+                user.setGender(createAccount.getCreateGender());
+                user.setEmail(createAccount.getCreateEmail());
+                user.setUsername(createAccount.getCreateUsername());
+                user.setPassword(createAccount.getCreatePassword());
 
                 model.addAttribute("user", user);
 
@@ -136,4 +136,11 @@ public class UserController {
 
         return "users-management";
     }
+
+    @GetMapping("/createUser")
+    public String createUser(Model model) {
+
+        return "/forms/user-management-form";
+    }
+
 }

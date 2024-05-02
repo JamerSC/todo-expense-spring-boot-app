@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class CreateUser {
+public class CreateAccount {
 
     @NotNull(message = "Firstname is required!")
     @Size(min = 1, message = "Firstname is required!")
@@ -30,11 +30,11 @@ public class CreateUser {
     @Size(min = 1, message = "Password is required!")
     private String createPassword;
 
-    public CreateUser() {
+    public CreateAccount() {
     }
 
-    public CreateUser(String createFirstName, String createLastName,
-                      Gender createGender, String createEmail, String createUsername, String createPassword) {
+    public CreateAccount(String createFirstName, String createLastName,
+                         Gender createGender, String createEmail, String createUsername, String createPassword) {
         this.createFirstName = createFirstName;
         this.createLastName = createLastName;
         this.createGender = createGender;

@@ -28,7 +28,7 @@ public class TodoController {
 
         model.addAttribute("createTodo", new CreateTodo());
 
-        return "todo-form";
+        return "/forms/todo-form";
     }
 
     @PostMapping("/createTodo")
@@ -39,7 +39,7 @@ public class TodoController {
 
         if (result.hasErrors()) {
 
-            return "todo-form";
+            return "/forms/todo-form";
         }
         else {
 

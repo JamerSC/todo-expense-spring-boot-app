@@ -27,7 +27,7 @@ public class ExpenseController {
 
         model.addAttribute("recordExpense", new RecordExpense());
 
-        return "record-expense-form";
+        return "/forms/record-expense-form";
     }
 
     @PostMapping("/recordExpense")
@@ -38,7 +38,7 @@ public class ExpenseController {
 
         if (result.hasErrors()) {
 
-           return "record-expense-form";
+           return "/forms/record-expense-form";
         }
         else {
 
