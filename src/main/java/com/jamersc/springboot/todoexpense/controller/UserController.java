@@ -100,12 +100,12 @@ public class UserController {
             else {
                 User user = new User();
 
-                user.setFirstName(createAccount.getCreateFirstName());
-                user.setLastName(createAccount.getCreateLastName());
-                user.setGender(createAccount.getCreateGender());
-                user.setEmail(createAccount.getCreateEmail());
-                user.setUsername(createAccount.getCreateUsername());
-                user.setPassword(createAccount.getCreatePassword());
+                user.setFirstName(createAccount.getFirstName());
+                user.setLastName(createAccount.getLastName());
+                user.setGender(createAccount.getGender());
+                user.setEmail(createAccount.getEmail());
+                user.setUsername(createAccount.getUsername());
+                user.setPassword(createAccount.getPassword());
 
                 model.addAttribute("user", user);
 
@@ -141,10 +141,36 @@ public class UserController {
     public String createUser(Model model) {
 
         model.addAttribute("createUser", new ManageUser());
+        model.addAttribute("genders", genders);
 
         return "/forms/user-management-form";
     }
 
+    @PostMapping("/createUser")
+    public String processCreateUser(@Valid @ModelAttribute("createUser") ManageUser createUser,
+                                    BindingResult result, Model model) {
 
+        if (result.hasErrors()) {
+
+            model.addAttribute("genders", genders);
+
+            return "/forms/user-management-form";
+        }
+        else {
+
+            User user = new User();
+
+            user.setFirstName(createUser.getFirstName());
+            user.setLastName(createUser.getLastName());
+            user.setEmail(createUser.getEmail());
+            user.setGender(createUser.getGender());
+            user.setUsername(createUser.getUsername());
+            user.setPassword(createUser.getPassword());
+
+            model.addAttribute("user", user);
+
+            return "users-management";
+        }
+    }
 
 }

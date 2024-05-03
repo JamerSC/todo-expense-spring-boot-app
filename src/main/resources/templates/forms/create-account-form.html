@@ -19,78 +19,78 @@
     <h1 class="mb-5 text-center">Create Account</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form th:action="@{/users/createAccount}" th:object="${createAccount}" method="POST">
+            <form th:action="@{/users/createAccount}" th:object="${createUser}" method="POST">
                 <div class="mb-3">
-                    <label for="createFirstName" class="form-label">First Name</label>
+                    <label for="firstName" class="form-label">First Name</label>
                     <input type="text"
                            class="form-control"
-                           id="createFirstName"
+                           id="firstName"
                            placeholder="Enter your first name"
-                           th:field="*{createFirstName}">
-                    <p th:if="${#fields.hasErrors('createFirstName')}"
-                       th:errors="*{createFirstName}"
+                           th:field="*{firstName}">
+                    <p th:if="${#fields.hasErrors('firstName')}"
+                       th:errors="*{firstName}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createLastName" class="form-label">Last Name</label>
+                    <label for="lastName" class="form-label">Last Name</label>
                     <input type="text"
                            class="form-control"
-                           id="createLastName"
+                           id="lastName"
                            placeholder="Enter your last name"
-                           th:field="*{createLastName}">
-                    <p th:if="${#fields.hasErrors('createLastName')}"
-                       th:errors="*{createLastName}"
+                           th:field="*{lastName}">
+                    <p th:if="${#fields.hasErrors('lastName')}"
+                       th:errors="*{lastName}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createGender" class="form-label">Gender</label>
-                    <select class="form-select" id="createGender" th:field="*{createGender}">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" id="gender" th:field="*{gender}">
                         <option value="">Select gender</option>
                         <option th:each="tempGender : ${genders}"
                                 th:value="${tempGender}"
                                 th:text="${tempGender}">
                         </option>
                     </select>
-                    <p th:if="${#fields.hasErrors('createGender')}"
-                       th:errors="*{createGender}"
+                    <p th:if="${#fields.hasErrors('gender')}"
+                       th:errors="*{gender}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createEmail" class="form-label">Email Address</label>
+                    <label for="email" class="form-label">Email Address</label>
                     <input type="text"
                            class="form-control"
-                           id="createEmail"
+                           id="email"
                            placeholder="Enter your email address"
-                           th:field="*{createEmail}">
-                    <p th:if="${#fields.hasErrors('createEmail')}"
-                       th:errors="*{createEmail}"
+                           th:field="*{email}">
+                    <p th:if="${#fields.hasErrors('email')}"
+                       th:errors="*{email}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createUsername" class="form-label">Username</label>
+                    <label for="username" class="form-label">Username</label>
                     <input type="text"
                            class="form-control"
-                           id="createUsername"
+                           id="username"
                            placeholder="Enter your username"
-                           th:field="*{createUsername}">
-                    <p th:if="${#fields.hasErrors('createUsername')}"
-                       th:errors="*{createUsername}"
+                           th:field="*{username}">
+                    <p th:if="${#fields.hasErrors('username')}"
+                       th:errors="*{username}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createPassword" class="form-label">New Password</label>
+                    <label for="password" class="form-label">New Password</label>
                     <input type="password"
                            class="form-control"
-                           id="createPassword"
+                           id="password"
                            placeholder="Enter your password"
-                           th:field="*{createPassword}">
-                    <p th:if="${#fields.hasErrors('createPassword')}"
-                       th:errors="*{createPassword}"
+                           th:field="*{password}">
+                    <p th:if="${#fields.hasErrors('password')}"
+                       th:errors="*{password}"
                        class="error">
                     </p>
                 </div>
