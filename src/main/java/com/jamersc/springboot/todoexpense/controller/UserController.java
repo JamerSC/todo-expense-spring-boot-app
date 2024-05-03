@@ -2,7 +2,7 @@ package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.entity.User;
 import com.jamersc.springboot.todoexpense.service.UserService;
-import com.jamersc.springboot.todoexpense.validation.CreateAccount;
+import com.jamersc.springboot.todoexpense.validation.ManageUser;
 import com.jamersc.springboot.todoexpense.validation.LoginUser;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
@@ -76,7 +76,7 @@ public class UserController {
     @GetMapping("/createAccount")
     public  String createAccount(Model model) {
 
-        model.addAttribute("createUser", new CreateAccount());
+        model.addAttribute("createAccount", new ManageUser());
 
         model.addAttribute("genders", genders);
 
@@ -85,7 +85,7 @@ public class UserController {
     }
 
     @PostMapping("/createAccount")
-    public String processCreateAccount(@Valid @ModelAttribute("createUser") CreateAccount createAccount,
+    public String processCreateAccount(@Valid @ModelAttribute("createAccount") ManageUser createAccount,
                                        BindingResult result, Model model) {
 
             System.out.println("New User Details: " + createAccount);
@@ -140,7 +140,11 @@ public class UserController {
     @GetMapping("/createUser")
     public String createUser(Model model) {
 
+        model.addAttribute("createUser", new ManageUser());
+
         return "/forms/user-management-form";
     }
+
+
 
 }
