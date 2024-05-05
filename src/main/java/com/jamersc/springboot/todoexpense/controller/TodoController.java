@@ -19,7 +19,7 @@ public class TodoController {
     @GetMapping("/todo")
     public String showTodo(Model model) {
 
-        return "todo";
+        return "todo-expense/todo";
 
     }
 
@@ -28,7 +28,7 @@ public class TodoController {
 
         model.addAttribute("createTodo", new CreateTodo());
 
-        return "/forms/todo-form";
+        return "./forms/todo-form";
     }
 
     @PostMapping("/createTodo")
@@ -39,7 +39,7 @@ public class TodoController {
 
         if (result.hasErrors()) {
 
-            return "/forms/todo-form";
+            return "./forms/todo-form";
         }
         else {
 
@@ -53,7 +53,7 @@ public class TodoController {
 
             model.addAttribute("todo", todo);
 
-            return "todo";
+            return "todo-expense/todo";
         }
 
     }

@@ -44,7 +44,7 @@ public class UserController {
 
         model.addAttribute("loginUser", new LoginUser());
 
-        return "login";
+        return "todo-expense/login";
     }
 
     @PostMapping("/login")
@@ -54,7 +54,7 @@ public class UserController {
 
         if (result.hasErrors()) {
 
-            return "login";
+            return "todo-expense/login";
 
         }
         else {
@@ -68,7 +68,7 @@ public class UserController {
 
             System.out.println("Login Username: " + user.getUsername());
 
-            return "dashboard";
+            return "todo-expense/dashboard";
         }
 
     }
@@ -80,7 +80,7 @@ public class UserController {
 
         model.addAttribute("genders", genders);
 
-        return "/forms/create-account-form";
+        return "./forms/create-account-form";
 
     }
 
@@ -94,7 +94,7 @@ public class UserController {
 
                 model.addAttribute("genders", genders);
 
-                return "/forms/create-account-form";
+                return "./forms/create-account-form";
 
             }
             else {
@@ -111,7 +111,7 @@ public class UserController {
 
                 System.out.println("Created Account: " + user);
 
-                return "new-user-page";
+                return "todo-expense/new-user-page";
             }
 
     }
@@ -119,7 +119,7 @@ public class UserController {
     /* Index/Dashboard Page */
     @GetMapping("/dashboard")
     public String showIndex() {
-        return "dashboard";
+        return "todo-expense/dashboard";
     }
 
     @GetMapping("/users-management")
@@ -134,7 +134,7 @@ public class UserController {
             System.out.println(tempUsers);
         }
 
-        return "users-management";
+        return "todo-expense/users-management";
     }
 
     @GetMapping("/createUser")
@@ -143,7 +143,7 @@ public class UserController {
         model.addAttribute("createUser", new ManageUser());
         model.addAttribute("genders", genders);
 
-        return "/forms/user-management-form";
+        return "./forms/user-management-form";
     }
 
     @PostMapping("/createUser")
@@ -154,7 +154,7 @@ public class UserController {
 
             model.addAttribute("genders", genders);
 
-            return "/forms/user-management-form";
+            return "./forms/user-management-form";
         }
         else {
 
@@ -169,7 +169,7 @@ public class UserController {
 
             model.addAttribute("user", user);
 
-            return "users-management";
+            return "todo-expense/users-management";
         }
     }
 

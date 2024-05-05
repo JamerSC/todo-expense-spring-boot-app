@@ -19,7 +19,7 @@ public class ExpenseController {
     @GetMapping("/expenses")
     public String showExpenses(Model model) {
 
-        return "expenses";
+        return "todo-expense/expenses";
     }
 
     @GetMapping("/recordExpense")
@@ -27,7 +27,7 @@ public class ExpenseController {
 
         model.addAttribute("recordExpense", new RecordExpense());
 
-        return "/forms/record-expense-form";
+        return "./forms/record-expense-form";
     }
 
     @PostMapping("/recordExpense")
@@ -38,7 +38,7 @@ public class ExpenseController {
 
         if (result.hasErrors()) {
 
-           return "/forms/record-expense-form";
+           return "./forms/record-expense-form";
         }
         else {
 
@@ -52,7 +52,7 @@ public class ExpenseController {
 
             model.addAttribute("expense", expense);
 
-            return "expenses";
+            return "todo-expense/expenses";
         }
 
     }
