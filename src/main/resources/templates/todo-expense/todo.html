@@ -14,7 +14,7 @@
 <body>
 
 <!-- Header Navigation -->
-<div th:replace="~{fragments/header :: header}"></div>
+<div th:insert="~{fragments/header :: header}"></div>
 
 <!-- Create button link -->
 <a th:href="@{/createTodo}"
@@ -53,7 +53,7 @@
 </table>
 
 <!-- Footer  -->
-<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:insert="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

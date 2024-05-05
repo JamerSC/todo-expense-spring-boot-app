@@ -15,7 +15,7 @@
 <body>
 
 <!-- Header Navigation -->
-<div th:replace="fragments/header :: header"></div>
+<div th:insert="~{fragments/header :: header}"></div>
 
 <!-- Create button link -->
 <a th:href="@{/users/createUser}"
@@ -54,7 +54,7 @@
 </table>
 
 <!-- Footer -->
-<div th:replace="~{fragments/header :: header}"></div>
+<div th:insert="~{fragments/header :: header}"></div>
 
 </body>
 </html>

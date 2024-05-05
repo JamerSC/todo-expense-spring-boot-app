@@ -47,8 +47,8 @@
 		</dependency>
 		<!--
 		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+			<groupId>org.thymeleaf_template.extras</groupId>
+			<artifactId>thymeleaf_template-extras-springsecurity6</artifactId>
 		</dependency>
 		-->
 		<dependency>
