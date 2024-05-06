@@ -19,7 +19,8 @@
     <h1 class="mb-5 text-center">Create User</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form th:action="@{/users/createUser}" th:object="${createUser}" method="POST">
+            <form action="#" th:action="@{/users/createUser}"
+                             th:object="${createUser}" method="POST">
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
                     <input type="text"

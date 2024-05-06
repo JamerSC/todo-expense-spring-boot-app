@@ -20,7 +20,8 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <!-- Insert form-->
-            <form th:action="@{/recordExpense}" th:object="${recordExpense}" method="POST">
+            <form action="#" th:action="@{/recordExpense}"
+                             th:object="${recordExpense}" method="POST">
                 <div class="mb-3">
                     <label for="recordExpenseDate" class="form-label">Expense Date</label>
                     <input type="date"

@@ -107,6 +107,8 @@ public class UserController {
                 user.setUsername(createAccount.getUsername());
                 user.setPassword(createAccount.getPassword());
 
+                userService.save(user);
+
                 model.addAttribute("user", user);
 
                 System.out.println("Created Account: " + user);
@@ -166,6 +168,8 @@ public class UserController {
             user.setGender(createUser.getGender());
             user.setUsername(createUser.getUsername());
             user.setPassword(createUser.getPassword());
+
+            userService.save(user);
 
             model.addAttribute("user", user);
 
