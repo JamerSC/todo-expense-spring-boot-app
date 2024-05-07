@@ -21,63 +21,63 @@
             <form action="#" th:action="@{/createTodo}"
                              th:object="${createTodo}" method="POST">
                 <div class="mb-3">
-                    <label for="createTodoName" class="form-label">Title</label>
+                    <label for="title" class="form-label">Title</label>
                     <input type="text"
                            class="form-control"
-                           id="createTodoName"
+                           id="title"
                            placeholder="Enter your todo title"
-                           th:field="*{createTodoName}">
-                    <p th:if="${#fields.hasErrors('createTodoName')}"
-                       th:errors="*{createTodoName}"
+                           th:field="*{title}">
+                    <p th:if="${#fields.hasErrors('title')}"
+                       th:errors="*{title}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createTodoDetails" class="form-label">Details</label>
+                    <label for="details" class="form-label">Details</label>
                     <textarea
                             class="form-control"
-                            id="createTodoDetails"
+                            id="details"
                             placeholder="Enter the details"
-                            th:field="*{createTodoDetails}">
+                            th:field="*{details}">
                     </textarea>
-                    <p th:if="${#fields.hasErrors('createTodoDetails')}"
-                       th:errors="*{createTodoDetails}"
+                    <p th:if="${#fields.hasErrors('details')}"
+                       th:errors="*{details}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createTodoStartDate" class="form-label">Start Date</label>
+                    <label for="startDate" class="form-label">Start Date</label>
                     <input type="date"
                            class="form-control"
-                           id="createTodoStartDate"
-                           th:field="*{createTodoStartDate}">
-                    <p th:if="${#fields.hasErrors('createTodoStartDate')}"
-                       th:errors="*{createTodoStartDate}"
+                           id="startDate"
+                           th:field="*{startDate}">
+                    <p th:if="${#fields.hasErrors('startDate')}"
+                       th:errors="*{startDate}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createTodoEndDate" class="form-label">End Date</label>
+                    <label for="endDate" class="form-label">End Date</label>
                     <input type="date"
                            class="form-control"
-                           id="createTodoEndDate"
-                           th:field="*{createTodoEndDate}">
-                    <p th:if="${#fields.hasErrors('createTodoEndDate')}"
-                       th:errors="*{createTodoEndDate}"
+                           id="endDate"
+                           th:field="*{endDate}">
+                    <p th:if="${#fields.hasErrors('endDate')}"
+                       th:errors="*{endDate}"
                        class="error">
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="createTodoStatus" class="form-label">Status</label>
-                    <select class="form-select" id="createTodoStatus" th:field="*{createTodoStatus}">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status" th:field="*{status}">
                         <option value="">Select Status</option>
                         <option th:value="Open">Open</option>
                         <option th:value="Ongoing">Ongoing</option>
                         <option th:value="Pending">Pending</option>
                         <option th:value="Completed">Completed</option>
                     </select>
-                    <p th:if="${#fields.hasErrors('createTodoStatus')}"
-                       th:errors="*{createTodoStatus}"
+                    <p th:if="${#fields.hasErrors('status')}"
+                       th:errors="*{status}"
                        class="error">
                     </p>
                 </div>

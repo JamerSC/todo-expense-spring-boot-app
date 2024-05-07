@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.text.SimpleDateFormat;
-
 @Controller
 public class TodoController {
 
@@ -45,11 +43,11 @@ public class TodoController {
 
             Todo todo = new Todo();
 
-            todo.setTodoName(createTodo.getCreateTodoName());
-            todo.setTodoDetails(createTodo.getCreateTodoDetails());
-            todo.setTodoStartDate(createTodo.getCreateTodoStartDate());
-            todo.setTodoEndDate(createTodo.getCreateTodoEndDate());
-            todo.setTodoStatus(createTodo.getCreateTodoStatus());
+            todo.setTitle(createTodo.getTitle());
+            todo.setDetails(createTodo.getDetails());
+            todo.setStartDate(createTodo.getStartDate());
+            todo.setEndDate(createTodo.getEndDate());
+            todo.setStatus(createTodo.getStatus());
 
             model.addAttribute("todo", todo);
 

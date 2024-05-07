@@ -1,6 +1,6 @@
 package com.jamersc.springboot.todoexpense.entity;
 
-public enum TodoStatus {
+public enum Status {
     Open,
     Ongoing,
     Pending,

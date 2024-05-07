@@ -1,6 +1,6 @@
 package com.jamersc.springboot.todoexpense.validation;
 
-import com.jamersc.springboot.todoexpense.entity.TodoStatus;
+import com.jamersc.springboot.todoexpense.entity.Status;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,83 +11,82 @@ public class CreateTodo {
 
     @NotNull(message = "Todo title is required!")
     @Size(min = 1, message = "Todo title is required!")
-    private String createTodoName;
+    private String title;
 
     @NotNull(message = "Details is required!")
     @Size(min = 1, message = "Details is required!")
-    private String createTodoDetails;
+    private String details;
 
     @NotNull(message = "Start date is required!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createTodoStartDate;
+    private Date startDate;
 
     @NotNull(message = "End date is required!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createTodoEndDate;
+    private Date endDate;
 
     @NotNull(message = "Status is required!")
-    private TodoStatus createTodoStatus;
+    private Status status;
 
     public CreateTodo() {
     }
 
-    public CreateTodo(String createTodoName, String createTodoDetails, Date createTodoStartDate,
-                      Date createTodoEndDate, TodoStatus createTodoStatus) {
-        this.createTodoName = createTodoName;
-        this.createTodoDetails = createTodoDetails;
-        this.createTodoStartDate = createTodoStartDate;
-        this.createTodoEndDate = createTodoEndDate;
-        this.createTodoStatus = createTodoStatus;
+    public CreateTodo(String title, String details, Date startDate, Date endDate, Status status) {
+        this.title = title;
+        this.details = details;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
     }
 
-    public String getCreateTodoName() {
-        return createTodoName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCreateTodoName(String createTodoName) {
-        this.createTodoName = createTodoName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getCreateTodoDetails() {
-        return createTodoDetails;
+    public String getDetails() {
+        return details;
     }
 
-    public void setCreateTodoDetails(String createTodoDetails) {
-        this.createTodoDetails = createTodoDetails;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public Date getCreateTodoStartDate() {
-        return createTodoStartDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setCreateTodoStartDate(Date createTodoStartDate) {
-        this.createTodoStartDate = createTodoStartDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getCreateTodoEndDate() {
-        return createTodoEndDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setCreateTodoEndDate(Date createTodoEndDate) {
-        this.createTodoEndDate = createTodoEndDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public TodoStatus getCreateTodoStatus() {
-        return createTodoStatus;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setCreateTodoStatus(TodoStatus createTodoStatus) {
-        this.createTodoStatus = createTodoStatus;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return "CreateTodo{" +
-                "createTodoName='" + createTodoName + '\'' +
-                ", createTodoDetails='" + createTodoDetails + '\'' +
-                ", createTodoStartDate=" + createTodoStartDate +
-                ", createTodoEndDate=" + createTodoEndDate +
-                ", createTodoStatus=" + createTodoStatus +
+                "title='" + title + '\'' +
+                ", details='" + details + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status=" + status +
                 '}';
     }
 }

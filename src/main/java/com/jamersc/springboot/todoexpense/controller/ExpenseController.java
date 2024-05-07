@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.text.SimpleDateFormat;
-
 @Controller
 public class ExpenseController {
 
@@ -25,13 +23,13 @@ public class ExpenseController {
     @GetMapping("/recordExpense")
     public String showRecordExpenseForm(Model model) {
 
-        model.addAttribute("recordExpense", new RecordExpense());
+        model.addAttribute("expense", new RecordExpense());
 
         return "./forms/record-expense-form";
     }
 
     @PostMapping("/recordExpense")
-    public String recordExpenses(@Valid @ModelAttribute("recordExpense") RecordExpense recordExpense,
+    public String recordExpenses(@Valid @ModelAttribute("expense") RecordExpense recordExpense,
                                  BindingResult result, Model model) {
 
         System.out.println("Recorded expense: " + recordExpense);
@@ -44,11 +42,11 @@ public class ExpenseController {
 
             Expense expense = new Expense();
 
-            expense.setExpenseDate(recordExpense.getRecordExpenseDate());
-            expense.setExpenseDescription(recordExpense.getRecordExpenseDesc());
-            expense.setExpenseRemarks(recordExpense.getRecordExpenseRemarks());
-            expense.setModeOfPayment(recordExpense.getRecordModeOfPayment());
-            expense.setAmount(recordExpense.getRecordAmount());
+            expense.setDateOfPayment(recordExpense.getDateOfPayment());
+            expense.setItemDescription(recordExpense.getItemDescription());
+            expense.setRemarks(recordExpense.getRemarks());
+            expense.setModeOfPayment(recordExpense.getModeOfPayment());
+            expense.setAmount(recordExpense.getAmount());
 
             model.addAttribute("expense", expense);
 

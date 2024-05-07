@@ -11,81 +11,81 @@ public class RecordExpense {
 
     @NotNull(message = "Expense date is required!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date recordExpenseDate;
+    private Date dateOfPayment;
 
     @NotNull(message = "Expense description is required!")
     @Size(min = 1, message = "Description is required!")
-    private String recordExpenseDesc;
+    private String itemDescription;
 
-    private String recordExpenseRemarks;
+    private String remarks;
 
     @NotNull(message = "Mode of payments is required!")
 //    @Enumerated(EnumType.STRING)
-    private ModeOfPayment recordModeOfPayment;
+    private ModeOfPayment modeOfPayment;
 
     @NotNull(message = "Expense amount is required!")
-    private Double recordAmount;
+    private Double amount;
 
     public RecordExpense() {
     }
 
-    public RecordExpense(Date recordExpenseDate, String recordExpenseDesc, String recordExpenseRemarks,
-                         ModeOfPayment recordModeOfPayment, Double recordAmount) {
-        this.recordExpenseDate = recordExpenseDate;
-        this.recordExpenseDesc = recordExpenseDesc;
-        this.recordExpenseRemarks = recordExpenseRemarks;
-        this.recordModeOfPayment = recordModeOfPayment;
-        this.recordAmount = recordAmount;
+    public RecordExpense(Date dateOfPayment, String itemDescription, String remarks, ModeOfPayment modeOfPayment,
+                         Double amount) {
+        this.dateOfPayment = dateOfPayment;
+        this.itemDescription = itemDescription;
+        this.remarks = remarks;
+        this.modeOfPayment = modeOfPayment;
+        this.amount = amount;
     }
 
-    public Date getRecordExpenseDate() {
-        return recordExpenseDate;
+    public Date getDateOfPayment() {
+        return dateOfPayment;
     }
 
-    public void setRecordExpenseDate(Date recordExpenseDate) {
-        this.recordExpenseDate = recordExpenseDate;
+    public void setDateOfPayment(Date dateOfPayment) {
+        this.dateOfPayment = dateOfPayment;
     }
 
-    public String getRecordExpenseDesc() {
-        return recordExpenseDesc;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    public void setRecordExpenseDesc(String recordExpenseDesc) {
-        this.recordExpenseDesc = recordExpenseDesc;
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
-    public String getRecordExpenseRemarks() {
-        return recordExpenseRemarks;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setRecordExpenseRemarks(String recordExpenseRemarks) {
-        this.recordExpenseRemarks = recordExpenseRemarks;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
-    public ModeOfPayment getRecordModeOfPayment() {
-        return recordModeOfPayment;
+    public ModeOfPayment getModeOfPayment() {
+        return modeOfPayment;
     }
 
-    public void setRecordModeOfPayment(ModeOfPayment recordModeOfPayment) {
-        this.recordModeOfPayment = recordModeOfPayment;
+    public void setModeOfPayment(ModeOfPayment modeOfPayment) {
+        this.modeOfPayment = modeOfPayment;
     }
 
-    public Double getRecordAmount() {
-        return recordAmount;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setRecordAmount(Double recordAmount) {
-        this.recordAmount = recordAmount;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     @Override
     public String toString() {
         return "RecordExpense{" +
-                "recordExpenseDate=" + recordExpenseDate +
-                ", recordExpenseDesc='" + recordExpenseDesc + '\'' +
-                ", recordExpenseRemarks='" + recordExpenseRemarks + '\'' +
-                ", recordModeOfPayment=" + recordModeOfPayment +
-                ", amount=" + recordAmount +
+                "dateOfPayment=" + dateOfPayment +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", modeOfPayment=" + modeOfPayment +
+                ", amount=" + amount +
                 '}';
     }
 }

@@ -6,24 +6,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "user_expenses")
+@Table(name = "expense")
 public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "expense_id")
-    private Long expenseId;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "expense_date", nullable = false)
+    @Column(name = "date_of_payment", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming expenseDate is a date without time
-    private Date expenseDate;
+    private Date dateOfPayment;
 
-    @Column(name = "expense_description", nullable = false)
-    private String expenseDescription;
+    @Column(name = "item_description", nullable = false)
+    private String itemDescription;
 
-    @Column(name = "expense_remarks", length = 255) // Setting max length for remarks
-    private String expenseRemarks;
+    @Column(name = "remarks", length = 255) // Setting max length for remarks
+    private String remarks;
 
     @Column(name = "mode_of_payment", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -53,48 +53,50 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(Date expenseDate, String expenseDescription, String expenseRemarks, ModeOfPayment modeOfPayment,Double amount, User createdBy, User modifiedBy) {
-        this.expenseDate = expenseDate;
-        this.expenseDescription = expenseDescription;
-        this.expenseRemarks = expenseRemarks;
+    public Expense(Long id, Date dateOfPayment, String itemDescription, String remarks, ModeOfPayment modeOfPayment,
+                   Double amount, User createdBy, Date createdDate, User modifiedBy, Date modifiedDate) {
+        this.id = id;
+        this.dateOfPayment = dateOfPayment;
+        this.itemDescription = itemDescription;
+        this.remarks = remarks;
         this.modeOfPayment = modeOfPayment;
         this.amount = amount;
         this.createdBy = createdBy;
+        this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
-        this.createdDate = new Date();
-        this.modifiedDate = new Date();
+        this.modifiedDate = modifiedDate;
     }
 
-    public Long getExpenseId() {
-        return expenseId;
+    public Long getId() {
+        return id;
     }
 
-    public void setExpenseId(Long expenseId) {
-        this.expenseId = expenseId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Date getExpenseDate() {
-        return expenseDate;
+    public Date getDateOfPayment() {
+        return dateOfPayment;
     }
 
-    public void setExpenseDate(Date expenseDate) {
-        this.expenseDate = expenseDate;
+    public void setDateOfPayment(Date dateOfPayment) {
+        this.dateOfPayment = dateOfPayment;
     }
 
-    public String getExpenseDescription() {
-        return expenseDescription;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    public void setExpenseDescription(String expenseDescription) {
-        this.expenseDescription = expenseDescription;
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
-    public String getExpenseRemarks() {
-        return expenseRemarks;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setExpenseRemarks(String expenseRemarks) {
-        this.expenseRemarks = expenseRemarks;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     public ModeOfPayment getModeOfPayment() {
@@ -160,10 +162,10 @@ public class Expense {
     @Override
     public String toString() {
         return "Expense{" +
-                "expenseId=" + expenseId +
-                ", expenseDate=" + expenseDate +
-                ", expenseDescription='" + expenseDescription + '\'' +
-                ", expenseRemarks='" + expenseRemarks + '\'' +
+                "id=" + id +
+                ", dateOfPayment=" + dateOfPayment +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", remarks='" + remarks + '\'' +
                 ", modeOfPayment=" + modeOfPayment +
                 ", amount=" + amount +
                 ", createdBy=" + createdBy +
@@ -172,5 +174,4 @@ public class Expense {
                 ", modifiedDate=" + modifiedDate +
                 '}';
     }
-
 }

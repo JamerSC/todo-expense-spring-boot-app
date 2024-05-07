@@ -6,33 +6,33 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "user_todos")
+@Table(name = "todo")
 public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "todo_id")
-    private Long todoId;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "todo_name", nullable = false)
-    private String todoName;
+    @Column(name = "title", nullable = false)
+    private String title;
 
-    @Column(name = "todo_details", nullable = false)
-    private String todoDetails;
+    @Column(name = "details", nullable = false)
+    private String details;
 
-    @Column(name = "todo_start_date", nullable = false)
+    @Column(name = "start_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
-    private Date todoStartDate;
+    private Date startDate;
 
-    @Column(name = "todo_end_date", nullable = false)
+    @Column(name = "end_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
-    private Date todoEndDate;
+    private Date endDate;
 
-    @Column(name = "todo_status", nullable = false)
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private TodoStatus todoStatus;
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
@@ -55,64 +55,66 @@ public class Todo {
     public Todo() {
     }
 
-    public Todo(String todoName, String todoDetails, Date todoStartDate, Date todoEndDate,TodoStatus todoStatus, User createdBy, User modifiedBy) {
-        this.todoName = todoName;
-        this.todoDetails = todoDetails;
-        this.todoStartDate = todoStartDate;
-        this.todoEndDate = todoEndDate;
-        this.todoStatus = todoStatus;
+    public Todo(Long id, String title, String details, Date startDate, Date endDate,
+                Status status, User createdBy, Date createdDate, User modifiedBy, Date modifiedDate) {
+        this.id = id;
+        this.title = title;
+        this.details = details;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
         this.createdBy = createdBy;
+        this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
-        this.createdDate = new Date();
-        this.modifiedDate = new Date();
+        this.modifiedDate = modifiedDate;
     }
 
-    public Long getTodoId() {
-        return todoId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTodoId(Long todoId) {
-        this.todoId = todoId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getTodoName() {
-        return todoName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTodoName(String todoName) {
-        this.todoName = todoName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getTodoDetails() {
-        return todoDetails;
+    public String getDetails() {
+        return details;
     }
 
-    public void setTodoDetails(String todoDetails) {
-        this.todoDetails = todoDetails;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public TodoStatus getTodoStatus() {
-        return todoStatus;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public Date getTodoStartDate() {
-        return todoStartDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public void setTodoStartDate(Date todoStartDate) {
-        this.todoStartDate = todoStartDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public Date getTodoEndDate() {
-        return todoEndDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public void setTodoEndDate(Date todoEndDate) {
-        this.todoEndDate = todoEndDate;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setTodoStatus(TodoStatus todoStatus) {
-        this.todoStatus = todoStatus;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public User getCreatedBy() {
@@ -162,12 +164,12 @@ public class Todo {
     @Override
     public String toString() {
         return "Todo{" +
-                "todoId=" + todoId +
-                ", todoName='" + todoName + '\'' +
-                ", todoDetails='" + todoDetails + '\'' +
-                ", todoStartDate=" + todoStartDate +
-                ", todoEndDate=" + todoEndDate +
-                ", todoStatus=" + todoStatus +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", details='" + details + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status=" + status +
                 ", createdBy=" + createdBy +
                 ", createdDate=" + createdDate +
                 ", modifiedBy=" + modifiedBy +

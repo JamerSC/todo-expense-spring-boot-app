@@ -38,13 +38,13 @@
     <tbody>
         <tr th:each="tempTodo : ${todo}">
             <th scope="row">1</th>
-            <td th:text="${tempTodo.todoName}"></td>
-            <td th:text="${tempTodo.todoDetails}"></td>
+            <td th:text="${tempTodo.title}"></td>
+            <td th:text="${tempTodo.details}"></td>
             <!-- <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
             <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td> -->
-            <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd MMMM yyyy')}"></td>
-            <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd MMMM yyyy')}"></td>
-            <td th:text="${tempTodo.todoStatus}"></td>
+            <td th:text="${#dates.format(tempTodo.startDate, 'dd MMMM yyyy')}"></td>
+            <td th:text="${#dates.format(tempTodo.endDate, 'dd MMMM yyyy')}"></td>
+            <td th:text="${tempTodo.status}"></td>
             <td><button type="button" class="btn btn-success">Update</button>
                 <button type="button" class="btn btn-danger">Delete</button>
             </td>
