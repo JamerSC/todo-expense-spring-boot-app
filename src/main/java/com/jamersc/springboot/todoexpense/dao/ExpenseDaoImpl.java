@@ -1,10 +1,23 @@
 package com.jamersc.springboot.todoexpense.dao;
 
 import com.jamersc.springboot.todoexpense.entity.Expense;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
+@Transactional
 public class ExpenseDaoImpl implements ExpenseDao {
+
+    private EntityManager entityManager;
+
+    public ExpenseDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Override
     public Expense findById(Integer id) {
         return null;
@@ -12,12 +25,16 @@ public class ExpenseDaoImpl implements ExpenseDao {
 
     @Override
     public List<Expense> findAll() {
-        return null;
+
+        TypedQuery<Expense> query = entityManager.createQuery("FROM Expense ORDER BY dateOfPayment ASC", Expense.class);
+
+        return query.getResultList();
     }
 
+    // Save expenses
     @Override
     public void save(Expense expense) {
-
+        entityManager.persist(expense);
     }
 
     @Override

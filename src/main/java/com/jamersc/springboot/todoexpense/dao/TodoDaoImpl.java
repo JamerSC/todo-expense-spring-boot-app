@@ -1,10 +1,23 @@
 package com.jamersc.springboot.todoexpense.dao;
 
 import com.jamersc.springboot.todoexpense.entity.Todo;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
+@Transactional
 public class TodoDaoImpl implements TodoDao {
+
+    private EntityManager entityManager;
+
+    public TodoDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Override
     public Todo findById(Integer id) {
         return null;
@@ -12,12 +25,15 @@ public class TodoDaoImpl implements TodoDao {
 
     @Override
     public List<Todo> findAll() {
-        return null;
+
+        TypedQuery<Todo> query = entityManager.createQuery("FROM Todo ORDER BY startDate DESC", Todo.class);
+
+        return query.getResultList();
     }
 
     @Override
     public void save(Todo todo) {
-
+        entityManager.persist(todo);
     }
 
     @Override

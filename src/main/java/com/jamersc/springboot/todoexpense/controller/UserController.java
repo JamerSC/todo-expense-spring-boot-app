@@ -173,7 +173,8 @@ public class UserController {
 
             model.addAttribute("user", user);
 
-            return "todo-expense/users-management";
+            return "redirect:/users/users-management";
+
         }
     }
 

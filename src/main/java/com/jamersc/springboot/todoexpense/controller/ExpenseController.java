@@ -1,5 +1,6 @@
 package com.jamersc.springboot.todoexpense.controller;
 
+import com.jamersc.springboot.todoexpense.dao.ExpenseDao;
 import com.jamersc.springboot.todoexpense.entity.Expense;
 import com.jamersc.springboot.todoexpense.validation.RecordExpense;
 import jakarta.validation.Valid;
@@ -10,12 +11,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class ExpenseController {
+
+    private ExpenseDao expenseDao;
+
+    public ExpenseController(ExpenseDao expenseDao) {
+        this.expenseDao = expenseDao;
+    }
 
     /* Expenses Page */
     @GetMapping("/expenses")
     public String showExpenses(Model model) {
+
+        // Read all expenses
+        List<Expense> expenses = expenseDao.findAll();
+
+        model.addAttribute("expense", expenses);
+
+        // Display expenses
+        System.out.println("List of Expenses:");
+
+        for (Expense tempExpenses : expenses) {
+            System.out.println(tempExpenses);
+        }
 
         return "todo-expense/expenses";
     }
@@ -48,9 +69,11 @@ public class ExpenseController {
             expense.setModeOfPayment(recordExpense.getModeOfPayment());
             expense.setAmount(recordExpense.getAmount());
 
+            expenseDao.save(expense);
             model.addAttribute("expense", expense);
 
-            return "todo-expense/expenses";
+
+            return "redirect:/expenses";
         }
 
     }
