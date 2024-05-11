@@ -12,7 +12,7 @@ public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "date_of_payment", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -53,7 +53,7 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(Long id, Date dateOfPayment, String itemDescription, String remarks, ModeOfPayment modeOfPayment,
+    public Expense(Integer id, Date dateOfPayment, String itemDescription, String remarks, ModeOfPayment modeOfPayment,
                    Double amount, User createdBy, Date createdDate, User modifiedBy, Date modifiedDate) {
         this.id = id;
         this.dateOfPayment = dateOfPayment;
@@ -67,11 +67,11 @@ public class Expense {
         this.modifiedDate = modifiedDate;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

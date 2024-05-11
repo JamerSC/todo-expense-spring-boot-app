@@ -3,6 +3,7 @@ package com.jamersc.springboot.todoexpense.dao;
 import com.jamersc.springboot.todoexpense.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao {
 
@@ -15,5 +16,9 @@ public interface UserDao {
     void update(User user);
 
     void deleteById(Integer id);
+
+    List<User> findByUsername(String username);
+
+    List<User> findByEmail(String email);
 
 }

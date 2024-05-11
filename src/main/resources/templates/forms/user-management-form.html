@@ -20,7 +20,11 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form action="#" th:action="@{/users/createUser}"
-                             th:object="${createUser}" method="POST">
+                             th:object="${user}" method="POST">
+
+                <!-- Hidden form field to handle the update -->
+                <input type="hidden" th:field="*{id}" />
+
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
                     <input type="text"

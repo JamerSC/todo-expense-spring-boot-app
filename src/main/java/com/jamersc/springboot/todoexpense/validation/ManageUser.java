@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 
 public class ManageUser {
 
+    private Integer id;
+
     @NotNull(message = "Firstname is required!")
     @Size(min = 1, message = "Firstname is required!")
     private String firstName;
@@ -33,14 +35,23 @@ public class ManageUser {
     public ManageUser() {
     }
 
-    public ManageUser(String firstName, String lastName,
-                      Gender gender, String email, String username, String password) {
+    public ManageUser(Integer id, String firstName, String lastName, Gender gender,
+                      String email, String username, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -93,13 +104,14 @@ public class ManageUser {
 
     @Override
     public String toString() {
-        return "AccountCreationValidation{" +
-                ", createFirstName='" + firstName + '\'' +
-                ", createLastName='" + lastName + '\'' +
-                ", createGender=" + gender +
-                ", createEmail='" + email + '\'' +
-                ", createUsername='" + username + '\'' +
-                ", createPassword='" + password + '\'' +
+        return "ManageUser{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

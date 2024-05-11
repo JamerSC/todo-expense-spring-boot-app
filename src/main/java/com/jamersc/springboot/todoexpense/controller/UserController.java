@@ -1,5 +1,6 @@
 package com.jamersc.springboot.todoexpense.controller;
 
+import com.jamersc.springboot.todoexpense.dao.UserDao;
 import com.jamersc.springboot.todoexpense.entity.User;
 import com.jamersc.springboot.todoexpense.service.UserService;
 import com.jamersc.springboot.todoexpense.validation.ManageUser;
@@ -8,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -20,10 +22,10 @@ import java.util.List;
 public class UserController {
 
 
-    private UserService userService;
+    private UserDao userDao;
 
-    public UserController(UserService theUserService) {
-        this.userService = theUserService;
+    public UserController(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Value("${gender}")
@@ -76,7 +78,7 @@ public class UserController {
     @GetMapping("/createAccount")
     public  String createAccount(Model model) {
 
-        model.addAttribute("createAccount", new ManageUser());
+        model.addAttribute("user", new ManageUser());
 
         model.addAttribute("genders", genders);
 
@@ -85,7 +87,7 @@ public class UserController {
     }
 
     @PostMapping("/createAccount")
-    public String processCreateAccount(@Valid @ModelAttribute("createAccount") ManageUser createAccount,
+    public String processCreateAccount(@Valid @ModelAttribute("user") ManageUser createAccount,
                                        BindingResult result, Model model) {
 
             System.out.println("New User Details: " + createAccount);
@@ -98,6 +100,7 @@ public class UserController {
 
             }
             else {
+
                 User user = new User();
 
                 user.setFirstName(createAccount.getFirstName());
@@ -107,7 +110,7 @@ public class UserController {
                 user.setUsername(createAccount.getUsername());
                 user.setPassword(createAccount.getPassword());
 
-                userService.save(user);
+                userDao.save(user);
 
                 model.addAttribute("user", user);
 
@@ -127,7 +130,7 @@ public class UserController {
     @GetMapping("/users-management")
     public String showUsersManagement(Model model) {
 
-        List<User> users = userService.findAll();
+        List<User> users = userDao.findAll();
 
         model.addAttribute("users", users);
 
@@ -142,20 +145,18 @@ public class UserController {
     @GetMapping("/createUser")
     public String createUser(Model model) {
 
-        model.addAttribute("createUser", new ManageUser());
+        model.addAttribute("user", new ManageUser());
         model.addAttribute("genders", genders);
 
         return "./forms/user-management-form";
     }
 
     @PostMapping("/createUser")
-    public String processCreateUser(@Valid @ModelAttribute("createUser") ManageUser createUser,
+    public String processCreateUser(@Valid @ModelAttribute("user") ManageUser createUser,
                                     BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-
             model.addAttribute("genders", genders);
-
             return "./forms/user-management-form";
         }
         else {
@@ -169,13 +170,31 @@ public class UserController {
             user.setUsername(createUser.getUsername());
             user.setPassword(createUser.getPassword());
 
-            userService.save(user);
+            userDao.save(user);
 
             model.addAttribute("user", user);
 
-            return "redirect:/users/users-management";
-
+            return "todo-expense/users-management";
         }
+    }
+
+    @GetMapping("/updateUser")
+    public String updateUser(@RequestParam("userId") Integer id, Model model) {
+
+        User userId = userDao.findById(id);
+
+        model.addAttribute("user", userId);
+
+        return "./forms/user-management-form";
+    }
+
+
+    @GetMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userId") Integer id) {
+
+        userDao.deleteById(id);
+
+        return "redirect:/users/users-management";
     }
 
 }

@@ -37,17 +37,28 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="tempUsers : ${users}">
-        <th th:text="${tempUsers.userId}"></th>
-        <td th:text="${tempUsers.firstName}"></td>
-        <td th:text="${tempUsers.lastName}"></td>
-        <td th:text="${tempUsers.username}"></td>
+    <tr th:each="tempUser : ${users}">
+        <th th:text="${tempUser.id}"></th>
+        <td th:text="${tempUser.firstName}"></td>
+        <td th:text="${tempUser.lastName}"></td>
+        <td th:text="${tempUser.username}"></td>
         <!-- <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
         <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td> -->
-        <td th:text="${#dates.format(tempUsers.createdDate, 'dd MMMM yyyy')}"></td>
-        <td th:text="${#dates.format(tempUsers.modifiedDate, 'dd MMMM yyyy')}"></td>
-        <td><button type="button" class="btn btn-success">Update</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+        <td th:text="${#dates.format(tempUser.createdDate, 'dd MMMM yyyy')}"></td>
+        <td th:text="${#dates.format(tempUser.modifiedDate, 'dd MMMM yyyy')}"></td>
+        <td>
+            <!-- Update button link  -->
+            <a th:href="@{/users/updateUser(userId=${tempUser.id})}"
+               class="btn btn-info btn-sm" role="button" data-bs-toggle="button">
+                Update
+            </a>
+
+            <!-- Delete button link  -->
+            <a th:href="@{/users/deleteUser(userId=${tempUser.id})}"
+               class="btn btn-danger btn-sm" role="button" data-bs-toggle="button"
+               onclick="if(!(confirm('Are you sure you want to delete this employee?'))) return false">
+                Delete
+            </a>
         </td>
     </tr>
     </tbody>

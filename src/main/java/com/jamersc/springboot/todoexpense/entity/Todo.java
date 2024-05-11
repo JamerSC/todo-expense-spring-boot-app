@@ -12,7 +12,7 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -55,7 +55,7 @@ public class Todo {
     public Todo() {
     }
 
-    public Todo(Long id, String title, String details, Date startDate, Date endDate,
+    public Todo(Integer id, String title, String details, Date startDate, Date endDate,
                 Status status, User createdBy, Date createdDate, User modifiedBy, Date modifiedDate) {
         this.id = id;
         this.title = title;
@@ -69,11 +69,11 @@ public class Todo {
         this.modifiedDate = modifiedDate;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
