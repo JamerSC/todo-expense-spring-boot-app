@@ -4,11 +4,10 @@ import com.jamersc.springboot.todoexpense.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Transactional
@@ -16,6 +15,7 @@ public class UserDaoImpl implements UserDao {
 
     private EntityManager entityManager;
 
+    @Autowired
     public UserDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -54,7 +54,10 @@ public class UserDaoImpl implements UserDao {
     // Delete User
     @Override
     public void deleteById(Integer id) {
-        entityManager.remove(id);
+
+        User user = entityManager.find(User.class, id);
+
+        entityManager.remove(user);
     }
 
     @Override

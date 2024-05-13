@@ -189,7 +189,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/deleteUser")
+    @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("userId") Integer id) {
 
         userDao.deleteById(id);

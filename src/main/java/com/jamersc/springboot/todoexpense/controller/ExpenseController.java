@@ -4,6 +4,7 @@ import com.jamersc.springboot.todoexpense.dao.ExpenseDao;
 import com.jamersc.springboot.todoexpense.entity.Expense;
 import com.jamersc.springboot.todoexpense.validation.RecordExpense;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ public class ExpenseController {
 
     private ExpenseDao expenseDao;
 
+    @Autowired
     public ExpenseController(ExpenseDao expenseDao) {
         this.expenseDao = expenseDao;
     }

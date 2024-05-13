@@ -4,6 +4,7 @@ import com.jamersc.springboot.todoexpense.dao.TodoDao;
 import com.jamersc.springboot.todoexpense.entity.Todo;
 import com.jamersc.springboot.todoexpense.validation.CreateTodo;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ public class TodoController {
 
     private TodoDao todoDao;
 
+    @Autowired
     public TodoController(TodoDao todoDao) {
         this.todoDao = todoDao;
     }
