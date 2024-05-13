@@ -174,7 +174,7 @@ public class UserController {
 
             model.addAttribute("user", user);
 
-            return "todo-expense/users-management";
+            return "redirect:/users/users-management";
         }
     }
 
@@ -183,10 +183,40 @@ public class UserController {
 
         User userId = userDao.findById(id);
 
+        model.addAttribute("genders", genders);
+
         model.addAttribute("user", userId);
 
-        return "./forms/user-management-form";
+        return "./forms/user-management-update-form";
     }
+
+    @PostMapping("/updateUser")
+    public String processUpdateUser(@Valid @ModelAttribute("user") ManageUser updateUser,
+                                    BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("genders", genders);
+            return "./forms/user-management-update-form";
+        }
+        else {
+
+            User user = new User();
+
+            user.setFirstName(updateUser.getFirstName());
+            user.setLastName(updateUser.getLastName());
+            user.setEmail(updateUser.getEmail());
+            user.setGender(updateUser.getGender());
+            user.setUsername(updateUser.getUsername());
+            user.setPassword(updateUser.getPassword());
+
+            userDao.update(user);
+
+            model.addAttribute("user", user);
+
+            return "redirect:/users/users-management";
+        }
+    }
+
 
 
     @PostMapping("/deleteUser")
