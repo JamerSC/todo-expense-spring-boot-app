@@ -28,9 +28,6 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @Value("${gender}")
-    private List<String> genders;
-
     // init binder & resolve issues for validation
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -79,9 +76,6 @@ public class UserController {
     public  String createAccount(Model model) {
 
         model.addAttribute("user", new ManageUser());
-
-        model.addAttribute("genders", genders);
-
         return "./forms/create-account-form";
 
     }
@@ -93,8 +87,6 @@ public class UserController {
             System.out.println("New User Details: " + createAccount);
 
             if (result.hasErrors()) {
-
-                model.addAttribute("genders", genders);
 
                 return "./forms/create-account-form";
 
@@ -146,8 +138,6 @@ public class UserController {
     public String createUser(Model model) {
 
         model.addAttribute("user", new ManageUser());
-        model.addAttribute("genders", genders);
-
         return "./forms/user-management-form";
     }
 
@@ -156,7 +146,7 @@ public class UserController {
                                     BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            model.addAttribute("genders", genders);
+
             return "./forms/user-management-form";
         }
         else {
@@ -179,14 +169,11 @@ public class UserController {
     }
 
     @GetMapping("/updateUser")
-    public String updateUser(@RequestParam("userId") Integer id, Model model) {
+    public String updateUser(@RequestParam("userId") Integer userId, Model model) {
 
-        User userId = userDao.findById(id);
+        User id = userDao.findById(userId);
 
-        model.addAttribute("genders", genders);
-
-        model.addAttribute("user", userId);
-
+        model.addAttribute("user", id);
         return "./forms/user-management-update-form";
     }
 
@@ -195,23 +182,28 @@ public class UserController {
                                     BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            model.addAttribute("genders", genders);
+
             return "./forms/user-management-update-form";
         }
         else {
 
-            User user = new User();
+            User user = userDao.findById(updateUser.getId());
 
-            user.setFirstName(updateUser.getFirstName());
-            user.setLastName(updateUser.getLastName());
-            user.setEmail(updateUser.getEmail());
-            user.setGender(updateUser.getGender());
-            user.setUsername(updateUser.getUsername());
-            user.setPassword(updateUser.getPassword());
+            if (user != null) {
 
-            userDao.update(user);
+                user.setFirstName(updateUser.getFirstName());
+                user.setLastName(updateUser.getLastName());
+                user.setEmail(updateUser.getEmail());
+                user.setGender(updateUser.getGender());
+                user.setUsername(updateUser.getUsername());
+                user.setPassword(updateUser.getPassword());
 
-            model.addAttribute("user", user);
+                userDao.update(user);
+
+                model.addAttribute("user", user);
+
+                return "redirect:/users/users-management";
+            }
 
             return "redirect:/users/users-management";
         }

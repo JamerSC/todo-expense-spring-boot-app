@@ -13,37 +13,22 @@ public class User {
     @Column(name = "id")
     private Integer id;
 
-//    @NotNull(message = "First name is required!")
-//    @Size(min = 1, message = "First name is required!")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-//    @NotBlank(message = "Last name is required!")
-//    @Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
-//    @NotNull(message = "First name is required!")
-//    @Size(min = 1, message = "First name is required!")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-//    @NotNull(message = "Gender is required!")
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    @NotNull(message = "Username is required!")
-//    @Size(min = 1, message = "Username is required!")
- // @Size(min = 1, max = 20, message = "Username must be between 4 and 20 characters")
     @Column(name = "username", nullable = false, unique = true)
-    private String username = "";
+    private String username;
 
-//    @NotNull(message = "Password is required!")
-//    @Size(min = 1, message = "Password is required!")
- //   @Size(min = 6, message = "Password must be at least 6 characters")
     @Column(name = "password", nullable = false)
-    private String password = "";
+    private String password;
 
-//  @NotBlank(message = "Email is required!")
-//  @Email(message = "Invalid email format")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 

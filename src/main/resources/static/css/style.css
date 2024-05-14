@@ -12,6 +12,11 @@
             color: red;
         }
 
+       .password-input {
+                -webkit-text-security: disc; /* For Safari */
+                text-security: disc; /* For other browsers */
+       }
+
         /*
         body {
             font-family: 'Arial', sans-serif;

@@ -52,11 +52,10 @@
                 <div class="mb-3">
                     <label for="gender" class="form-label">Gender</label>
                     <select class="form-select" id="gender" th:field="*{gender}">
-                        <option value="">Select gender</option>
-                        <option th:each="tempGender : ${genders}"
-                                th:value="${tempGender}"
-                                th:text="${tempGender}">
-                        </option>
+                        <option value="">Select Status</option>
+                        <option th:value="Male">Male</option>
+                        <option th:value="Female">Female</option>
+                        <option th:value="Other">Other</option>
                     </select>
                     <p th:if="${#fields.hasErrors('gender')}"
                        th:errors="*{gender}"
@@ -109,6 +108,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
