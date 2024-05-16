@@ -87,16 +87,18 @@
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">New Password</label>
+                    <label for="password" class="form-label">   Password</label>
                     <input type="password"
                            class="form-control"
                            id="password"
                            placeholder="Enter your password"
-                           th:field="*{password}">
+                           name="password"
+                           th:value="*{password}">
                     <p th:if="${#fields.hasErrors('password')}"
                        th:errors="*{password}"
                        class="error">
                     </p>
+                    <button class="btn btn-outline-secondary" type="button" id="showPassword">Show</button>
                 </div>
                 <div class="d-grid mb-3">
                     <button type="submit" class="btn btn-primary">Save</button>
@@ -109,6 +111,21 @@
     </div>
 </div>
 
+<!-- Show/Hide Password Script -->
+<script>
+    const passwordInput = document.getElementById('password');
+    const showPasswordBtn = document.getElementById('showPassword');
+
+    showPasswordBtn.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            showPasswordBtn.textContent = 'Hide';
+        } else {
+            passwordInput.type = 'password';
+            showPasswordBtn.textContent = 'Show';
+        }
+    });
+</script>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
