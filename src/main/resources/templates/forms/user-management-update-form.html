@@ -87,18 +87,16 @@
                     </p>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">   Password</label>
+                    <label for="password" class="form-label">New Password</label>
                     <input type="password"
                            class="form-control"
                            id="password"
                            placeholder="Enter your password"
-                           name="password"
-                           th:value="*{password}">
+                           th:field="*{password}">
                     <p th:if="${#fields.hasErrors('password')}"
                        th:errors="*{password}"
                        class="error">
                     </p>
-                    <button class="btn btn-outline-secondary" type="button" id="showPassword">Show</button>
                 </div>
                 <div class="d-grid mb-3">
                     <button type="submit" class="btn btn-primary">Save</button>
@@ -111,8 +109,6 @@
     </div>
 </div>
 
-<!-- External JavaScript file -->
-<script th:src="@{/js/script.js}"></script>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
