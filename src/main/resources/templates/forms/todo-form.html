@@ -18,8 +18,8 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
         <!-- Insert form-->
-            <form action="#" th:action="@{/createTodo}"
-                             th:object="${createTodo}" method="POST">
+            <form action="#" th:action="@{/todos/createTodo}"
+                             th:object="${todo}" method="POST">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text"
@@ -85,7 +85,7 @@
                     <button type="submit" class="btn btn-primary">Create Todo</button>
                 </div>
                 <div class="d-grid mb-3">
-                    <a th:href="@{/todo}" class="btn btn-secondary">Cancel</a>
+                    <a th:href="@{/todos/todo}" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
         </div>

@@ -6,6 +6,7 @@ import com.jamersc.springboot.todoexpense.service.UserService;
 import com.jamersc.springboot.todoexpense.validation.ManageUser;
 import com.jamersc.springboot.todoexpense.validation.LoginUser;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class UserController {
 
     private UserDao userDao;
 
+    @Autowired
     public UserController(UserDao userDao) {
         this.userDao = userDao;
     }

@@ -17,7 +17,7 @@
 <div th:insert="~{fragments/header :: header}"></div>
 
 <!-- Create button link -->
-<a th:href="@{/createTodo}"
+<a th:href="@{/todos/createTodo}"
    class="btn btn-primary btn-sm mb-3">
     Create Todo
 </a>
@@ -32,21 +32,32 @@
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
             <th scope="col">Status</th>
-            <th>Action</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="tempTodo : ${todo}">
-            <th scope="row">1</th>
+            <th th:text="${tempTodo.id}">1</th>
             <td th:text="${tempTodo.title}"></td>
             <td th:text="${tempTodo.details}"></td>
-            <!-- <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
-            <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td> -->
             <td th:text="${#dates.format(tempTodo.startDate, 'dd MMMM yyyy')}"></td>
             <td th:text="${#dates.format(tempTodo.endDate, 'dd MMMM yyyy')}"></td>
             <td th:text="${tempTodo.status}"></td>
-            <td><button type="button" class="btn btn-success">Update</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+            <td>
+                <!-- Update Form  -->
+                <form action="#" th:action="@{/todos/updateTodo}" method="get">
+                    <input type="hidden" name="todoId" th:value="${tempTodo.id}" />
+                    <button type="submit" class="btn btn-info">Update</button>
+                </form>
+            </td>
+            <td>
+                <!-- Delete Form @Request Param -->
+                <form th:action="@{/todos/deleteTodo}" method="post"
+                      onsubmit="return confirm('Are you sure you want to delete this task?');">
+                    <input type="hidden" name="todoId" th:value="${tempTodo.id}" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </td>
         </tr>
     </tbody>

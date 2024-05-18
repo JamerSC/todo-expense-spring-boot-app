@@ -7,7 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class CreateTodo {
+public class ManageTodo {
+
+    private Integer id;
 
     @NotNull(message = "Todo title is required!")
     @Size(min = 1, message = "Todo title is required!")
@@ -28,15 +30,24 @@ public class CreateTodo {
     @NotNull(message = "Status is required!")
     private Status status;
 
-    public CreateTodo() {
+    public ManageTodo() {
     }
 
-    public CreateTodo(String title, String details, Date startDate, Date endDate, Status status) {
+    public ManageTodo(Integer id, String title, String details, Date startDate, Date endDate, Status status) {
+        this.id = id;
         this.title = title;
         this.details = details;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -82,7 +93,8 @@ public class CreateTodo {
     @Override
     public String toString() {
         return "CreateTodo{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", details='" + details + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +

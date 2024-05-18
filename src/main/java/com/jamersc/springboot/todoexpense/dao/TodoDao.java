@@ -14,6 +14,6 @@ public interface TodoDao {
 
     void update(Todo todo);
 
-    void delete(Integer id);
+    void deleteById(Integer id);
 
 }
