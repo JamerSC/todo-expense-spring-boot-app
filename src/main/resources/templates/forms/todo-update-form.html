@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <!-- External link for Thymeleaf x CSS-->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+
+<div class="container">
+    <h1 class="mb-5 text-center">Update Task</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+        <!-- Insert form-->
+            <form action="#" th:action="@{/todos/updateTodo}"
+                             th:object="${todo}" method="POST">
+
+                <input type="hidden" th:field="*{id}">
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text"
+                           class="form-control"
+                           id="title"
+                           placeholder="Enter your todo title"
+                           th:field="*{title}">
+                    <p th:if="${#fields.hasErrors('title')}"
+                       th:errors="*{title}"
+                       class="error">
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <label for="details" class="form-label">Details</label>
+                    <textarea
+                            class="form-control"
+                            id="details"
+                            placeholder="Enter the details"
+                            th:field="*{details}">
+                    </textarea>
+                    <p th:if="${#fields.hasErrors('details')}"
+                       th:errors="*{details}"
+                       class="error">
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date"
+                           class="form-control"
+                           id="startDate"
+                           th:field="*{startDate}">
+                    <p th:if="${#fields.hasErrors('startDate')}"
+                       th:errors="*{startDate}"
+                       class="error">
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="date"
+                           class="form-control"
+                           id="endDate"
+                           th:field="*{endDate}">
+                    <p th:if="${#fields.hasErrors('endDate')}"
+                       th:errors="*{endDate}"
+                       class="error">
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status" th:field="*{status}">
+                        <option value="">Select Status</option>
+                        <option th:value="Open">Open</option>
+                        <option th:value="Ongoing">Ongoing</option>
+                        <option th:value="Pending">Pending</option>
+                        <option th:value="Completed">Completed</option>
+                    </select>
+                    <p th:if="${#fields.hasErrors('status')}"
+                       th:errors="*{status}"
+                       class="error">
+                    </p>
+                </div>
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                <div class="d-grid mb-3">
+                    <a th:href="@{/todos/todo}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
