@@ -1,10 +1,9 @@
 package com.jamersc.springboot.todoexpense.controller;
 
-import com.jamersc.springboot.todoexpense.repository.ExpenseDao;
 import com.jamersc.springboot.todoexpense.model.Expense;
 import com.jamersc.springboot.todoexpense.model.RecordExpense;
+import com.jamersc.springboot.todoexpense.service.ExpenseService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +16,10 @@ import java.util.List;
 @Controller
 public class ExpenseController {
 
-    private ExpenseDao expenseDao;
+    private final ExpenseService expenseService;
 
-    @Autowired
-    public ExpenseController(ExpenseDao expenseDao) {
-        this.expenseDao = expenseDao;
+    public ExpenseController(ExpenseService expenseService) {
+        this.expenseService = expenseService;
     }
 
     /* Expenses Page */
@@ -29,7 +27,7 @@ public class ExpenseController {
     public String showExpenses(Model model) {
 
         // Read all expenses
-        List<Expense> expenses = expenseDao.findAll();
+        List<Expense> expenses = expenseService.findAllExpense();
 
         model.addAttribute("expense", expenses);
 
@@ -71,7 +69,7 @@ public class ExpenseController {
             expense.setModeOfPayment(recordExpense.getModeOfPayment());
             expense.setAmount(recordExpense.getAmount());
 
-            expenseDao.save(expense);
+            expenseService.saveRecord(expense);
             model.addAttribute("expense", expense);
 
 

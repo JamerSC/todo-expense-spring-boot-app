@@ -1,9 +1,9 @@
 package com.jamersc.springboot.todoexpense.controller;
 
-import com.jamersc.springboot.todoexpense.repository.UserDao;
 import com.jamersc.springboot.todoexpense.model.User;
 import com.jamersc.springboot.todoexpense.model.ManageUser;
 import com.jamersc.springboot.todoexpense.model.LoginUser;
+import com.jamersc.springboot.todoexpense.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -20,11 +20,11 @@ import java.util.List;
 public class UserController {
 
 
-    private UserDao userDao;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserDao userDao) {
-        this.userDao = userDao;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     // init binder & resolve issues for validation
@@ -101,7 +101,7 @@ public class UserController {
                 user.setUsername(createAccount.getUsername());
                 user.setPassword(createAccount.getPassword());
 
-                userDao.save(user);
+                userService.saveUser(user);
 
                 model.addAttribute("user", user);
 
@@ -121,7 +121,7 @@ public class UserController {
     @GetMapping("/users-management")
     public String showUsersManagement(Model model) {
 
-        List<User> users = userDao.findAll();
+        List<User> users = userService.findAllUser();
 
         model.addAttribute("users", users);
 
@@ -159,7 +159,7 @@ public class UserController {
             user.setUsername(createUser.getUsername());
             user.setPassword(createUser.getPassword());
 
-            userDao.save(user);
+            userService.saveUser(user);
 
             model.addAttribute("user", user);
 
@@ -170,7 +170,7 @@ public class UserController {
     @GetMapping("/updateUser")
     public String updateUser(@RequestParam("userId") Integer userId, Model model) {
 
-        User id = userDao.findById(userId);
+        User id = userService.findUserById(userId);
 
         model.addAttribute("user", id);
         return "./forms/user-management-update-form";
@@ -186,7 +186,7 @@ public class UserController {
         }
         else {
 
-            User user = userDao.findById(updateUser.getId());
+            User user = userService.findUserById(updateUser.getId());
 
             if (user != null) {
 
@@ -197,7 +197,7 @@ public class UserController {
                 user.setUsername(updateUser.getUsername());
                 user.setPassword(updateUser.getPassword());
 
-                userDao.update(user);
+                userService.saveUser(user);
 
                 model.addAttribute("user", user);
 
@@ -213,7 +213,7 @@ public class UserController {
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("userId") Integer id) {
 
-        userDao.deleteById(id);
+        userService.deleteUserById(id);
 
         return "redirect:/users/users-management";
     }

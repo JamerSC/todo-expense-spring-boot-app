@@ -5,12 +5,12 @@ import com.jamersc.springboot.todoexpense.model.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> findAll();
+    List<User> findAllUser();
 
-    User findById(Integer theId);
+    User findUserById(Integer id);
 
-    User save(User theUser);
+    void saveUser(User user);
 
-    void deleteById(Integer theId);
+    void deleteUserById(Integer id);
 
 }

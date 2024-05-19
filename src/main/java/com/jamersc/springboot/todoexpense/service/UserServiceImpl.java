@@ -21,33 +21,33 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAllUser() {
         return userRepository.findAll();
     }
 
     @Override
-    public User findById(Integer theId) {
+    public User findUserById(Integer id) {
 
-        // link: www.luv2code.com/java-optional-tutorial
-        Optional<User> result = userRepository.findById(theId);
+        Optional<User> result = userRepository.findById(id);
 
-        User theUser = null;
-        if(result.isPresent()){
-            theUser = result.get();
+        User tempUser = null;
+        if (result.isPresent()) {
+            tempUser = result.get();
         } else {
-            throw new RuntimeException("Did not find the User id - " + theId);
+            throw new RuntimeException("Did not find employee id -" + id);
         }
 
-        return theUser;
+        return tempUser;
+
     }
 
     @Override
-    public User save(User theUser) {
-        return userRepository.save(theUser);
+    public void saveUser(User theUser) {
+        userRepository.save(theUser);
     }
 
     @Override
-    public void deleteById(Integer theId) {
+    public void deleteUserById(Integer theId) {
         userRepository.deleteById(theId);
     }
 }

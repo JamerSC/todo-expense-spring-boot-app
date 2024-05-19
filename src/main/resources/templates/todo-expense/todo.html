@@ -46,7 +46,7 @@
             <td th:text="${tempTodo.status}"></td>
             <td>
                 <!-- Update Form  -->
-                <form action="#" th:action="@{/todos/updateTodo}" method="get">
+                <form th:action="@{/todos/updateTodo}" method="get">
                     <input type="hidden" name="todoId" th:value="${tempTodo.id}" />
                     <button type="submit" class="btn btn-info">Update</button>
                 </form>

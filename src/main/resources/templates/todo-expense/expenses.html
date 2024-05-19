@@ -37,7 +37,7 @@
     </thead>
     <tbody>
         <tr th:each="tempExpense : ${expense}">
-            <th scope="row">1</th>
+            <th th:text="${tempExpense.id}"></th>
             <td th:text="${#dates.format(tempExpense.dateOfPayment, 'dd MMMM yyyy')}"></td>
             <td th:text="${tempExpense.itemDescription}"></td>
             <td th:text="${tempExpense.remarks}"></td>

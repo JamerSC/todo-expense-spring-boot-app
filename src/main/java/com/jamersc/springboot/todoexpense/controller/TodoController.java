@@ -1,11 +1,9 @@
 package com.jamersc.springboot.todoexpense.controller;
 
-import com.jamersc.springboot.todoexpense.repository.TodoDao;
 import com.jamersc.springboot.todoexpense.model.Todo;
 import com.jamersc.springboot.todoexpense.model.ManageTodo;
+import com.jamersc.springboot.todoexpense.service.TodoService;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +16,11 @@ import java.util.List;
 @RequestMapping("/todos")
 public class TodoController {
 
-    private TodoDao todoDao;
-
-    private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
+    private final TodoService todoService;
 
     @Autowired
-    public TodoController(TodoDao todoDao) {
-        this.todoDao = todoDao;
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
     }
 
     /* To do page*/
@@ -32,7 +28,7 @@ public class TodoController {
     public String showTodo(Model model) {
 
         // Display all todo
-        List<Todo> todos = todoDao.findAll();
+        List<Todo> todos = todoService.findAllTodo();
 
         model.addAttribute("todo", todos);
 
@@ -73,7 +69,7 @@ public class TodoController {
             todo.setStatus(createTodo.getStatus());
 
             // Save todo
-            todoDao.save(todo);
+            todoService.saveTodo(todo);
 
             model.addAttribute("todo", todo);
 
@@ -85,7 +81,7 @@ public class TodoController {
     @GetMapping("/updateTodo")
     public String updateTodo(@RequestParam("todoId") Integer todoId, Model model) {
 
-        Todo todo = todoDao.findById(todoId);
+        Todo todo = todoService.findTodoById(todoId);
 
         model.addAttribute("todo", todo);
 
@@ -107,35 +103,9 @@ public class TodoController {
     @PostMapping("/deleteTodo")
     public String deleteTodo(@RequestParam("todoId") Integer id, Model model) {
 
-/*        logger.debug("Received request to delete Todo with id: {}", id);
-        try {
-            // Check if Todo with the specified ID exists
-            Todo todo = todoDao.findById(id);
-            if (todo == null) {
-                // If Todo does not exist, return an error message
-                logger.warn("Todo not found with id: {}", id);
-                model.addAttribute("error", "Todo not found with id " + id);
-                return "error";
-            }
-            // Delete the Todo
-            todoDao.deleteById(todo.getId());
-            logger.debug("Successfully deleted Todo with id: {}", id);
-        } catch (Exception e) {
-            logger.error("Error deleting Todo with id: {}", id, e);
-            model.addAttribute("error", "Error deleting Todo with id " + id);
-            return "error";
-        }*/
-        Todo todo = todoDao.findById(id);
-        if (todo != null) {
-            todoDao.deleteById(todo.getId());
-            logger.debug("Deleted successfully todo with id: {}", id);
-            return "redirect:/todos/todo";
-        } else  {
-            logger.warn("Error! on deleting todo with id: {}", id);
-            model.addAttribute("error", "Error on deleting todo with id: {}" + id);
-            return "error";
-        }
+        todoService.deleteTodoById(id);
 
+        return "redirect:/todos/todo";
 
     }
 
