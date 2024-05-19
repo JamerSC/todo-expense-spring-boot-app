@@ -1,7 +1,7 @@
 package com.jamersc.springboot.todoexpense.service;
 
-import com.jamersc.springboot.todoexpense.dao.UserRepository;
-import com.jamersc.springboot.todoexpense.entity.User;
+import com.jamersc.springboot.todoexpense.repository.UserRepository;
+import com.jamersc.springboot.todoexpense.model.User;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

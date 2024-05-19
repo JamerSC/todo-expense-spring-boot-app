@@ -1,4 +1,4 @@
-package com.jamersc.springboot.todoexpense.validation;
+package com.jamersc.springboot.todoexpense.model;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

@@ -1,8 +1,8 @@
 package com.jamersc.springboot.todoexpense.controller;
 
-import com.jamersc.springboot.todoexpense.dao.ExpenseDao;
-import com.jamersc.springboot.todoexpense.entity.Expense;
-import com.jamersc.springboot.todoexpense.validation.RecordExpense;
+import com.jamersc.springboot.todoexpense.repository.ExpenseDao;
+import com.jamersc.springboot.todoexpense.model.Expense;
+import com.jamersc.springboot.todoexpense.model.RecordExpense;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

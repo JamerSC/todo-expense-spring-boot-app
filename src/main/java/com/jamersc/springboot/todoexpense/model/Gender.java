@@ -1,4 +1,4 @@
-package com.jamersc.springboot.todoexpense.entity;
+package com.jamersc.springboot.todoexpense.model;
 
 public enum Gender {
 

@@ -1,9 +1,8 @@
-package com.jamersc.springboot.todoexpense.dao;
+package com.jamersc.springboot.todoexpense.repository;
 
-import com.jamersc.springboot.todoexpense.entity.Todo;
+import com.jamersc.springboot.todoexpense.model.Todo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;

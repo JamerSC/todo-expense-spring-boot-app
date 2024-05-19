@@ -1,6 +1,6 @@
-package com.jamersc.springboot.todoexpense.dao;
+package com.jamersc.springboot.todoexpense.repository;
 
-import com.jamersc.springboot.todoexpense.entity.User;
+import com.jamersc.springboot.todoexpense.model.User;
 
 import java.util.List;
 

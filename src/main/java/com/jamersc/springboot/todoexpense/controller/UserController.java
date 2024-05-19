@@ -1,16 +1,13 @@
 package com.jamersc.springboot.todoexpense.controller;
 
-import com.jamersc.springboot.todoexpense.dao.UserDao;
-import com.jamersc.springboot.todoexpense.entity.User;
-import com.jamersc.springboot.todoexpense.service.UserService;
-import com.jamersc.springboot.todoexpense.validation.ManageUser;
-import com.jamersc.springboot.todoexpense.validation.LoginUser;
+import com.jamersc.springboot.todoexpense.repository.UserDao;
+import com.jamersc.springboot.todoexpense.model.User;
+import com.jamersc.springboot.todoexpense.model.ManageUser;
+import com.jamersc.springboot.todoexpense.model.LoginUser;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;

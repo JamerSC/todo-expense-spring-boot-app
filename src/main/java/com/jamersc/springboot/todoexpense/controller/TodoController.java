@@ -1,8 +1,8 @@
 package com.jamersc.springboot.todoexpense.controller;
 
-import com.jamersc.springboot.todoexpense.dao.TodoDao;
-import com.jamersc.springboot.todoexpense.entity.Todo;
-import com.jamersc.springboot.todoexpense.validation.ManageTodo;
+import com.jamersc.springboot.todoexpense.repository.TodoDao;
+import com.jamersc.springboot.todoexpense.model.Todo;
+import com.jamersc.springboot.todoexpense.model.ManageTodo;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

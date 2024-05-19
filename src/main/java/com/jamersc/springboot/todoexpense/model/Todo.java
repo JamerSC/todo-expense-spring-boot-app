@@ -1,4 +1,4 @@
-package com.jamersc.springboot.todoexpense.entity;
+package com.jamersc.springboot.todoexpense.model;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -6,31 +6,33 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "expense")
-public class Expense {
+@Table(name = "todo")
+public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "date_of_payment", nullable = false)
+    @Column(name = "title", nullable = false)
+    private String title;
+
+    @Column(name = "details", nullable = false)
+    private String details;
+
+    @Column(name = "start_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE) // Assuming expenseDate is a date without time
-    private Date dateOfPayment;
+    @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
+    private Date startDate;
 
-    @Column(name = "item_description", nullable = false)
-    private String itemDescription;
+    @Column(name = "end_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
+    private Date endDate;
 
-    @Column(name = "remarks", length = 255) // Setting max length for remarks
-    private String remarks;
-
-    @Column(name = "mode_of_payment", nullable = false)
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private ModeOfPayment modeOfPayment;
-
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
@@ -50,17 +52,17 @@ public class Expense {
 
     // Getters and setters, constructors, and other methods
 
-    public Expense() {
+    public Todo() {
     }
 
-    public Expense(Integer id, Date dateOfPayment, String itemDescription, String remarks, ModeOfPayment modeOfPayment,
-                   Double amount, User createdBy, Date createdDate, User modifiedBy, Date modifiedDate) {
+    public Todo(Integer id, String title, String details, Date startDate, Date endDate,
+                Status status, User createdBy, Date createdDate, User modifiedBy, Date modifiedDate) {
         this.id = id;
-        this.dateOfPayment = dateOfPayment;
-        this.itemDescription = itemDescription;
-        this.remarks = remarks;
-        this.modeOfPayment = modeOfPayment;
-        this.amount = amount;
+        this.title = title;
+        this.details = details;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
@@ -75,44 +77,44 @@ public class Expense {
         this.id = id;
     }
 
-    public Date getDateOfPayment() {
-        return dateOfPayment;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDateOfPayment(Date dateOfPayment) {
-        this.dateOfPayment = dateOfPayment;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getItemDescription() {
-        return itemDescription;
+    public String getDetails() {
+        return details;
     }
 
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public String getRemarks() {
-        return remarks;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public ModeOfPayment getModeOfPayment() {
-        return modeOfPayment;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setModeOfPayment(ModeOfPayment modeOfPayment) {
-        this.modeOfPayment = modeOfPayment;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public Double getAmount() {
-        return amount;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public User getCreatedBy() {
@@ -161,13 +163,13 @@ public class Expense {
 
     @Override
     public String toString() {
-        return "Expense{" +
+        return "Todo{" +
                 "id=" + id +
-                ", dateOfPayment=" + dateOfPayment +
-                ", itemDescription='" + itemDescription + '\'' +
-                ", remarks='" + remarks + '\'' +
-                ", modeOfPayment=" + modeOfPayment +
-                ", amount=" + amount +
+                ", title='" + title + '\'' +
+                ", details='" + details + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status=" + status +
                 ", createdBy=" + createdBy +
                 ", createdDate=" + createdDate +
                 ", modifiedBy=" + modifiedBy +
