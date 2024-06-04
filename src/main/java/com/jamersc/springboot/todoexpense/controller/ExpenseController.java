@@ -4,7 +4,10 @@ import com.jamersc.springboot.todoexpense.model.Expense;
 import com.jamersc.springboot.todoexpense.dto.RecordExpense;
 import com.jamersc.springboot.todoexpense.service.ExpenseService;
 import jakarta.validation.Valid;
+import org.hibernate.sql.Update;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -64,11 +67,7 @@ public class ExpenseController {
 
             Expense expense = new Expense();
 
-            expense.setDateOfPayment(recordExpense.getDateOfPayment());
-            expense.setItemDescription(recordExpense.getItemDescription());
-            expense.setRemarks(recordExpense.getRemarks());
-            expense.setModeOfPayment(recordExpense.getModeOfPayment());
-            expense.setAmount(recordExpense.getAmount());
+            BeanUtils.copyProperties(recordExpense, expense);
 
             expenseService.saveRecord(expense);
             model.addAttribute("expense", expense);
@@ -103,6 +102,8 @@ public class ExpenseController {
 
             if (expense != null) {
 
+                BeanUtils.copyProperties(updateExpense, expense);
+
                 expenseService.saveRecord(expense);
 
                 model.addAttribute("expense", expense);
@@ -113,8 +114,6 @@ public class ExpenseController {
             return "redirect:/expenses/expense";
         }
     }
-
-
 
 
     @PostMapping("/deleteExpense")

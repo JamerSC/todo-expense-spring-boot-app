@@ -5,6 +5,7 @@ import com.jamersc.springboot.todoexpense.dto.ManageUser;
 import com.jamersc.springboot.todoexpense.dto.LoginUser;
 import com.jamersc.springboot.todoexpense.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -94,12 +95,17 @@ public class UserController {
 
                 User user = new User();
 
+                // reduce redundancy & boilerplate
+                BeanUtils.copyProperties(createAccount, user);
+
+                /*
                 user.setFirstName(createAccount.getFirstName());
                 user.setLastName(createAccount.getLastName());
                 user.setGender(createAccount.getGender());
                 user.setEmail(createAccount.getEmail());
                 user.setUsername(createAccount.getUsername());
                 user.setPassword(createAccount.getPassword());
+                */
 
                 userService.saveUser(user);
 
@@ -152,12 +158,7 @@ public class UserController {
 
             User user = new User();
 
-            user.setFirstName(createUser.getFirstName());
-            user.setLastName(createUser.getLastName());
-            user.setEmail(createUser.getEmail());
-            user.setGender(createUser.getGender());
-            user.setUsername(createUser.getUsername());
-            user.setPassword(createUser.getPassword());
+            BeanUtils.copyProperties(createUser, user);
 
             userService.saveUser(user);
 
@@ -190,12 +191,7 @@ public class UserController {
 
             if (user != null) {
 
-                user.setFirstName(updateUser.getFirstName());
-                user.setLastName(updateUser.getLastName());
-                user.setEmail(updateUser.getEmail());
-                user.setGender(updateUser.getGender());
-                user.setUsername(updateUser.getUsername());
-                user.setPassword(updateUser.getPassword());
+                BeanUtils.copyProperties(updateUser, user);
 
                 userService.saveUser(user);
 

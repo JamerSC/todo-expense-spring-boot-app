@@ -4,6 +4,7 @@ import com.jamersc.springboot.todoexpense.model.Todo;
 import com.jamersc.springboot.todoexpense.dto.ManageTodo;
 import com.jamersc.springboot.todoexpense.service.TodoService;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,11 +63,7 @@ public class TodoController {
 
             Todo todo = new Todo();
 
-            todo.setTitle(createTodo.getTitle());
-            todo.setDetails(createTodo.getDetails());
-            todo.setStartDate(createTodo.getStartDate());
-            todo.setEndDate(createTodo.getEndDate());
-            todo.setStatus(createTodo.getStatus());
+            BeanUtils.copyProperties(createTodo, todo);
 
             // Save todo
             todoService.saveTodo(todo);
@@ -102,11 +99,7 @@ public class TodoController {
 
             if (todo != null) {
 
-                todo.setTitle(updateTodo.getTitle());
-                todo.setDetails(updateTodo.getDetails());
-                todo.setStartDate(updateTodo.getStartDate());
-                todo.setEndDate(updateTodo.getEndDate());
-                todo.setStatus(updateTodo.getStatus());
+                BeanUtils.copyProperties(updateTodo, todo);
 
                 todoService.saveTodo(todo);
 
