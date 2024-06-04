@@ -11,40 +11,29 @@ public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
-
-    @Column(name = "date_of_payment", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming expenseDate is a date without time
     private Date dateOfPayment;
-
-    @Column(name = "item_description", nullable = false)
     private String itemDescription;
-
-    @Column(name = "remarks", length = 255) // Setting max length for remarks
     private String remarks;
-
-    @Column(name = "mode_of_payment", nullable = false)
     @Enumerated(EnumType.STRING)
     private ModeOfPayment modeOfPayment;
-
-    @Column(name = "amount", nullable = false)
     private Double amount;
 
     @ManyToOne
-    @JoinColumn(name = "created_by", nullable = false)
+    @JoinColumn(name = "created_by")
     private User createdBy;
 
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
     @ManyToOne
-    @JoinColumn(name = "modified_by", nullable = false)
+    @JoinColumn(name = "modified_by")
     private User modifiedBy;
 
-    @Column(name = "modified_date", nullable = false)
+    @Column(name = "modified_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
 

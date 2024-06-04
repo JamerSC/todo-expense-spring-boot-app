@@ -3,6 +3,7 @@ package com.jamersc.springboot.todoexpense.service;
 import com.jamersc.springboot.todoexpense.model.Expense;
 import com.jamersc.springboot.todoexpense.repository.ExpenseRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     private final ExpenseRepository expenseRepository;
 
+    @Autowired
     public ExpenseServiceImpl(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
     }
@@ -47,6 +49,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     public void deleteExpenseById(Integer id) {
+
         expenseRepository.deleteById(id);
 
     }

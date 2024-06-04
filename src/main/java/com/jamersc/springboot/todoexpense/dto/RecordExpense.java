@@ -1,5 +1,6 @@
-package com.jamersc.springboot.todoexpense.model;
+package com.jamersc.springboot.todoexpense.dto;
 
+import com.jamersc.springboot.todoexpense.model.ModeOfPayment;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class RecordExpense {
+
+    private Integer id;
 
     @NotNull(message = "Expense date is required!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -28,13 +31,22 @@ public class RecordExpense {
     public RecordExpense() {
     }
 
-    public RecordExpense(Date dateOfPayment, String itemDescription, String remarks, ModeOfPayment modeOfPayment,
-                         Double amount) {
+    public RecordExpense(Integer id, Date dateOfPayment, String itemDescription, String remarks,
+                         ModeOfPayment modeOfPayment, Double amount) {
+        this.id = id;
         this.dateOfPayment = dateOfPayment;
         this.itemDescription = itemDescription;
         this.remarks = remarks;
         this.modeOfPayment = modeOfPayment;
         this.amount = amount;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getDateOfPayment() {
@@ -80,7 +92,8 @@ public class RecordExpense {
     @Override
     public String toString() {
         return "RecordExpense{" +
-                "dateOfPayment=" + dateOfPayment +
+                "id=" + id +
+                ", dateOfPayment=" + dateOfPayment +
                 ", itemDescription='" + itemDescription + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", modeOfPayment=" + modeOfPayment +

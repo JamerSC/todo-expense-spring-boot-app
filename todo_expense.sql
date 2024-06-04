@@ -7,7 +7,7 @@
 #User table to store user information
 
 CREATE TABLE user (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT,
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
     gender ENUM('Male', 'Female', 'Other'),
@@ -17,7 +17,8 @@ CREATE TABLE user (
     created_by INT NULL,
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified_by INT NULL,
-    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
 
 #Note: DEFAULT 'Other': Sets the default value for the gender column to 'Other'.
@@ -41,7 +42,7 @@ CREATE TABLE todo (
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     modified_by INT,
     modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (created_by) REFERENCES user(id),
+    -- FOREIGN KEY (created_by) REFERENCES user(id),
     PRIMARY KEY(id)
 );
 #FOREIGN KEY (modified_by) REFERENCES user(user_id),
@@ -65,7 +66,7 @@ CREATE TABLE expense (
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	modified_by INT,
     modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	FOREIGN KEY (created_by) REFERENCES user(id),
+	-- FOREIGN KEY (created_by) REFERENCES user(id),
     PRIMARY KEY(id)
 );
 #FOREIGN KEY (modified_by) REFERENCES user(user_id),

@@ -11,42 +11,31 @@ public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
-
-    @Column(name = "title", nullable = false)
     private String title;
-
-    @Column(name = "details", nullable = false)
     private String details;
-
-    @Column(name = "start_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
     private Date startDate;
-
-    @Column(name = "end_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE) // Assuming End Date is a date without time
     private Date endDate;
-
-    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "created_by", nullable = false)
+    @JoinColumn(name = "created_by")
     private User createdBy;
 
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
     @ManyToOne
-    @JoinColumn(name = "modified_by", nullable = false)
+    @JoinColumn(name = "modified_by")
     private User modifiedBy;
 
-    @Column(name = "modified_date", nullable = false)
+    @Column(name = "modified_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
 

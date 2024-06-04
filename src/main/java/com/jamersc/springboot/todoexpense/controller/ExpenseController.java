@@ -1,29 +1,30 @@
 package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.model.Expense;
-import com.jamersc.springboot.todoexpense.model.RecordExpense;
+import com.jamersc.springboot.todoexpense.dto.RecordExpense;
 import com.jamersc.springboot.todoexpense.service.ExpenseService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/expenses")
 public class ExpenseController {
 
     private final ExpenseService expenseService;
 
+    @Autowired
     public ExpenseController(ExpenseService expenseService) {
         this.expenseService = expenseService;
     }
 
     /* Expenses Page */
-    @GetMapping("/expenses")
+    @GetMapping("/expense")
     public String showExpenses(Model model) {
 
         // Read all expenses
@@ -73,8 +74,55 @@ public class ExpenseController {
             model.addAttribute("expense", expense);
 
 
-            return "redirect:/expenses";
+            return "redirect:/expenses/expense";
         }
 
     }
+
+    @GetMapping("/updateExpense")
+    public String updateExpense(@RequestParam("expenseId") Integer expenseId, Model model) {
+
+        Expense expense = expenseService.findExpenseById(expenseId);
+
+        model.addAttribute("expense", expense);
+
+        return "./forms/expense-update-form";
+
+    }
+
+    @PostMapping("/updateExpense")
+    public String processUpdateExpense(@Valid @ModelAttribute("expense") RecordExpense updateExpense,
+                                       BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "./forms/expense-update-form";
+        }
+        else {
+
+            Expense expense = expenseService.findExpenseById(updateExpense.getId());
+
+            if (expense != null) {
+
+                expenseService.saveRecord(expense);
+
+                model.addAttribute("expense", expense);
+
+                return "redirect:/expenses/expense";
+            }
+
+            return "redirect:/expenses/expense";
+        }
+    }
+
+
+
+
+    @PostMapping("/deleteExpense")
+    public String deleteExpense(@RequestParam("expenseId") Integer id, Model model) {
+
+        expenseService.deleteExpenseById(id);
+
+        return "redirect:/expenses/expense";
+    }
+
 }

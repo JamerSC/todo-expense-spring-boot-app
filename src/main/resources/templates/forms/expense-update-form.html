@@ -22,6 +22,9 @@
             <!-- Insert form-->
             <form action="#" th:action="@{/expenses/recordExpense}"
                              th:object="${expense}" method="POST">
+
+                <input type="hidden" th:field="*{id}">
+
                 <div class="mb-3">
                     <label for="dateOfPayment" class="form-label">Expense Date</label>
                     <input type="date"

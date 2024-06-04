@@ -1,8 +1,8 @@
 package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.model.User;
-import com.jamersc.springboot.todoexpense.model.ManageUser;
-import com.jamersc.springboot.todoexpense.model.LoginUser;
+import com.jamersc.springboot.todoexpense.dto.ManageUser;
+import com.jamersc.springboot.todoexpense.dto.LoginUser;
 import com.jamersc.springboot.todoexpense.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

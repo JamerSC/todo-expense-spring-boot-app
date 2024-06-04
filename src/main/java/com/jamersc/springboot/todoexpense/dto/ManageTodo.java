@@ -1,5 +1,6 @@
-package com.jamersc.springboot.todoexpense.model;
+package com.jamersc.springboot.todoexpense.dto;
 
+import com.jamersc.springboot.todoexpense.model.Status;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;

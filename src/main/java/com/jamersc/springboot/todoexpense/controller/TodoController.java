@@ -1,7 +1,7 @@
 package com.jamersc.springboot.todoexpense.controller;
 
 import com.jamersc.springboot.todoexpense.model.Todo;
-import com.jamersc.springboot.todoexpense.model.ManageTodo;
+import com.jamersc.springboot.todoexpense.dto.ManageTodo;
 import com.jamersc.springboot.todoexpense.service.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +96,24 @@ public class TodoController {
 
             return "./forms/todo-update-form";
         }
+        else {
+
+            Todo todo = todoService.findTodoById(updateTodo.getId());
+
+            if (todo != null) {
+
+                todo.setTitle(updateTodo.getTitle());
+                todo.setDetails(updateTodo.getDetails());
+                todo.setStartDate(updateTodo.getStartDate());
+                todo.setEndDate(updateTodo.getEndDate());
+                todo.setStatus(updateTodo.getStatus());
+
+                todoService.saveTodo(todo);
+
+                return "redirect:/todos/todo";
+            }
+        }
+
         return "redirect:/todos/todo";
     }
 
