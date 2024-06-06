@@ -68,8 +68,6 @@ public class TodoController {
             // Save todo
             todoService.saveTodo(todo);
 
-            model.addAttribute("todo", todo);
-
             return "redirect:/todos/todo";
         }
 
@@ -102,12 +100,10 @@ public class TodoController {
                 BeanUtils.copyProperties(updateTodo, todo);
 
                 todoService.saveTodo(todo);
-
-                return "redirect:/todos/todo";
             }
-        }
 
-        return "redirect:/todos/todo";
+            return "redirect:/todos/todo";
+        }
     }
 
 

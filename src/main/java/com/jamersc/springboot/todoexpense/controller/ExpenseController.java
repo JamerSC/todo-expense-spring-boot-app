@@ -70,8 +70,6 @@ public class ExpenseController {
             BeanUtils.copyProperties(recordExpense, expense);
 
             expenseService.saveRecord(expense);
-            model.addAttribute("expense", expense);
-
 
             return "redirect:/expenses/expense";
         }
@@ -107,8 +105,6 @@ public class ExpenseController {
                 expenseService.saveRecord(expense);
 
                 model.addAttribute("expense", expense);
-
-                return "redirect:/expenses/expense";
             }
 
             return "redirect:/expenses/expense";

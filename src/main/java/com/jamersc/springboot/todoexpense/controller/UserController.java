@@ -63,7 +63,7 @@ public class UserController {
             user.setUsername(loginUser.getLoginUsername());
             user.setPassword(loginUser.getLoginPassword());
 
-            model.addAttribute("user", user);
+            //model.addAttribute("user", user);
 
             System.out.println("Login Username: " + user.getUsername());
 
@@ -98,20 +98,9 @@ public class UserController {
                 // reduce redundancy & boilerplate
                 BeanUtils.copyProperties(createAccount, user);
 
-                /*
-                user.setFirstName(createAccount.getFirstName());
-                user.setLastName(createAccount.getLastName());
-                user.setGender(createAccount.getGender());
-                user.setEmail(createAccount.getEmail());
-                user.setUsername(createAccount.getUsername());
-                user.setPassword(createAccount.getPassword());
-                */
-
                 userService.saveUser(user);
 
-                model.addAttribute("user", user);
-
-                System.out.println("Created Account: " + user);
+                model.addAttribute("user", createAccount);
 
                 return "todo-expense/new-user-page";
             }
@@ -162,8 +151,6 @@ public class UserController {
 
             userService.saveUser(user);
 
-            model.addAttribute("user", user);
-
             return "redirect:/users/users-management";
         }
     }
@@ -194,10 +181,6 @@ public class UserController {
                 BeanUtils.copyProperties(updateUser, user);
 
                 userService.saveUser(user);
-
-                model.addAttribute("user", user);
-
-                return "redirect:/users/users-management";
             }
 
             return "redirect:/users/users-management";
