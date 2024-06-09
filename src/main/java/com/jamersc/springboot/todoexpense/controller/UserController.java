@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-
     private final UserService userService;
 
     @Autowired
@@ -32,7 +31,6 @@ public class UserController {
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-
     }
 
     @GetMapping("/login")
@@ -44,7 +42,6 @@ public class UserController {
     @PostMapping("/login")
     public String processLoginForm(@Valid @ModelAttribute("loginUser") LoginUser loginUser,
                                    BindingResult result, Model model){
-
         if (result.hasErrors()) {
             return "todo-expense/login";
         }
@@ -107,7 +104,6 @@ public class UserController {
     @PostMapping("/createUser")
     public String processCreateUser(@Valid @ModelAttribute("user") ManageUser createUser,
                                     BindingResult result, Model model) {
-
         if (result.hasErrors()) {
             return "./forms/user-management-form";
         } else {
@@ -118,7 +114,6 @@ public class UserController {
 
     @GetMapping("/updateUser")
     public String updateUser(@RequestParam("userId") Integer userId, Model model) {
-
         ManageUser manageUser = userService.findUserById(userId);
         if (manageUser != null) {
             model.addAttribute("user", manageUser);
@@ -130,7 +125,6 @@ public class UserController {
     @PostMapping("/updateUser")
     public String processUpdateUser(@Valid @ModelAttribute("user") ManageUser updateUser,
                                     BindingResult result, Model model) {
-
         if (result.hasErrors()) {
             return "./forms/user-management-update-form";
         } else {

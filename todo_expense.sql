@@ -6,7 +6,7 @@
 #SHOW TABLES;
 #User table to store user information
 
-CREATE TABLE user (
+CREATE TABLE users (
     id INT AUTO_INCREMENT,
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE user (
 #SELECT * FROM todo_expense_db.user;
 #TodoList table to store todo lists with a foreign key relationship to User
 
-CREATE TABLE todo (
+CREATE TABLE todos (
     id INT AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
     details VARCHAR(255) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE todo (
 #SELECT * FROM todo;
 
 #ExpenseTracker table to store expenses with a foreign key relationship to User
-CREATE TABLE expense (
+CREATE TABLE expenses (
     id INT AUTO_INCREMENT,
 	date_of_payment DATE NOT NULL,
     item_description VARCHAR(255) NOT NULL,
