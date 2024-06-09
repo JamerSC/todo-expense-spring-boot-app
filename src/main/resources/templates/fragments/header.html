@@ -24,16 +24,24 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/users/dashboard}">Dashboard</a>
+                    <a class="nav-link" href="#" aria-current="page"
+                       th:classappend="${activeNav == 'dashboard' ? 'active' : ''}"
+                       th:href="@{/users/dashboard}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/todos/todo}">Todo</a>
+                    <a class="nav-link" href="#"
+                       th:classappend="${activeNav == 'todos' ? 'active' : ''}"
+                       th:href="@{/todos/todo}">Todo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/expenses/expense}">Expenses</a>
+                    <a class="nav-link" href="#"
+                       th:classappend="${activeNav == 'expenses' ? 'active' : ''}"
+                       th:href="@{/expenses/expense}">Expenses</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/users/users-management}">Users</a>
+                    <a class="nav-link" href="#"
+                       th:classappend="${activeNav == 'users' ? 'active' : ''}"
+                       th:href="@{/users/users-management}">Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/users/login}">Logout</a>

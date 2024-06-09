@@ -78,9 +78,10 @@ public class UserController {
         }
     }
 
-    /* Index/Dashboard Page */
     @GetMapping("/dashboard")
-    public String showIndex() {
+    public String showIndex(Model model) {
+        // navigation active
+        model.addAttribute("activeNav", "dashboard");
         return "todo-expense/dashboard";
     }
 
@@ -91,6 +92,7 @@ public class UserController {
         for (User tempUsers : users) {
             System.out.println(tempUsers);
         }
+        model.addAttribute("activeNav", "users");
         model.addAttribute("users", users);
         return "todo-expense/users-management";
     }

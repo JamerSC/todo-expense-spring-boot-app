@@ -27,6 +27,8 @@ public class ExpenseController {
     @GetMapping("/expense")
     public String showExpenses(Model model) {
         List<Expense> expenses = expenseService.findAllExpense();
+        // active expense navigation.
+        model.addAttribute("activeNav","expenses");
         model.addAttribute("expense", expenses);
         // Console log display expenses
         System.out.println("List of Expenses:");

@@ -27,6 +27,7 @@ public class TodoController {
     @GetMapping("/todo")
     public String showTodo(Model model) {
         List<Todo> todos = todoService.findAllTodo();
+        model.addAttribute("activeNav","todos");
         model.addAttribute("todo", todos);
         // console log display all task
         for (Todo tempTodo : todos) {
