@@ -23,16 +23,16 @@ public class User {
     @Column(name = "created_by")
     private int createdBy;
 
-    @Column(name = "created_date")
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    private Date createdAt;
 
-    @Column(name = "modified_by")
-    private int modifiedBy;
+    @Column(name = "updated_by")
+    private int updatedBy;
 
-    @Column(name = "modified_date")
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date modifiedDate;
+    private Date updatedAt;
 
     public User() {
 
@@ -115,46 +115,46 @@ public class User {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public int getModifiedBy() {
-        return modifiedBy;
+    public int getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setModifiedBy(int modifiedBy) {
-        this.modifiedBy = modifiedBy;
+    public void setUpdatedBy(int updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
-    public Date getModifiedDate() {
-        return modifiedDate;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     // Add JPA annotations for createdDate and modifiedDate
     @PrePersist
     protected void onCreate() {
-        createdDate = new Date();
-        modifiedDate = new Date();
+        createdAt = new Date();
+        updatedAt = new Date();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        modifiedDate = new Date();
+        updatedAt = new Date();
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", gender=" + gender +
@@ -162,9 +162,9 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", createdBy=" + createdBy +
-                ", createdDate=" + createdDate +
-                ", modifiedBy=" + modifiedBy +
-                ", modifiedDate=" + modifiedDate +
+                ", createdAt=" + createdAt +
+                ", updatedBy=" + updatedBy +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

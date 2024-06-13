@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "todos")
+@Table(name = "tasks")
 public class Todo {
 
     @Id
@@ -27,17 +27,17 @@ public class Todo {
     @JoinColumn(name = "created_by")
     private User createdBy;
 
-    @Column(name = "created_date")
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    private Date createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "modified_by")
-    private User modifiedBy;
+    @JoinColumn(name = "updated_by")
+    private User updatedBy;
 
-    @Column(name = "modified_date")
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date modifiedDate;
+    private Date updatedAt;
 
     // Getters and setters, constructors, and other methods
 
@@ -45,7 +45,7 @@ public class Todo {
     }
 
     public Todo(Integer id, String title, String details, Date startDate, Date endDate,
-                Status status, User createdBy, Date createdDate, User modifiedBy, Date modifiedDate) {
+                Status status, User createdBy, Date createdAt, User updatedBy, Date updatedAt) {
         this.id = id;
         this.title = title;
         this.details = details;
@@ -53,9 +53,9 @@ public class Todo {
         this.endDate = endDate;
         this.status = status;
         this.createdBy = createdBy;
-        this.createdDate = createdDate;
-        this.modifiedBy = modifiedBy;
-        this.modifiedDate = modifiedDate;
+        this.createdAt = createdAt;
+        this.updatedBy = updatedBy;
+        this.updatedAt = updatedAt;
     }
 
     public Integer getId() {
@@ -114,40 +114,40 @@ public class Todo {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public User getModifiedBy() {
-        return modifiedBy;
+    public User getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setModifiedBy(User modifiedBy) {
-        this.modifiedBy = modifiedBy;
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
-    public Date getModifiedDate() {
-        return modifiedDate;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     // Add JPA annotations for createdDate and modifiedDate
     @PrePersist
     protected void onCreate() {
-        createdDate = new Date();
-        modifiedDate = new Date();
+        createdAt = new Date();
+        updatedAt = new Date();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        modifiedDate = new Date();
+        updatedAt = new Date();
     }
 
     @Override
@@ -160,9 +160,9 @@ public class Todo {
                 ", endDate=" + endDate +
                 ", status=" + status +
                 ", createdBy=" + createdBy +
-                ", createdDate=" + createdDate +
-                ", modifiedBy=" + modifiedBy +
-                ", modifiedDate=" + modifiedDate +
+                ", createdAt=" + createdAt +
+                ", updatedBy=" + updatedBy +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

@@ -45,7 +45,7 @@ public class TodoServiceImpl implements TodoService {
         } else {
             todo = new Todo();
         }
-        BeanUtils.copyProperties(manageTodo, todo, "createdDate");
+        BeanUtils.copyProperties(manageTodo, todo, "createdAt");
         todoRepository.save(todo);
     }
 

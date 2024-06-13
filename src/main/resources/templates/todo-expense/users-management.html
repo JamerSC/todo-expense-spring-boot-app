@@ -45,8 +45,8 @@
         <td th:text="${tempUser.username}"></td>
         <!-- <td th:text="${#dates.format(tempTodo.todoStartDate, 'dd-MM-yyyy')}"></td>
         <td th:text="${#dates.format(tempTodo.todoEndDate, 'dd-MM-yyyy')}"></td> -->
-        <td th:text="${#dates.format(tempUser.createdDate, 'dd MMMM yyyy')}"></td>
-        <td th:text="${#dates.format(tempUser.modifiedDate, 'dd MMMM yyyy')}"></td>
+        <td th:text="${#dates.format(tempUser.createdAt, 'dd MMMM yyyy')}"></td>
+        <td th:text="${#dates.format(tempUser.updatedAt, 'dd MMMM yyyy')}"></td>
         <td>
             <!-- Update Form  -->
             <form th:action="@{/users/updateUser}" method="get">

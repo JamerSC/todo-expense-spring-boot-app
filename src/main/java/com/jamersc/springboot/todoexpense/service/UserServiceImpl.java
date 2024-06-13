@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService{
             user = new User();
         }
         // Copy properties from manageUser to user, excluding createDate
-        BeanUtils.copyProperties(manageUser, user, "createdDate");
+        BeanUtils.copyProperties(manageUser, user, "createdAt");
         userRepository.save(user);
     }
 

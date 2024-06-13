@@ -14,10 +14,10 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    created_by INT NULL,
-    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT NULL,
-    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	created_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_by INT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -31,17 +31,17 @@ CREATE TABLE users (
 #SELECT * FROM todo_expense_db.user;
 #TodoList table to store todo lists with a foreign key relationship to User
 
-CREATE TABLE todos (
+CREATE TABLE tasks (
     id INT AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
     details VARCHAR(255) NOT NULL,
 	start_date DATE,
     end_date DATE,
     status ENUM('Open', 'Ongoing', 'Pending', 'Completed'),
-    created_by INT,
-    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified_by INT,
-    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	created_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_by INT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     -- FOREIGN KEY (created_by) REFERENCES user(id),
     PRIMARY KEY(id)
 );
@@ -63,9 +63,9 @@ CREATE TABLE expenses (
     mode_of_payment ENUM ('Cash', 'Debit', 'Credit', 'Transfer', 'Mobile', 'Online', 'Prepaid'),
     amount DECIMAL(10, 2) NOT NULL,
 	created_by INT,
-    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	modified_by INT,
-    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_by INT,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	-- FOREIGN KEY (created_by) REFERENCES user(id),
     PRIMARY KEY(id)
 );
@@ -73,7 +73,7 @@ CREATE TABLE expenses (
 
 #SELECT * FROM expense;
 
-#drop table user;
-#drop table todo;
-#drop table expense;
+# drop table users;
+# drop table tasks;
+# drop table expenses;
 #ALTER TABLE user DROP PRIMARY KEY;

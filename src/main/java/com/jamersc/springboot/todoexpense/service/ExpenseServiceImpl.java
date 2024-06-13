@@ -46,7 +46,7 @@ public class ExpenseServiceImpl implements ExpenseService {
             expense = new Expense();
         }
         // recordExpense object source to expense object target.
-        BeanUtils.copyProperties(recordExpense, expense, "createdDate");
+        BeanUtils.copyProperties(recordExpense, expense, "createdAt");
         expenseRepository.save(expense);
     }
 
