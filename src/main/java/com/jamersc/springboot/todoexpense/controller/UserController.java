@@ -72,9 +72,16 @@ public class UserController {
         if (result.hasErrors()) {
             return "./forms/create-account-form";
         } else {
-            userService.saveUser(createAccount);
-            model.addAttribute("user", createAccount);
-            return "todo-expense/new-user-page";
+            User user = userService.manageUser(createAccount);
+            if (user != null) {
+                result.rejectValue("username", "error.createAccount",
+                        "Invalid! Username '" + createAccount.getUsername() + "' already exist!");
+                return "./forms/create-account-form";
+            } else {
+                userService.saveUser(createAccount);
+                model.addAttribute("user", createAccount);
+                return "todo-expense/new-user-page";
+            }
         }
     }
 
@@ -109,8 +116,15 @@ public class UserController {
         if (result.hasErrors()) {
             return "./forms/user-management-form";
         } else {
-            userService.saveUser(createUser);
-            return "redirect:/users/users-management";
+            User user = userService.manageUser(createUser);
+            if (user != null) {
+                result.rejectValue("username", "error.createUser",
+                        "Invalid! Username '" + createUser.getUsername() + "' already exist!");
+                return "./forms/user-management-form";
+            } else {
+                userService.saveUser(createUser);
+                return "redirect:/users/users-management";
+            }
         }
     }
 

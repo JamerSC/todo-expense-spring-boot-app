@@ -5,10 +5,13 @@ import com.jamersc.springboot.todoexpense.dto.ManageUser;
 import com.jamersc.springboot.todoexpense.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
     User loginUser(LoginUser loginUser);
+
+    User manageUser(ManageUser manageUser);
 
     List<User> findAllUser();
 
