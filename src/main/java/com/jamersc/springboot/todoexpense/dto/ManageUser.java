@@ -1,10 +1,12 @@
 package com.jamersc.springboot.todoexpense.dto;
 
 import com.jamersc.springboot.todoexpense.model.Gender;
+import com.jamersc.springboot.todoexpense.validation.PasswordMatches;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+@PasswordMatches
 public class ManageUser {
 
     private Integer id;
@@ -25,18 +27,22 @@ public class ManageUser {
     private String email;
 
     @NotNull(message = "Username is required!")
-    @Size(min = 1, message = "Username is required!")
+    @Size(min = 4, message = "Minimum of 4 characters!")
     private String username;
 
     @NotNull(message = "Password is required!")
-    @Size(min = 1, message = "Password is required!")
+    @Size(min = 3, message = "Password is minimum of 3 characters!")
     private String password;
+
+    @NotNull(message = "Confirm Password is required!")
+    @Size(min = 3, message = "Password is minimum of 3 characters!")
+    private String confirmPassword;
 
     public ManageUser() {
     }
 
     public ManageUser(Integer id, String firstName, String lastName, Gender gender,
-                      String email, String username, String password) {
+                      String email, String username, String password, String confirmPassword) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,6 +50,7 @@ public class ManageUser {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 
     public Integer getId() {
@@ -102,6 +109,14 @@ public class ManageUser {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     @Override
     public String toString() {
         return "ManageUser{" +
@@ -112,6 +127,7 @@ public class ManageUser {
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }
 }

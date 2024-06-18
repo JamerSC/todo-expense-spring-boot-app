@@ -98,7 +98,19 @@
                        th:errors="*{password}"
                        class="error">
                     </p>
-                    <button class="btn btn-outline-secondary" type="button" id="showPassword">Show</button>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password"
+                           class="form-control"
+                           id="confirmPassword"
+                           placeholder="Enter your confirm password"
+                           th:field="*{confirmPassword}">
+                    <p th:if="${#fields.hasErrors('confirmPassword')}"
+                       th:errors="*{confirmPassword}"
+                       class="error">
+                    </p>
+                    <button class="btn btn-outline-secondary mt-2" type="button" id="showPassword">Show</button>
                 </div>
                 <div class="d-grid mb-3">
                     <button type="submit" class="btn btn-primary">Save</button>
@@ -111,7 +123,7 @@
     </div>
 </div>
 
-<script src="#" th:src="@{/js/script.js}"></script>
+<script src="#" th:src="@{/js/createAccount.js}"></script>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
