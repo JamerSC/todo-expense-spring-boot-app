@@ -18,11 +18,15 @@
 <div th:insert="~{fragments/header :: header}"></div>
 
 <!-- Create button link -->
-<a th:href="@{/users/createUser}"
+<a href="#" th:href="@{/users/createUser}"
    class="btn btn-primary btn-sm mb-3">
     Create User
 </a>
-
+<!-- Generate PDF -->
+<a href="#" th:href="@{/pdf/generate}"
+   class="btn btn-secondary btn-sm mb-3">
+    Generate PDF
+</a>
 <!-- To do list Table -->
 <table class="table table-striped">
     <thead>
